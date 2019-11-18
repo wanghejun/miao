@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>html_basic</title>
+</head>
+<body>
+  <h1>Lorem.</h1>
+  <h2>Lorem, ipsum .</h2>
+  <h3>Lorem ipsum dolor.</h3>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem enim nostrum repellendus molestiae impedit? Tenetur consequatur sit dolores, laudantium vel odit ad, eveniet expedita dolore assumenda vero unde facere quae?</p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In, alias esse? Autem fugit expedita voluptas neque! Quas beatae accusamus aliquid deleniti, blanditiis ipsam laboriosam fugit esse voluptatum omnis ducimus doloribus!</p>
+  <a href="https://www.jd.com"  target="_blank">在新窗口打开京东</a>
+  <a href="mailto:865876163@qq.com">点给我发邮件</a>
+  <a href="#bottom">跳转到本页的底部</a>
+  <a href="https://www.wanghejun.cn/wp-content/uploads/2019/07/tou.jpg" download="1.jpg">点我可以下载一个文件</a><br>
+  <img src="https://www.wanghejun.cn/wp-content/uploads/2019/07/tou.jpg" alt="logo" width="200">
+  <hr>
+  <hr>
+  <marquee behavior="" direction="">飘~~~</marquee>
+  <em>这几种强调</em> <strong>有什么 区别呢？</strong> <u>这个呢？</u> <i>这个呢？</i><br>
+  &lt;!-- 这段注释要出现在页面里-->
+  <p> html的注释怎么写？</p><!--这么写-->  
+  <p>下面是一段javascript代码，最合适用何种标签表示呢？</p>
+  <pre>
+    <code>
+      funcation a(){
+        return 8;
+      }
+    </code>
+  </pre>
+  <hr>
+  <ul>
+    <li>
+      小学
+      <ol>
+        <li>
+          一年级
+          <ol>
+            <li>上学期</li>
+            <li>下学期</li>
+          </ol>
+        </li>
+        <li>二年级</li>
+        <li>三年级</li>
+      </ol>
+    </li>
+    <li>中学</li>
+    <li>大学</li>
+  </ul>
+  <hr>
+  <dl>
+    <dt>班级</dt>
+    <dd>三年级二班</dd>
+    <dt>老师</dt>
+    <dd>张老师</dd>
+    <dd>李老师</dd>
+    <dd>王老师</dd>
+    <dt>学生</dt>
+    <dd>小明</dd>
+    <dd>豆豆</dd>
+  </dl>
+  <hr>
+  <h3>Google搜索</h3>
+  <form action="https://www.google.com/search?" target="_blank">
+      <input type="text" placeholder="请输入想要搜索的内容" name="q">
+      <input type="submit" name="" id="" value="在新窗口打开搜索结果">
+  </form>  
+  <hr>
+  <p>个人信息调查表</p>
+  <form action="">
+    <dl>
+      <dt> 性别</dt>
+      <dd>
+         <label for=""><input type="radio">男</label>
+         <label for=""><input type="radio">女</label>
+      </dd>
+      <dt>年龄</dt>
+      <dd>
+        <select name="" id="">
+          <option value="" hidden>请选择</option>
+          <optgroup label="少年">
+              <option value="">1-6岁</option>
+              <option value="">7-12岁</option>
+          </optgroup>
+          <optgroup label="青年">
+              <option value="">13-15岁</option>
+              <option value="">16-18岁</option>
+          </optgroup>
+          <optgroup label="壮年">
+              <option value="">19-22岁</option>
+              <option value="">23-30岁</option>
+          </optgroup>
+        </select>
+        <dt>生日</dt>
+        <dl>
+          <input type="date">
+        </dl>
+        <dt>生辰</dt>
+        <dl>
+          <input type="time">
+        </dl>
+        <dt>照片</dt>
+        <dd>
+          <label >点我上传照片，我比文件上传按钮好看<input type="file" accept="image/*" hidden ></label>
+        </dd>
+      </dd>
+      <dt>肤色</dt>
+      <dd><input type="color"></dd>
+      <dt>自我介绍</dt>
+      <dd>
+        <textarea name="" id="" cols="30" rows="10">  &lt;textarea></textarea>
+      </dd>
+    </dl>
+    <dl>
+      <fieldset disabled>
+        <legend>这里面的全部禁用了</legend>
+       <input type="text">
+       <input type="text">
+       <input type="text">
+       <input type="text">
+      </fieldset>
+    </dl>
+    <dl>
+      <input type="submit" value="提交">
+      <input type="reset" value="重置">
+    </dl>
+  </form>
+  <hr>
+  <table border="1">
+    <thead>
+      <caption>货品列表</caption>
+    </thead>
+    <tbody >
+      <tr>
+        <th>编号</th>
+        <th bgcolor="red">品名</th>
+        <th>进价</th>
+        <th>出价</th>
+      </tr>
+      <tr>
+        <td>001</td>
+        <td bgcolor="red">苹果</td>
+        <td rowspan="2">6</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>001</td>
+        <td bgcolor="red">栗子</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>001</td>
+        <td bgcolor="red">香蕉</td>
+        <td>6</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>001</td>
+        <td bgcolor="red">龙眼</td>
+        <td>6</td>
+        <td>9</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <img src="https://www.wanghejun.cn/wp-content/themes/Sakura/feature/index.php?586" alt="girl" title="girl" width="
+  500">
+  <hr>
+  <iframe src="https://cn.vuejs.org/" frameborder="1"></iframe>
+  <P>怎样&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这两个字之间空这么大呢？</P>
+  <p>怎样在页面中显示下面的内容呢？</p>
+  <p id="bottom">&lt;span>&lt;/span></p>
+</body>
+</html>
