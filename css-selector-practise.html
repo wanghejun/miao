@@ -38,7 +38,7 @@
       div>a:link{
         color: pink;
       }
-      div>a[href$=".com"]:link{
+      div>a[href^="MAILTO:" i]:link{
         color: blue;
       }
       div>a[href^="tel"]:link{
@@ -54,7 +54,7 @@
       /* six */
       div.b>ul>li:nth-last-child(n+76){
         color: red;;
-      }
+      }x
       div.b>ul>li:nth-child(n+65){
         color: green;
       }
@@ -236,7 +236,12 @@
     </div>
 
     <hr>
-
+<style>
+ .prime{
+   border: 1px red solid;
+   background: green;
+ }
+</style>
     <div class="prime">
       <p>让所有的质/素数(prime)（2，3，5，7，11，13……）跟合数（4，6，8，9，10……）为不同的颜色</p>
       nth-child(3n)
