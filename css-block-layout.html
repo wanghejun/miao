@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+   body{
+      margin: 0;
+      padding: 0;
+    }
+  header{
+    background: black;
+    width: 100%;
+  }
+  .p1{
+    margin: auto;
+    color: white;
+    width: 600px;
+  }
+  .p2{
+    width: 600px;
+    margin: 16px auto;
+  }
+  section{
+    width: 600px;
+    margin: auto;
+    margin-bottom:20px;
+  }
+  .box{
+    height: 34px;
+    width: 174px;
+    border: 3px solid black;
+    text-align: center;
+    line-height: 34px;
+    margin-right: 30px;
+    margin-bottom: 15px;
+    background: yellowgreen;
+  }
+  .box:nth-child(4),.box:nth-child(8){
+    margin-bottom: -205px;
+  }
+  .box:nth-child(n+5):nth-last-child(n+5){
+    margin-left: 210px;
+  }
+  .box:nth-child(n+9){
+    margin-left: 420px;
+  }
+  x.box:nth-last-child(1){
+    margin-bottom: 0px;
+  }
+  .box:hover{
+    background: red;;
+  }
+  .p3{
+    width: 600px;
+    margin: auto;
+    border: 1px transparent dotted;
+    border-bottom-color:black;
+  }
+  .p4{
+    border-bottom-color: transparent;
+  }
+  .p5{
+    text-align: center;
+    background: cyan;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="p1">hello world 请调整浏览器窗口大小查看效果</p>
+  </header>
+  <p class="p2">
+      页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px
+  </p>
+  <section>
+    <div class="box">产品</div>
+    <div class="box">产品</div>
+    <div class="box">产品</div>
+    <div class="box">产品</div>
+    <div class="box">产品</div>
+    <div class="box">产品</div>
+    <div class="box">产品</div>
+    <div class="box">产品</div>
+    <div class="box">产品</div>
+    <div class="box">产品</div>
+    <div class="box">产品</div>
+    <div class="box">产品</div>
+  </section>
+  <p class="p3">link</p>
+  <p class="p3">link</p>
+  <p class="p3">link</p>
+  <p class="p3">link</p>
+  <p class="p3 p4">link</p>
+  <p class="p5">©版权所有<br>
+      本页所有布局均使用块元素</p>
+</body>
+</html>
