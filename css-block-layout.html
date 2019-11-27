@@ -89,6 +89,31 @@
     <div class="box">产品</div>
     <div class="box">产品</div>
   </section>
+  <style>
+  .wrap{
+    width: 600px;
+    margin: auto;
+  }
+  .wrap>span{
+    width: 174px;
+    height: 34px;
+    display: inline-block;
+    text-align: center;
+    background: pink;
+    border: 3px black solid;
+    line-height: 2.5;
+    margin-bottom: 15px;
+  }
+  .wrap>span:hover{
+    background: yellowgreen;
+    }
+  .wrap>span:not(:nth-child(1)):not(:nth-child(4)):not(:nth-child(7)):not(:nth-child(10)){
+    margin-left: 30px;
+  }
+  </style>
+  <div class="wrap">
+    <span>产品</span><span>产品</span><span>产品</span><span>产品</span><span>产品</span><span>产品</span><span>产品</span><span>产品</span><span>产品</span><span>产品</span><span>产品</span><span>产品</span>
+  </div>
   <p class="p3">link</p>
   <p class="p3">link</p>
   <p class="p3">link</p>
