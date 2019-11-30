@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>fluorescent_border</title>
+  <style>
+    body{
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background: #333;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    }
+.box{
+    height: 400px;
+    width: 300px;
+    position: relative;
+    box-sizing: border-box;
+    padding: 20px;
+    text-align: justify;
+    color: white;
+    background: #333;
+    }
+.box::after{
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: white;
+  z-index: -1;
+}
+.box::before{
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  background:white ;
+  filter: blur(40px);
+  z-index: -2;
+}
+.box::after,.box::before{
+  background: linear-gradient(225deg,#2e86de,#060c21,#5f27cd);
+  background-size: 400%;
+   transition: .5s;
+}
+.box:hover::before,.box:hover::after{
+  background-position: right;
+}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="content">
+      <h1>Lorem, ipsum.</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima laborum iusto nulla enim, esse molestiae facilis ducimus excepturi eos maxime deleniti accusamus repellat voluptatibus! Totam placeat enim esse consequuntur quibusdam?</p>
+    </div>
+  </div>
+</body>
+</html>

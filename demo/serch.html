@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+  <title>serch</title>
+  <style>
+  body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(160deg,#ff9f43,#ff6b6b,#ee5253);
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .serch_box{
+    background: black;
+    padding: 1em 1em;
+    border-radius: 40PX;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .serch_text{
+    font-size: 26px;
+    color: white;
+    border: none;
+    outline: none;
+    background: black;
+    width: 0px;
+    transition: .4s;
+  }
+  .serch_box a{
+    font-size: 30px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    color: gray;
+  }
+  .serch_box:hover .serch_text{
+    margin-left: 1em;
+    width: 460px;
+  }
+  .serch_box:hover .fa-search{
+    color: white ;
+  }
+  </style>
+</head>
+<body>
+  <div class="serch_box">
+    <input type="text" class="serch_text" placeholder="type of serch">
+    <a href="#">
+        <i class="fa fa-search"></i>
+    </a>
+  </div>
+</body>
+</html>
