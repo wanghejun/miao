@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>menu</title>
+  <style>
+
+    *{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  body{
+    background: linear-gradient(160deg,#2f3542,#5352ed);
+    height: 100vh;
+    width: 100%;
+  }
+  header{
+    width: 100%;
+    background: #202040;
+  }
+  ul>li{
+    display:inline-block;
+    color: white;
+    padding: 1em;
+    position: relative;
+    
+  }
+  ul>li>ul{
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: #202040;
+    display: none;
+  }
+  ul>li>ul>li{
+    width: 300px;
+    padding: .5em;
+    font-size: 12px;
+    text-indent: 1em;
+  }
+  li{
+    transition: .2s;
+  }
+  li:hover{
+    background: #2C2A54;
+  }
+  li:hover > ul {
+    display: block;
+  }
+  .bor{
+      border-bottom: 2px #6C66A2 solid ;
+    }
+  </style>
+  </body>
+</head>
+<body>
+  <header>
+    <ul>
+      <li>
+        File
+        <ul>
+          <li>New File</li>
+          <li class="bor">New Window</li>
+          <li>Open File</li>
+          <li>Open Folder</li>
+          <li>Open workspace</li>
+          <li class="bor">Open Recent</li>
+          <li>Add Folder To Workspace</li>
+          <li class="bor">Save Workspace As...</li>
+          <li>Save</li>
+          <li>Save As...</li>
+          <li class="bor">Save All</li>
+          <li>Aotu Save</li>
+          <li class="bor">Preferences</li>
+          <li>Revert File</li>
+          <li>Close Editor</li>
+          <li>Close Folder</li>
+          <li class="bor">Close Window</li>
+          <li>Exit</li>
+        </ul>
+      </li>
+      <li>Edit</li>
+      <li>Selection</li>
+      <li>View</li>
+      <li>Go</li>
+      <li>Debug</li>
+      <li>Terminal</li>
+      <li>Help</li>
+    </ul>
+  </header>
+</body>
+</html>

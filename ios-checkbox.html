@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+      body{
+    width: 100%;
+    margin: 0%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(160deg,#3498db,#8e44ad);
+  }
+ #btn{
+    visibility: hidden;;
+  }
+  .btn{
+    width: 100px;
+    height: 50px;
+    border-radius: 30px;
+    position: relative;
+    transition: all .3s;
+    box-sizing: border-box;
+    border: 4px #f1f2f6 solid;
+  }
+  .btn::after{
+    content: "";
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(0%,-50%);
+    transition: .3s linear;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+  }
+  input:checked + label>.btn::after{
+    transform: translate(125%,-50%);
+  }
+  input:checked + label>.btn{
+    box-shadow: 0 0 0 25px #2ed573 inset;
+    border:#f1f2f6 solid 4px;
+  }
+  .box2{
+    background: white;
+    padding:1em;
+    border-radius: 10px;
+    margin-left: 10px;
+    }
+    .box2>input{
+      display: none;
+    }
+  .box2>label{
+    display: inline-block;
+    height: 42px;
+    width: 42px;
+    border: 4px black solid;
+    border-radius: 50%;
+    box-sizing: border-box;
+    position: relative;
+    transition: .5s;
+    vertical-align: middle;
+    }
+    .box2>label::before{
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #04BE5E;
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%) scale(0);
+      transition: .5s;
+    }
+    .box2>input:checked + label::before{
+      transform: translate(-50%,-50%) scale(1);
+    }
+    .box2>input:checked + label{
+      border-color:#04BE5E ;
+      }
+    .box2>label::after{
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: #04BE5E;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%) scale(0);
+      transition: .5s;
+      border-radius: 50%;
+      opacity: .2;
+      }
+    .box2>input:checked + label::after{
+      animation: fangda .8s;
+    }
+    @keyframes fangda{
+      0%{transform: translate(-50%,-50%) scale(0);}
+      100%{transform: translate(-50%,-50%) scale(1);}
+      }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <input type="checkbox" id="btn">
+    <label for="btn"><div class="btn"></div></label>
+  </div>
+  <div class="box2">
+    <input type="radio" name="radios" id="radio1">
+    <label for="radio1"></label><span>&nbsp;&nbsp;&nbsp;Radio Button</span><br><br>
+    <input type="radio" name="radios" id="radio2">
+    <label for="radio2"></label><span>&nbsp;&nbsp;&nbsp;Radio Button</span><br><br>
+    <input type="radio" name="radios" id="radio3"> 
+    <label for="radio3"></label><span>&nbsp;&nbsp;&nbsp;Radio Button</span><br>
+  </div>
+</body>
+</html>

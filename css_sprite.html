@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>sprite</title>
+  <style>
+    body{
+    width: 100%;
+    margin: 0%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .box{
+    width: 280px;
+    height: 335px;
+    background: url(https://www.freepngimg.com/thumb/animation/83123-computer-sprite-figure-character-fictional-2d-animation.png);
+    background-position: -280px -386px;
+  }
+  .box:hover{
+    animation: run 1s steps(1,start) infinite;
+  }
+  @keyframes run{
+    0% {background-position: -280px -30px;}
+    8.333% {background-position: -560px -30px;}
+    16.666%{ background-position: -840px -30px;}
+    25.0% { background-position: -1120px -30px;}
+    33.333% { background-position: -1400px -30px;}
+    41.666%{  background-position: -280px -386px;}
+    50.0% {  background-position: -560px -386px;}
+    58.333% { background-position: -840px -386px;}
+    75.0%{ background-position: -1120px -386px;}
+    91.666%{background-position: -1400px -386px;}
+    100% { background-position: -280px -30px;}
+  }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  *{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  header{
+    margin: 200px auto;
+    background: #1B61C4;
+  }
+  ul{
+  margin-left: 2em;
+  }
+  ul>li{
+    display: inline-block;
+    padding: 1em;
+    border-right: 1px white dotted;
+    position: relative;
+    color: white;
+  }
+  ul>li:first-child{
+    border-left: 1px white dotted;
+  }
+  ul>li[data-tip]::after{
+    content: attr(data-tip);
+    position: absolute;
+    font-size: 12px;
+    white-space: nowrap;
+    padding: 2px;
+    background: #ff8e00;
+    color: white;
+    left: 40px;
+    bottom: 35px;
+  }
+  ul>li[data-tip]::before{
+    content:"";
+    position: absolute;
+    font-size: 12px;
+    border: 4px #ff8e00 solid ;
+    border-color: #ff8e00 transparent transparent #ff8e00;
+    left: 40px;
+    bottom: 30px;
+  }
+  ul>li[data-tip]:hover:after{
+    background: red;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <ul>
+      <li>首页</li>
+      <li data-tip="低价促">海外酒店</li>
+      <li>火车票</li>
+      <li data-tip="新升级">汽车票</li>
+    </ul>
+  </header>
+</body>
+</html>
