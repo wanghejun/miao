@@ -98,13 +98,9 @@
       border-radius: 50%;
       opacity: .2;
       }
-    .box2>input:checked + label::after{
-      animation: fangda .8s;
+    .box2>input:active + label::after{
+      transform: translate(-50%,-50%) scale(1);
     }
-    @keyframes fangda{
-      0%{transform: translate(-50%,-50%) scale(0);}
-      100%{transform: translate(-50%,-50%) scale(1);}
-      }
   </style>
 </head>
 <body>
