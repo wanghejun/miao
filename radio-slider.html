@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>radio-slider</title>
+  <style>
+    body{
+    background: linear-gradient(160deg,#2f3542,#5352ed);
+    height: 100vh;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  input{
+    display: none;
+  }
+  section{
+    width: 700px;
+    height: 450px;
+    position: relative;
+  }
+  img{
+    width: 700px;
+    height: 450px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: .6s;
+  }
+  .box{
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: 2;
+    transform: translate(-50%);
+    font-size: 0;
+  }
+  .box>label{
+    display:inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px black solid;
+    border-radius: 50%;
+    margin-right: 5px;
+    position: relative;
+  }
+  label::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    display: none;
+    transition: 1s;
+  }
+  input[id="one"]:checked + .box label[for="one"]::after,
+  input[id="two"]:checked + .box label[for="two"]::after,
+  input[id="three"]:checked + .box label[for="three"]::after,
+  input[id="four"]:checked + .box label[for="four"]::after
+  {
+    display: block;
+  }
+  input:checked + * + * + * + * + img{
+    opacity: 1;
+  }
+  </style>
+</head>
+<body>
+  <section>
+    <input type="radio" name="img" id="one" checked>
+    <input type="radio" name="img" id="two">
+    <input type="radio" name="img" id="three">
+    <input type="radio" name="img" id="four">
+    <div class="box">
+      <label for="one"></label>
+      <label for="two"></label>
+      <label for="three"></label>
+      <label for="four"></label>
+    </div>
+    <img src="https://www.wanghejun.cn/wp-content/themes/Sakura/feature/index.php?274" alt="">
+    <img src="https://www.wanghejun.cn/wp-content/themes/Sakura/feature/index.php?656" alt="">
+    <img src="https://www.wanghejun.cn/wp-content/themes/Sakura/feature/index.php?488" alt="">
+    <img src="https://www.wanghejun.cn/wp-content/themes/Sakura/feature/index.php?509" alt="">
+  </section>
+</body>
+</html>

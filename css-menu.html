@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>menu</title>
   <style>
-
     *{
       margin: 0;
       padding: 0;
@@ -21,12 +20,17 @@
     width: 100%;
     background: #202040;
   }
+  li{
+    transition: .2s;
+  }
+  li:hover{
+    background: #2C2A54;
+  }
   ul>li{
     display:inline-block;
     color: white;
     padding: 1em;
     position: relative;
-    
   }
   ul>li>ul{
     position: absolute;
@@ -34,24 +38,40 @@
     top: 100%;
     background: #202040;
     display: none;
+    padding: .5em 0;
   }
   ul>li>ul>li{
     width: 300px;
     padding: .5em;
-    font-size: 12px;
+    font-size: 13px;
     text-indent: 1em;
-  }
-  li{
-    transition: .2s;
-  }
-  li:hover{
-    background: #2C2A54;
   }
   li:hover > ul {
     display: block;
   }
-  .bor{
+ li[data-bor="y"]::after{
+      content: "";
+      top: 100%;
+      left: 10px;
+      position: absolute;
       border-bottom: 2px #6C66A2 solid ;
+      width: calc(100% - 20px);
+      z-index: 2;
+    }
+    li[data-key]::before{
+      content: attr(data-key);
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translate(calc(-100% - 20px),-50%);
+    }
+    li[data-menu]::before{
+      content: attr(data-menu);
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translate(calc(-100% - 10px),-50%);
+      font-size: 20px;
     }
   </style>
   </body>
@@ -62,23 +82,23 @@
       <li>
         File
         <ul>
-          <li>New File</li>
-          <li class="bor">New Window</li>
-          <li>Open File</li>
-          <li>Open Folder</li>
+          <li data-key="Ctrl+N">New File</li>
+          <li data-bor="y" data-key="Ctrl+Shift+N">New Window</li>
+          <li data-key="Ctrl+O">Open File</li>
+          <li data-key="Ctrl+K&nbsp;Ctrl+O">Open Folder</li>
           <li>Open workspace</li>
-          <li class="bor">Open Recent</li>
+          <li data-bor="y" data-menu=">">Open Recent</li>
           <li>Add Folder To Workspace</li>
-          <li class="bor">Save Workspace As...</li>
-          <li>Save</li>
+          <li data-bor="y">Save Workspace As...</li>
+          <li data-key="Ctrl+S">Save</li>
           <li>Save As...</li>
-          <li class="bor">Save All</li>
+          <li data-bor="y" data-key="Ctrl+K&nbsp;S">Save All</li>
           <li>Aotu Save</li>
-          <li class="bor">Preferences</li>
+          <li data-bor="y" data-menu=">">Preferences</li>
           <li>Revert File</li>
-          <li>Close Editor</li>
-          <li>Close Folder</li>
-          <li class="bor">Close Window</li>
+          <li data-key="Ctrl+K&nbsp;Ctrl+DownArrow">Close Editor</li>
+          <li data-key="Ctrl+F&nbsp;K">Close Folder</li>
+          <li data-bor="y" data-key="Ctrl+Shitf+W">Close Window</li>
           <li>Exit</li>
         </ul>
       </li>
