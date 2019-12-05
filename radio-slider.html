@@ -43,33 +43,98 @@
     display:inline-block;
     width: 20px;
     height: 20px;
-    border: 2px black solid;
+    border: 2px #ced6e0 solid;
     border-radius: 50%;
     margin-right: 5px;
     position: relative;
   }
-  label::after{
+  .box>label::after{
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    width: 0px;
+    height: 0px;
+    background: #f1f2f6;
+    border-radius: 50%;
+    transition: .3s;
+  }
+  input[id="one"]:checked  ~.box label[for="one"]::after,
+  input[id="two"]:checked  ~.box label[for="two"]::after,
+  input[id="three"]:checked  ~ .box label[for="three"]::after,
+  input[id="four"]:checked  ~ .box label[for="four"]::after
+  {
     width: 15px;
     height: 15px;
-    background: white;
-    border-radius: 50%;
-    display: none;
-    transition: 1s;
-  }
-  input[id="one"]:checked + .box label[for="one"]::after,
-  input[id="two"]:checked + .box label[for="two"]::after,
-  input[id="three"]:checked + .box label[for="three"]::after,
-  input[id="four"]:checked + .box label[for="four"]::after
-  {
-    display: block;
   }
   input:checked + * + * + * + * + img{
     opacity: 1;
+  }
+  .left{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 2;
+    color: white;
+    font-size: 35px;
+    font-size: 0;
+    width: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    zoom: 2;
+    transform: translate(0 ,-50%);
+  }
+  .right{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 2;
+    color: white;
+    font-size: 35px;
+    font-size: 0;
+    width: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    zoom: 2;
+    transform: translate(0 ,-50%);
+  }
+  .left *,.right *{
+    font-size: 25px;
+    }
+  section .left>label,section .right>label{
+    display: inline-block;
+    height: 40px;
+    width: 15px;
+    cursor: pointer;
+    text-align: center;
+  }
+  section .left>label:hover,section .right>label:hover{
+    color: #ff6348;
+  }
+  input[id="one"]:checked ~ .left>label[for="one"]{
+    margin-left: -45px;
+  }
+  input[id="two"]:checked ~ .left>label[for="one"]{
+    margin-left: 0px;
+  }
+  input[id="three"]:checked ~ .left>label[for="one"]{
+    margin-left: -15px;
+  }
+  input[id="four"]:checked ~ .left>label[for="one"]{
+    margin-left: -30px;
+  }
+  input[id="one"]:checked ~ .right>label[for="one"]{
+    margin-left: -15px;
+  }
+  input[id="two"]:checked ~ .right>label[for="one"]{
+    margin-left: -30px;
+  }
+  input[id="three"]:checked ~ .right>label[for="one"]{
+    margin-left: -45px;
+  }
+  input[id="four"]:checked ~ .right>label[for="one"]{
+    margin-left: 0px;
   }
   </style>
 </head>
@@ -89,6 +154,18 @@
     <img src="https://www.wanghejun.cn/wp-content/themes/Sakura/feature/index.php?656" alt="">
     <img src="https://www.wanghejun.cn/wp-content/themes/Sakura/feature/index.php?488" alt="">
     <img src="https://www.wanghejun.cn/wp-content/themes/Sakura/feature/index.php?509" alt="">
-  </section>
+    <div class="left">
+        <label for="one"><</label>
+        <label for="two"><</label>
+        <label for="three"><</label>
+        <label for="four"><</label>      
+    </div>
+    <div class="right">
+        <label for="one">></label>
+        <label for="two">></label>
+        <label for="three">></label>
+        <label for="four">></label>      
+      </div>
+</section>
 </body>
 </html>
