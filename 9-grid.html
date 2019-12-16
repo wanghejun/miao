@@ -37,6 +37,56 @@
   span:hover{
     box-shadow: 0 0 0 6px red;
   }
+  .demo-two td{
+    width: 50px;
+    height: 50px;
+    border: 5px ridge blue;
+  }
+  .demo-three td{
+    width: 50px;
+    height: 50px;
+  }
+  .demo-three tr,.demo-three col
+  {
+    border: 5px solid blue;
+
+  }
+  .demo-two td:hover,.demo-three td:hover{
+    border: 5px red solid;
+  }
+  .demo-two ,.demo-three{
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-left: 1em;
+    text-align: center;
+  }
+  .demo-four{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 180px;
+    margin-left: 1em;
+  }
+  .demo-four li{
+    width: 50px;
+    height: 50px;
+    float: left;
+    border: 5px blue solid;
+    margin-bottom: -5px;
+    margin-right: -5px;
+    position: relative;
+    text-align: center;
+    line-height: 50px;
+  }
+  .demo-four li:last-child::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .demo-four li:hover{
+    border: 5px red solid;
+    z-index: 2;
+  }
   </style>
 </head>
 <body>
@@ -51,5 +101,53 @@
     <span>8</span>
     <span>9</span>
   </div>
+  <table class="demo-two">
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+  </table>
+  <table class="demo-three">
+    <col>
+    <col>
+    <col>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+  </table>
+  <ul class="demo-four">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+  </ul>
 </body>
 </html>
