@@ -1,0 +1,184 @@
+.head-leftbottom-nav{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+ >ul{
+    padding: 20px 0;
+    background: rgba(105,101,101,.6);
+    position: relative;
+    >li{
+      font-size: 14px;
+      &:hover .phone-list{
+        display: flex;
+
+      }
+      >a{
+        display: block;
+        height: 42px;
+        width: 204px;
+        line-height: 42px;
+        color: white;
+        padding-left: 30px;
+        position: relative;
+        &:hover{
+          background: #FF6700;
+        }
+        >i{
+          position: absolute;
+          top: 15px;
+          right: 20px;
+          color:#e0e0e0;
+        }
+      }
+      >.phone-list{
+        position: absolute;
+        top: 0;
+        right: -264px;
+        display: none;
+          flex-flow: column wrap;
+          height: 460px;  
+          align-content: flex-start;
+          &::after{
+            content: "";
+            flex-grow: 1;
+            background: #ffffff;
+            height: 0;
+            margin-top: -1px;
+          }
+          a{
+            display: block;
+            padding: 18px 20px;
+            line-height: 40px;
+            color: #333;
+            background: #ffffff;
+            white-space: nowrap;
+            transition: color .2s;
+            overflow: hidden;
+            &:hover{
+              color: red;
+            }
+            >img{
+              float: left;
+              margin-right: 12px;
+            }
+            >span{
+              float: left;
+              width: 172px;
+              line-height: 40px;
+            }
+        }
+       
+      }
+    }
+  }
+ 
+}
+/* 轮播图*/
+.home-hero{
+  width: 1226px;
+  height: 460px;
+  margin: auto;
+  position: relative;
+  cursor: pointer;
+   >img{
+    position: absolute;
+    display: block;
+    width: 1226px;
+    height: 460px;
+    opacity: 0;
+    transition: .3s;
+   } 
+   >input{
+    display: none;
+   }
+   >input[type="radio"]:checked + * + * + * + * +img{
+     opacity: 1;
+   }
+   >input[id="one"]:checked ~ .box>label[for="one"],>input[id="two"]:checked ~ .box>label[for="two"],>input[id="three"]:checked ~ .box>label[for="three"],>input[id="four"]:checked ~ .box>label[for="four"],>input[id="five"]:checked ~ .box>label[for="five"]{
+    background: white;
+    border-color:rgba(0,0,0,.4) ;
+   }
+   >input[id="one"]:checked ~ .right>label:first-child,>input[id="three"]:checked ~ .left>label:first-child{
+    margin-left: -30px;
+   }
+   >input[id="two"]:checked ~ .right>label:first-child,>input[id="four"]:checked ~ .left>label:first-child{
+    margin-left: -68px;
+   }
+   >input[id="three"]:checked ~ .right>label:first-child,>input[id="five"]:checked ~ .left>label:first-child{
+    margin-left: -105px;
+   }
+   >input[id="four"]:checked ~ .right>label:first-child,>input[id="one"]:checked ~ .left>label:first-child{
+    margin-left: -137px;
+   }
+   >input[id="five"]:checked ~ .right>label:first-child,>input[id="tow"]:checked ~ .left>label:first-child{
+    margin-left:5px;
+   }
+   >.box{
+     position: absolute;
+     top:calc(100% - 20px);
+     right: 2em;
+     display: flex;
+     >label{
+      border: 2px solid #AEB1B9;
+      background: rgba(0,0,0,.4);
+       margin: 0 4px;
+       display: block;
+       width: 6px;
+       height: 6px;
+       border-radius: 100%;
+       &:hover{
+         background: white;
+         border-color:rgba(0,0,0,.4) ;
+       }
+       &:checked{
+        background: white;
+        border-color:rgba(0,0,0,.4) ;
+       }
+     }
+   }
+   .right{
+     position: absolute;
+     top: 50%;
+     right: 0;
+     width: 40px;
+     white-space: nowrap;
+     transition:  .3s;
+     overflow: hidden;
+     &:hover{
+       background: #757F7E;
+     }
+     >label{
+       text-align: center;
+      display: inline-block;
+      color:#AEB1B9;
+      transition: color .3s;
+      &:hover{
+        color: white;
+      }
+     }
+
+   }
+   .left{
+    position: absolute;
+    top: 50%;
+    left: 235px;
+    width: 40px;
+    white-space: nowrap;
+    transition: background .3s;
+    overflow: hidden;
+    &:hover{
+      background: #757F7E;
+    }
+    >label{
+      text-align: center;
+     display: inline-block;
+     color:#AEB1B9;
+     transition: color .3s;
+     &:hover{
+       color: white;
+     }
+    }
+   }
+
+}

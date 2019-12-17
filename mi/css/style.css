@@ -46,7 +46,7 @@ header{
   width: 124px;
   height: 0;
   content: "小米商城APP";
-  background: url(img/app.png) no-repeat center 15px ;
+  background: url(../img/app.png) no-repeat center 15px ;
   background-size: 75%;
   top:calc(100% + 1px);
   left: 0;
@@ -108,7 +108,7 @@ header .header_box .top_nav .app:hover::before{
   line-height: 100px;
   font-size: 0;
   transition: .3s;
-  z-index: 2;
+  z-index: 5;
 }
 header .header_box .top_login .shop:hover::after{
   font-size: 12px;
@@ -161,7 +161,7 @@ border: 1px solid #f5f5f5;
 box-sizing: border-box;
 padding: 140px 25px 0 25px;
 cursor: pointer;
-background: url(img/app.png) no-repeat center 20px;
+background: url(../img/app.png) no-repeat center 20px;
 background-size: 80%;
 vertical-align: bottom;
 color: #757575;
@@ -194,6 +194,7 @@ margin-top: 14px;
 .site_head .head_nav{
  width: 1226px;
  margin: auto;
+ position: relative;
 }
 .site_head .head_nav>.head_logo{
  width: 55px;
@@ -257,7 +258,7 @@ left: 0;
 top: 100%;
 width: 100%;
 height: 0px;
-z-index: 1;
+z-index: 999;
 box-shadow:0 5px 8px -5px rgba(0 ,  0, 0, .3) ;
 background: white;
 transition: height .3s;
@@ -375,3 +376,4 @@ border-color:#b0b0b0;
  color: white;
  border: 1px solid #FF6700;
 }
+

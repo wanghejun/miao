@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+    }
+    .box{
+      overflow: hidden;
+      background: pink;
+    }
+    .box *{
+      margin-bottom:-9999px ;
+      padding-bottom: 9999px;
+    }
+    .left{
+      width: 200px;
+      background: red;
+      float: left;
+    }
+    .right{
+      float: right;
+      width: 200px;
+      background: blue;
+    }
+    .main{
+      overflow: hidden;
+      background: cadetblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <section class="left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, nemo nam iusto sed fuga maxime dolorum reiciendis in quidem non, corporis perspiciatis tempora repudiandae eius hic, suscipit libero architecto sapiente.</section>
+    <section class="right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, nemo nam iusto sed fuga maxime dolorum reiciendis in quidem non, corporis perspiciatis tempora repudiandae eius hic, suscipit libero architecto sapiente.</section>
+    <section class="main">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, nemo nam iusto sed fuga maxime dolorum reiciendis in quidem non, corporis perspiciatis tempora repudiandae eius hic, suscipit libero architecto sapiente.</section>
+  </div>
+</body>
+</html>
