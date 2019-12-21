@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>小米移动端</title>
+  <style>
+    html {
+      font-size: calc(10000vw / 500);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .guanggao {
+      height: .69rem;
+      background: #4C4C4C;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      width: 0.39rem;
+      height: 0.35rem;
+      left: 0;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+
+    .guanggao>img {
+      display: block;
+      height: .69rem;
+      width: 100%;
+    }
+
+    .head-wrap {
+      height: 0.58rem;
+      display: flex;
+      align-items: center;
+      background: #F2F2F2;
+    }
+
+    .head-left-logo {
+      display: block;
+      margin: 0 .2rem;
+    }
+
+    .head-left-logo>img {
+      display: block;
+      width: .33rem;
+      height: 0.21rem;
+    }
+
+    .head-wrap-serch {
+      font-size: .25rem;
+      width: 3.61rem;
+      height: 0.43rem;
+      border: 1px solid #e5e5e5;
+      color: rgba(0, 0, 0, .3);
+      line-height: .43rem;
+      background: #ffffff;
+    }
+
+    .head-wrap-serch>i {
+      margin: 0 .15rem;
+    }
+
+    .head-wrap-people {
+      margin: 0 .2rem;
+    }
+
+    .head-wrap-people>i {
+      display: block;
+      height: 0.41rem;
+      width: 0.41rem;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAAkFBMVEUAAABiYmJoaGhxcXFwcHBwcHBycnJwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBzc3NycnJwcHB2dnZwcHBwcHBxcXFwcHBwcHBwcHBwcHBwcHBwcHBwcHBvb29wcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBvb29wcHBwcHBwcHBwcHBnZ2dwcHC6NtRcAAAAMHRSTlMAAwoXHycsRXWfxdzz+jB+vv8ljv/+72HU682aahOXTQ+wNblUtazlb1elWuE7B4ObTEwxAAADdklEQVR4AZWWh5rqOgyEnd7LEA2k0Os24P3f7vLdBVOSTTizBbfflmVZWHXJUBeZlu24rmNbpm56U5bnB2EUJ0kchYHvWep9pVke40FxnqX9hLZ4VEQQgEk8vihOCAiiYnTpHGKNSQmAVd1MvdRxUm/a1BUBlJNLZz87mycAo2axNHTjctFEBJL5rI82lL0SYjxfX+sX/ZbW8zEoK1sZPexGiHL7cDa6uC1B2XTQ2uaVEDv3idS8uwNl9bflhRB7q7vbUNYelOKvhRck8g5W0znIhTI6+2rwsO5zyfpA1N2zfwg5Ub2akPLR6a0I2Jn9J2nugKjLZ5/s3FDLLfxUba0guTUYgLlg1e6wIkg2HPqZIJq1DRpj3Gu1HlbpYbrVT6QcDcOjWpKPFlxAclMNyswFRQv+ElmpN7QS+WrBe5H9kNV6XP/Kre5HuL3yHLIx1LB2gnkLzii1peuW9RwES10KhVkL/o5x8G6tXlnq8kXTn91vCjHU8Ufi75Zv3AMwvbUWIuFSGbebWIlsr+UpcXBVSyHk6zbjBGRxO3UnB+PrPT99CULVVkZU66txy42Q+/X/w7c1KGdtBJh1wE6lM5Sh0lKIn+Dbm+5iEF+3O1wIK0d1aA6Oj7ddpzkAxuMEv9le/bprTDSdsZNWxEanCescERAgCSeXputuwCrtjsMMRHEZdI2p1N/XUdhMLB1lBYjsrzSxAZk9BOPSSUfGfTaflFyb1kqtEZhkevjvqNv/U5YQUU9qXlQgG/s+n6GH2gGIaqF6tD2ACL/NVg74DEEctqpXXg0i3kxe5lzFIGpPDcgJElA4ffouiYVIAkcN6vRdM0HsKkP7MUHC8PvUz11d3JDE8Q57QrL47Rt4DB2bmMRudoetXMi4OQ4+h2b+Dwis7Ke7vieIH3/Zz7orgizPs5eT8ksS3Lt97LEE8XN+fa9dKs75AKI89rCREJujemavVS8HJTr+FdpuKUQwa6FX3ArAru8znXtQmH8/aMwClFX3gDOI5tT3oDk1IM6dG44fEknPjY+7nLbDLXuqvscUsGs3b2NtUR+dgfG2tcRe9PusD7ZLyKplzw94VidjSKoAfvTurrAPRLZ6Q3YE+C8WBoLQHjmjATkjO4QEL8EVgUn1lhKidJXxAC9A4k2RWDzBn5LwPSVkIp9Pm16m7j8ovWaF/wCc31NtcLeHeAAAAABJRU5ErkJggg==);
+      background-size: .4rem .4rem;
+    }
+
+    .nav>ul {
+      width: 5rem;
+      display: flex;
+      list-style: none;
+      justify-content: space-evenly;
+      margin: 0;
+      padding: 0;
+      background: #F1F1F1;
+      box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2);
+    }
+
+    .nav>ul>li {
+      font-size: .20rem;
+      color: rgb(116, 116, 116);
+      line-height: .55rem;
+    }
+
+    .nav>ul>li:first-child {
+      color: rgb(237, 91, 0);
+      border-bottom: 2px solid rgb(237, 91, 0);
+    }
+
+    .banner {
+      width: 5rem;
+      height: 2.5rem;
+    }
+
+    .banner>a {
+      display: block;
+    }
+
+    .banner img {
+      width: 5rem;
+      display: block;
+    }
+
+    .banner-bottom-nav {
+      width: 5rem;
+      height: 2.1rem;
+      display: flex;
+      flex-flow: wrap;
+      box-sizing: border-box;
+    }
+
+    .banner-bottom-nav>a {
+      display: block;
+      width: 1rem;
+      height: 1.05rem;
+    }
+
+    .banner-bottom-nav>a>img {
+      width: 100%;
+      display: block;
+    }
+
+    .line {
+      height: 0.16rem;
+      background-color: rgb(245, 245, 245);
+    }
+
+    .img-box {
+      width: 5rem;
+      height: 3.53rem;
+      background: #FFFFFF;
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: space-between;
+    }
+
+    .img-box>a:first-child {
+      width: 2.48rem;
+      height: 3.52rem;
+    }
+
+    .img-box>a {
+      display: block;
+      width: 2.48rem;
+      height: 1.75rem;
+    }
+
+    .img-box>a>img {
+      display: block;
+      width: 100%;
+    }
+
+    .fixed-footer {
+      width: 5rem;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      display: flex;
+      background: #FFFFFF;
+    }
+
+    .fixed-footer>a:first-child {
+      color: #F56C02;
+    }
+
+    .fixed-footer>a {
+      display: block;
+      width: 1.21rem;
+      height: 0.51rem;
+      font-size: .15rem;
+      text-align: center;
+      color: #999999;
+      text-decoration: none;
+    }
+
+    .fixed-footer>a>i {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="guanggao">
+    <div class="close">
+    </div>
+    <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6d413c53c65eca6c6b6ba826ea4e3ff6.png" alt="">
+  </div>
+  <div class="head-wrap">
+    <div class="head-left-logo">
+      <img
+        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEwAAAAyCAYAAAD2vz2aAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MjQ2OUE2MkU0RTQ4MTFFNzgxOTZBRDJFQjk4Qjk0NjQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MjQ2OUE2MkY0RTQ4MTFFNzgxOTZBRDJFQjk4Qjk0NjQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCOUQ0QkM2RjREQ0MxMUU3ODE5NkFEMkVCOThCOTQ2NCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCOUQ0QkM3MDREQ0MxMUU3ODE5NkFEMkVCOThCOTQ2NCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PiL8gcIAAAF1SURBVHja7Ju/LwRRFEbf+FVsQ0dBdJKNSksUSqVCr6AhKxGVwn+gVUpQEI1So5XoZUOhEbKMDiESIeOTzPbvzpoxz5wvOd3duzsn++7cSXajZMU9OOeGXPmTiHtxIU7FoYh/oe+ZmPKsjSMJS1yY+RS7YrNDcTdi1Le4y4WbHrEorsRcUW8asrB2BsSxWEeYLVtiCWG2bIsJhPmnV+zkeV3/TZhLv2HzCLNlFWG2TIqRvHYZa97FR84XXEvnUSeZEft/LexZDIvXnIVFop6uCQ3RnaHHeBmO5FMBstrPjZdiTUyLlww9Bqs6w87FcobX9Vd56B+IZoZjXVlhP0f0qAwfJKS1ookw+w0HYaEFYQVs+j4ZE7Oed6o3sVfA00OphW2IBUN9S5xU+Uhad6A+ZhhDnyAMYQhDGMIQRhCGMIQhDGEEYQhDGMIQhjCCMIQhDGEIIwhDWFHCLP81vPOsezT0/BK3nj0tP1i59qxrGXrG3wIMAK5yNsqRAjAyAAAAAElFTkSuQmCC"
+        alt="">
+    </div>
+    <div class="head-wrap-serch"><i class="fa fa-search"></i> 搜索商品名称</div>
+    <div class="head-wrap-people">
+      <i></i>
+    </div>
+  </div>
+  <div class="nav">
+    <ul>
+      <li>推荐</li>
+      <li>手机</li>
+      <li>智能</li>
+      <li>电视</li>
+      <li>笔记本</li>
+      <li>家电</li>
+      <li><i class="fa fa-chevron-left fa-rotate-270"></i></li>
+    </ul>
+  </div>
+  <div class="banner">
+    <a href="#">
+      <img src="img/m-mi-banner.jpg" alt="">
+    </a>
+  </div>
+  <div class="banner-bottom-nav">
+    <a href="#"><img src="img/m-xiaomimiaosha.png" alt=""></a>
+    <a href="#"><img src="img/m-xiaomimiaosha2.webp" alt=""></a>
+    <a href="#"><img src="img/m-xiaomimiaosha3.jpg" alt=""></a>
+    <a href="#"><img src="img/m-xiaomimiaosha4.webp" alt=""></a>
+    <a href="#"><img src="img/m-xiaomimiaosha5.webp" alt=""></a>
+    <a href="#"><img src="img/m-xiaomimiaosha6.png" alt=""></a>
+    <a href="#"><img src="img/m-xiaomimiaosha7.png" alt=""></a>
+    <a href="#"><img src="img/m-xiaomimiaosha8.png" alt=""></a>
+    <a href="#"><img src="img/m-xiaomimiaosha9.png" alt=""></a>
+    <a href="#"><img src="img/m-xiaomimiaosha10.png" alt=""></a>
+  </div>
+  <div class="line"></div>
+  <div class="img-box">
+    <a href="#"><img src="img/m-xiaomiMax.jpg" alt=""></a>
+    <a href="#"><img src="img/m-xiaomishouhuan.jpg" alt=""></a>
+    <a href="#"><img src="img/m-xiaomidianshi.jpg" alt=""></a>
+  </div>
+  <div class="fixed-footer">
+    <a href="#"><i class="fa fa-home fa-2x"></i> 首页</a>
+    <a href="#"><i class="fa fa-bars fa-2x"></i> 分类</a>
+    <a href="#"><i class="fa fa-cart-arrow-down fa-2x"></i> 购物车</a>
+    <a href="#"><i class="fa fa-user fa-2x"></i> 我的</a>
+  </div>
+</body>
+
+</html>
