@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>css</title>
+  <style>
+  *{
+    padding: 0;
+    margin: 0;
+  }
+  section{
+    width: 600px;
+    height: 400px;
+    margin: 200px auto;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    display: flex;
+  }
+  section>input{
+    display: none;
+  }
+  section>div{
+    height: 100%;
+    width: 150px;
+    position: relative;
+    overflow: hidden;
+    background: black;
+  }
+  section>div::after{
+    content: "";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    right: 0;
+    top: 0;
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+  }
+  section>div>label{
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 100%;
+    width: 40px;
+    height: 40px;
+    background: #7AB4C9;
+    transform: translate(-50%,-150%);
+    z-index: 99;
+    border-radius: 100%;
+    color: white;
+    box-shadow: 0px 0px 0px 4px rgba(255,255,255,0.3);
+    font-size: 24px;
+    text-align: center;
+    line-height: 40px;
+    transition: .3s;
+  }
+input[id="one"]:checked ~ .on>label,input[id="two"]:checked ~ .tw>label,input[id="three"]:checked ~ .th>label,input[id="four"]:checked ~ .fo>label{
+    background: white;
+    color: #7AB4C9;
+  }
+  section>div>span{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: block;
+    transform: translate(-100%,0);
+    transition: .5s ease-in-out;
+
+  }
+  /*分发图片*/
+  section>.on>span:nth-child(1){
+    background: url(img/photoalbum1.jpg) no-repeat;
+  }
+  section>.on>span:nth-child(2){
+    background: url(img/photoalbum2.jpg) no-repeat;
+  }
+  section>.on>span:nth-child(3){
+    background: url(img/photoalbum3.jpg) no-repeat;
+  }
+  section>.on>span:nth-child(4){
+    background: url(img/photoalbum4.jpg) no-repeat;
+  }
+
+  section>.tw>span:nth-child(1){
+    background: url(img/photoalbum1.jpg) no-repeat;
+    background-position:-150px 0;
+  }
+  section>.tw>span:nth-child(2){
+    background: url(img/photoalbum2.jpg) no-repeat;
+    background-position:-150px 0;
+  }
+  section>.tw>span:nth-child(3){
+    background: url(img/photoalbum3.jpg) no-repeat;
+    background-position:-150px 0;
+  }
+  section>.tw>span:nth-child(4){
+    background: url(img/photoalbum4.jpg) no-repeat;
+    background-position:-150px 0;
+  }
+
+  section>.th>span:nth-child(1){
+    background: url(img/photoalbum1.jpg) no-repeat;
+    background-position:-300px 0;
+  }
+  section>.th>span:nth-child(2){
+    background: url(img/photoalbum2.jpg) no-repeat;
+    background-position:-300px 0;
+  }
+  section>.th>span:nth-child(3){
+    background: url(img/photoalbum3.jpg) no-repeat;
+    background-position:-300px 0;
+  }
+  section>.th>span:nth-child(4){
+    background: url(img/photoalbum4.jpg) no-repeat;
+    background-position:-300px 0;
+  }
+
+  section>.fo>span:nth-child(1){
+    background: url(img/photoalbum1.jpg) no-repeat;
+    background-position:-450px 0;
+  }
+  section>.fo>span:nth-child(2){
+    background: url(img/photoalbum2.jpg) no-repeat;
+    background-position:-450px 0;
+  }
+  section>.fo>span:nth-child(3){
+    background: url(img/photoalbum3.jpg) no-repeat;
+    background-position:-450px 0;
+  }
+  section>.fo>span:nth-child(4){
+    background: url(img/photoalbum4.jpg) no-repeat;
+    background-position:-450px 0;
+  }
+  input[id="one"]:checked ~ div>span:nth-child(1){
+    transform: translate(0,0);
+  }
+  input[id="two"]:checked ~ div>span:nth-child(2){
+    transform: translate(0,0);
+  }
+  input[id="three"]:checked ~ div>span:nth-child(3){
+    transform: translate(0,0);
+  }
+  input[id="four"]:checked ~ div>span:nth-child(4){
+    transform: translate(0,0);
+  }
+  </style>
+</head>
+<body>
+  <section>
+    <input type="radio" name="run" id="one" checked>
+    <input type="radio" name="run" id="two">
+    <input type="radio" name="run" id="three">
+    <input type="radio" name="run" id="four">
+    <div class="on">
+      <span class="s"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <label for="one">1</label>
+    </div>
+    <div class="tw">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <label for="two">2</label>
+    </div>
+    <div class="th">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <label for="three">3</label>
+    </div>
+    <div class="fo">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <label for="four">4</label>
+    </div>
+  </section>
+</body>
+</html>

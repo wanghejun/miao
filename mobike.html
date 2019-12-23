@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mobike</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      text-decoration: none;
+      list-style: none;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    header {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 999;
+    }
+
+    header>nav {
+      display: flex;
+      margin-right: -20px;
+      margin-left: -20px;
+      width: 1080px;
+      margin: 0 auto;
+      padding: 20px 0;
+      justify-content: space-between;
+    }
+
+    header>nav>.logo {
+      font-size: 20px;
+      color: white;
+    }
+
+    header>nav>.nav-box {
+      display: flex;
+      width: 366px;
+    }
+
+    header>nav>.nav-box2 {
+      width: 40px;
+      height: 40px;
+      display: none;
+      position: relative;
+    }
+
+    header>nav>.nav-box2::before {
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 20px;
+      height: 2px;
+      content: '';
+      border-radius: 3px;
+      background: #fff;
+    }
+
+    header>nav>.nav-box2::after {
+      position: absolute;
+      bottom: 15px;
+      width: 20px;
+      height: 2px;
+      content: '';
+      border-radius: 3px;
+      background: #fff;
+    }
+
+    header>nav>.nav-box>a {
+      display: block;
+      padding: .5em 20px;
+      color: white;
+      font-weight: 400;
+      font-size: 16px;
+    }
+
+    main {
+      width: 100%;
+      height: 762px;
+      background: url(img/mobike-main.jpg) no-repeat center center;
+      background-size: cover;
+      position: relative;
+    }
+
+    main>.tip {
+      position: absolute;
+      background: rgba(59, 54, 48, 0.4);
+      padding: 10px;
+      left: 0;
+      top: 100%;
+      transform: translate(0, -100%);
+      width: 100%;
+    }
+
+    main>.tip>.tip-wrap {
+      width: 1080px;
+      margin: 0 auto;
+    }
+
+    main>.tip>.tip-wrap>a>i {
+      font-size: 12px;
+      font-weight: normal;
+      font-style: normal;
+      line-height: 18px;
+      padding: 0 8px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      background: linear-gradient(to bottom, #ec614f 0%, #ff2e2e 100%);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2);
+      margin-right: 10px;
+    }
+
+    main>.tip>.tip-wrap>a {
+      color: white;
+      margin-left: .5em;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+      font-weight: 300;
+      font-size: 16px;
+
+    }
+
+    main>.content-wrap {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      left: 0;
+      transform: translate(0, -50%);
+    }
+
+    main>.content-wrap>.content {
+      width: 1080px;
+      margin: 0 auto;
+      font-size: 16px;
+    }
+
+    main>.content-wrap>.content>h1 {
+      font-size: 420%;
+      font-weight: bold;
+      line-height: 1;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    main>.content-wrap>.content>a {
+      color: white;
+      padding: 14px 26px;
+      background: rgba(0, 0, 0, .6);
+      border-radius: 6px;
+      font-size: 22px;
+      font-weight: 900px;
+      letter-spacing: .1em;
+      transition: .3s;
+    }
+
+    main>.content-wrap>.content>a:hover {
+      background: rgba(0, 0, 0, .8);
+    }
+
+    .main-bot-box {
+      width: 100%;
+      height: 260px;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2px;
+    }
+
+    .main-bot-box>a {
+      width: 24.9%;
+      display: block;
+      text-align: center;
+      font-size: 25px;
+      color: white;
+      padding-top: 40px;
+      box-sizing: border-box;
+      background: url(img/nav-box.jpg) no-repeat center center;
+      background-size: cover;
+    }
+
+    .main-bot-box>a:nth-child(2) {
+      background: url(img/nav-box2.jpg) no-repeat center center;
+      background-size: cover;
+    }
+
+    .main-bot-box>a:nth-child(3) {
+      background: url(img/nav-box3.jpg) no-repeat center center;
+      background-size: cover;
+    }
+
+    .main-bot-box>a:nth-child(4) {
+      background: url(img/nav-box4.jpg) no-repeat center center;
+      background-size: cover;
+    }
+
+    .mete-link {
+      width: 1080px;
+      margin: 0 auto;
+      display: flex;
+    }
+
+    .mete-link>div {
+      width: 33.3%;
+      padding: 45px 0;
+      display: flex;
+    }
+
+    .mete-link>div>.left {
+      width: 50px;
+      height: 50px;
+      background: url(img/icon-wechat.png) no-repeat;
+      background-size: contain;
+      margin-right: 10px;
+    }
+
+    .mete-link>div:nth-child(2)>.left {
+      background: url(img/icon-rp.png) no-repeat;
+      background-size: contain;
+    }
+
+    .mete-link>div:nth-child(3)>.left {
+      background: url(img/icon-credit.png) no-repeat;
+      background-size: contain;
+    }
+
+    .mete-link>div>.right>p:first-child {
+      font-weight: 400;
+      font-size: 16px;
+    }
+
+    .mete-link>div>.right>p:last-child {
+      font-weight: 300;
+      font-size: 16px;
+    }
+
+    .about {
+      width: 100%;
+      border: 1px #EEEEEE solid;
+      border-left: none;
+      border-right: none;
+    }
+
+    .about>.con {
+      width: 1080px;
+      margin: 0 auto;
+      padding: 45px 20px;
+      display: flex;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+
+    .about>.con>.left {
+      width: 425px;
+    }
+
+    .about>.con>.left>a {
+      display: block;
+      width: 160px;
+      height: 36px;
+      background: url(img/moblike-logo.svg) no-repeat center center;
+      background-size: contain;
+      margin-bottom: 10px;
+    }
+
+    .about>.con>.left>P {
+      line-height: 2.3;
+      font-size: 16px;
+    }
+
+    .about>.con>.right {
+      width: 575px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .about>.con>.right dt {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #000;
+      font-size: 18px;
+    }
+
+    .about>.con>.right dd {
+      line-height: 2;
+      font-size: 15px;
+      font-weight: 300;
+      transition: .2s;
+    }
+
+    .about>.con>.right dd:hover {
+      color: #EF6340;
+    }
+
+    .copy-right>.con {
+      width: 1040px;
+      margin: 0 auto;
+      padding: 45px 0;
+      display: flex;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+
+    .copy-right>.con>.left {
+      width: 90%;
+
+    }
+
+    .copy-right>.con>.left>p {
+      font-size: 12px;
+      margin-top: 4px;
+      color: #aaa;
+    }
+
+    .copy-right>.con>.right {
+      width: 10%;
+    }
+
+    .copy-right>.con>.right>img {
+      width: 40px;
+
+    }
+
+
+
+
+    @media(max-width: 1080px) {
+      main {
+        height: 445px;
+      }
+
+      header>nav {
+        width: 100vw;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      header>nav>.nav-box {
+        display: none;
+      }
+
+      header>nav>.nav-box2 {
+        display: block;
+      }
+
+      .main-bot-box {
+        width: 100%;
+        height: 520px;
+        display: flex;
+        justify-content: space-between;
+        flex-flow: wrap;
+        box-sizing: border-box;
+      }
+
+      .main-bot-box>a {
+        width: 49.88%;
+        height: 49.6%;
+      }
+
+      .mete-link {
+        width: 100%;
+        flex-flow: wrap;
+      }
+
+      .mete-link>div {
+        width: 33.3%;
+        padding: 45px 0;
+        display: flex;
+      }
+
+      .about>.con {
+        width: 100%;
+      }
+
+      .about>.con>.left {
+        width: 40%;
+      }
+
+      .about>.con>.right {
+        width: 50%;
+      }
+
+      .copy-right>.con {
+        width: 100%;
+        padding: 45px 40px;
+      }
+
+      main>.content-wrap>.content {
+        width: 100%;
+        padding-left: 20px;
+      }
+
+      main>.tip>.tip-wrap {
+        width: 100%;
+      }
+
+      main>.content-wrap>.content>h1 {
+        font-size: 270%;
+      }
+    }
+
+    @media(max-width: 640px) {
+      .main-bot-box {
+        width: 100%;
+        height: 1040px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .main-bot-box>a {
+        width: 99.8%;
+        margin-bottom: 2px;
+        height: 24.98%;
+      }
+
+      .mete-link {
+        flex-flow: wrap;
+      }
+
+      .mete-link>div {
+        width: 44%;
+        padding: 45px 0;
+        display: flex;
+        padding: 25px 0;
+      }
+
+      .about>.con {
+        width: 100%;
+        flex-flow: wrap;
+        padding: 40px;
+        box-sizing: border-box;
+      }
+
+      .about>.con>.left {
+        width: 100%;
+        margin-bottom: 40px;
+      }
+
+      .about>.con>.right {
+        width: 100%;
+        flex-flow: wrap;
+        align-content: space-between;
+      }
+
+      .about>.con>.right>dl {
+        width: 50%;
+        margin-bottom: 20px;
+      }
+
+      .copy-right>.con {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <h2>摩拜单车</h2>
+      </div>
+      <div class="nav-box">
+        <a href="#">产品</a>
+        <a href="#">摩拜科技</a>
+        <a href="#">关于</a>
+        <a href="#">广告合作</a>
+      </div>
+      <div class="nav-box2"></div>
+    </nav>
+  </header>
+  <main>
+    <div class="content-wrap">
+      <div class="content">
+        <h1>让自行车回归城市</h1>
+        <a href="#">立即开始使用 Mobike</a>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-wrap">
+        <a href="#"><i>new</i>“摩拜公交” 小程序上线 线上购买地铁票省时省力</a>
+      </div>
+    </div>
+  </main>
+  <div class="main-bot-box">
+    <a href="#">大国品牌</a>
+    <a href="#">摩拜科技</a>
+    <a href="#">摩拜生活</a>
+    <a href="#">摩拜校招</a>
+  </div>
+  <div class="mete-link">
+    <div>
+      <div class="left"></div>
+      <div class="right">
+        <p>微信小程序</p>
+        <p>微信扫一扫，直接用车</p>
+      </div>
+    </div>
+    <div>
+      <div class="left"></div>
+      <div class="right">
+        <p>红包车</p>
+        <p>骑摩拜，能赚钱</p>
+      </div>
+    </div>
+    <div>
+      <div class="left"></div>
+      <div class="right">
+        <p>摩范分</p>
+        <p>文明骑行，信用生活</p>
+      </div>
+    </div>
+  </div>
+  <div class="about">
+    <div class="con">
+      <div class="left">
+        <a href="#"></a>
+        <p>Beijing Mobike Technology Co., Ltd</p>
+        <p>客服电话 400-618-7799</p>
+        <p>北京摩拜科技有限公司</p>
+      </div>
+      <div class="right">
+        <dl>
+          <dt>产品</dt>
+          <dd>经典版</dd>
+          <dd>轻骑</dd>
+          <dd>智能锁</dd>
+        </dl>
+        <dl>
+          <dt>生活</dt>
+          <dd>城市</dd>
+        </dl>
+        <dl>
+          <dt>关于</dt>
+          <dd>关于Mobike</dd>
+          <dd>加入我们</dd>
+          <dd>联系我们</dd>
+          <dd>服务协议</dd>
+        </dl>
+        <dl>
+          <dt>社交网络</dt>
+          <dd>微博</dd>
+          <dd>微信</dd>
+          <dd>知乎专栏</dd>
+          <dd>Facebook</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="copy-right">
+    <div class="con">
+      <div class="left">
+        <p>京 ICP 备15053449 号 京公网安备 11010502032956 号</p>
+        <p>增值电信业务经营许可证编号：京B2-20170053</p>
+      </div>
+      <div class="right">
+        <img src="img/mobike-copy-right.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
