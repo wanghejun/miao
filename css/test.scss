@@ -1,0 +1,48 @@
+body{
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  div{
+    transform-style: preserve-3d;
+    position: relative;
+    animation: run 10s infinite linear;
+    transform-origin: center center;
+    width: 100px;
+    height: 100px;
+    &:hover{
+      animation-play-state: paused;
+    }
+    span{
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      display: inline-block;
+      font-size: 36px;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      width: 50px;
+      height: 50px;
+      color: #000;
+
+    }
+  }
+}
+@for $i from 1 through 99 {
+  span:nth-child(#{$i}){
+    transform:translatez(#{$i}px);
+  }
+}
+
+@keyframes run {
+  from{
+    transform: perspective(500px) rotatey(0deg);
+  }
+  to{
+    transform: perspective(500px) rotatey(360deg);
+  }
+}

@@ -10,12 +10,21 @@
     padding: 0;
     margin: 0;
   }
+  body{
+    background: linear-gradient(160deg,#54a0ff,#341f97);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   section{
     width: 600px;
     height: 400px;
     margin: 200px auto;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
     display: flex;
+    border: 40px solid transparent;
+    background: white;
   }
   section>input{
     display: none;
@@ -25,9 +34,8 @@
     width: 150px;
     position: relative;
     overflow: hidden;
-    background: black;
   }
-  section>div::after{
+  section>div::after {
     content: "";
     display: block;
     position: absolute;
@@ -36,6 +44,7 @@
     right: 0;
     top: 0;
     background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+    z-index: 20;
   }
   section>div>label{
     position: absolute;
@@ -64,9 +73,9 @@ input[id="one"]:checked ~ .on>label,input[id="two"]:checked ~ .tw>label,input[id
     height: 100%;
     position: absolute;
     display: block;
-    transform: translate(-100%,0);
+    left: -100%;
     transition: .5s ease-in-out;
-
+    animation: run .5s ease-in-out;
   }
   /*分发图片*/
   section>.on>span:nth-child(1){
@@ -132,17 +141,22 @@ input[id="one"]:checked ~ .on>label,input[id="two"]:checked ~ .tw>label,input[id
     background: url(img/photoalbum4.jpg) no-repeat;
     background-position:-450px 0;
   }
-  input[id="one"]:checked ~ div>span:nth-child(1){
-    transform: translate(0,0);
-  }
-  input[id="two"]:checked ~ div>span:nth-child(2){
-    transform: translate(0,0);
-  }
-  input[id="three"]:checked ~ div>span:nth-child(3){
-    transform: translate(0,0);
-  }
+  input[id="one"]:checked ~ div>span:nth-child(1),
+  input[id="two"]:checked ~ div>span:nth-child(2),
+  input[id="three"]:checked ~ div>span:nth-child(3),
   input[id="four"]:checked ~ div>span:nth-child(4){
-    transform: translate(0,0);
+    left: 0;
+    z-index: 10;
+    animation: none;
+  }
+  /*上一张图片动走*/
+  @keyframes run {
+    from{
+      left: 0;
+    }
+    to{
+      left: 100%;
+    }
   }
   </style>
 </head>
