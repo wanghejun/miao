@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>basic-coding</title>
+</head>
+
+<body>
+  <script type="x" id="ch0103/01">
+    console.log("1-3-1：" + prompt("a + b, 第一位数") * 1 + prompt("第二位数") * 1);
+  </xscript>
+  <script type="x" id="ch0103/02">
+    console.log("1-3-2：" + (Number(prompt("(a + b) * c, 第一位数")) + Number(prompt("第二位数"))) * Number(prompt("第三位数")));
+  </script>
+  <script type="x" id="ch0103/03">
+    console.log("1-3-3：" + Math.floor((Number(prompt("(a + b) / c, 第一位数")) + Number(prompt("第二位数"))) / Number(prompt(
+      "第三位数"))));
+  </script>
+  <script type="x" id="ch0103/04">
+    var a = prompt("a / b的商和余数"),
+      b = prompt("第二位数字");
+    console.log("1-3-4：商" + Number(a) / Number(b) + " ，余" + Number(a) % Number(b))
+  </script>
+  <script type="x" id="ch0103/05">
+    var c = Number(prompt("a / b的浮点值, 第一位数")) / Number(prompt("第二位数"));
+    console.log("1-3-5：" + c.toFixed(9));
+  </script>
+  <script type="x" id="ch0103/06">
+    var a = Number(prompt("b占a的百分比，第一位数a"));
+    b = Number(prompt("第二位数b"));
+    var c = b / a;
+    console.log("1-3-6：" + c.toFixed(5) * 100 + "%");
+  </script>
+  <script type="x" id="ch0103/07">
+    var x = prompt("f(x) = ax3 + bx2 + cx + d , 请输入x") * 1,
+      a = prompt("请输入a") * 1,
+      b = prompt("请输入b") * 1,
+      c = prompt("请输入c") * 1,
+      d = prompt("请输入d") * 1
+    var fx = a * Math.pow(x, 3) + b * Math.pow(x, 2) + c * x + d;
+    console.log("1-3-7：" + fx.toFixed(7))
+  </script>
+  <script type="x" id="ch0103/08">
+    var f = prompt("利用公式 C = 5 * (F-32) / 9 （其中C表示摄氏温度，F表示华氏温度） 进行计算转化,输入f") * 1;
+    console.log("1-3-8：" + (5 * (f - 32) / 9).toFixed(5));
+  </script>
+  <script type="x" id="ch0103/9">
+    var radius = prompt("圆的半径：") * 1;
+    var dia = radius * 2;
+    var area = radius * radius * Math.PI.toFixed(2);
+    var perimeter = dia * Math.PI.toFixed(2);
+    console.log("1-3-9：直径：" + dia + ",周长:" + perimeter + ",面积:" + area);
+  </script>
+  <script type="x" id="ch0103/10">
+    var r1 = prompt("R = 1/(1/r1 + 1/r2) ,请输入r1"),
+      r2 = prompt("请输入r2");
+    console.log("1-3-10：" + Math.round((1 / (1 / r1 + 1 / r2)) * 100) / 100);
+  </script>
+  <script type="x" id="ch0103/11">
+    var a = prompt("a÷b的余数，请输入a") , b = prompt("请输入b") * 1;
+    console.log("1-3-11：" + a % b);
+  </script>
+  <script type="x" id="ch0103/12">
+    var radius = prompt("球的体积：V=4/3*πr3 ，请输入球的半径") * 1;
+    console.log("1-3-12：" + (4 / 3 * 3.14 * Math.pow(radius,3)).toFixed(2))
+  </script>
+<script type="x" id="ch0103/13">
+  var a = prompt("将一个三位数反向输出。请输入一个三位数") * 1;
+  var bai = Math.floor(a / 100) ;
+  var shi = Math.floor(a % 100 / 10) ;
+  var ge = Math.floor(a % 10);
+  console.log("1-3-13：" + ge + shi + bai);
+</script>
+<script type="x" id="ch0103/14">
+  var h = prompt("一只大象口渴了，要喝20升水才能解渴，但现在只有一个深h厘米，底面半径为r厘米的小圆桶(h和r都是整数)。问大象至少要喝多少桶水才会解渴，请输入h的值") * 1, r = prompt("请输入r") * 1;
+  var bulk = Math.PI.toFixed(5) * Math.pow(r , 2) * h;
+  console.log("1-3-14：" + Math.ceil( 20000 / bulk))
+</script>
+<script type="x" id="ch0103/15">
+  var n = prompt("你买了一箱n个苹果，很不幸的是买完时箱子里混进了一条虫子。虫子每x小时能吃掉一个苹果，假设虫子在吃完一个苹果之前不会吃另一个，那么经过y小时你还有多少个完整的苹果？请输入N") * 1, x = prompt("请输入x") * 1, y = prompt("请输入y") * 1;
+  console.log("1-3-15：" + (n - Math.ceil(y / x))) ;
+</script>
+<script>
+  var xa= prompt("已知线段的两个端点的坐标A（Xa,Ya），B（Xb，Yb），求线段AB的长度。请输入")
+</script>
+</body>
+
+</html>
