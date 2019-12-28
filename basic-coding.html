@@ -56,7 +56,7 @@
     let f = parseInt(prompt());
     console.log((5 * (f - 32) / 9).toFixed(5));
   </script>
-  <script type="" id="ch0103/09">
+  <script type="x" id="ch0103/09">
     let radius = Number(prompt());
     let dia = (radius * 2).toFixed(4);
     let area = (radius * radius * Math.PI.toFixed(5)).toFixed(4);
@@ -80,7 +80,7 @@
   <script type="x" id="ch0103/13">
     let a = Number(prompt());
     let bai = Math.floor(a / 100);
-    let shi = Math.floor(a % 100 / 10).toFixed(0);
+    let shi = Number(Math.floor(a % 100 / 10).toFixed(0));
     let ge = Math.floor(a % 10);
     console.log(" " + ge + shi + bai);
   </script>
@@ -97,7 +97,38 @@
     console.log((n - Math.ceil(y / x)));
   </script>
   <script type="x">
-    let xa = prompt("已知线段的两个端点的坐标A（Xa,Ya），B（Xb，Yb），求线段AB的长度。请输入");
+    let x1 = Number(prompt());
+    let y1 = Number(prompt());
+    let x2 = Number(prompt());
+    let y2 = Number(prompt());
+    let xy = Math.pow((x1 - x2) , 2) + Math.pow((y1 - y2) , 2);
+    console.log(Math.sqrt(xy).toFixed(3));
+  </script>
+  <script type="x">
+    let x1 = Number(prompt());
+    let y1 = Number(prompt());
+    let x2 = Number(prompt());
+    let y2 = Number(prompt());
+    let x3 = Number(prompt());
+    let y3 = Number(prompt());
+    let s = (1 / 2) * (x1 * y2 + x2 * y3 + x3 * y1 - x1 * y3 - x2 * y1 - x3 * y2)
+    console.log(s.toFixed(2));
+  </script>
+  <script type="x">
+    let a = Number(prompt());
+    let b = Number(prompt());
+    let c = Number(prompt());
+    let d = a + ( c - 1) * (b -a);
+    console.log(d);
+  </script>
+  <script type="x">
+    let a = parseInt(prompt());
+    let b = parseInt(prompt());
+    console.log(a * b)
+  </script>
+  <script type="x">
+  let n = parseInt(prompt());
+  console.log(Math.pow(2 , n));
   </script>
 </body>
 
