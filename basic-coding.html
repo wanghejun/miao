@@ -49,7 +49,7 @@
     let b = parseInt(prompt());
     let c = parseInt(prompt());
     let d = parseInt(prompt());
-    let fx = a * Math.pow(x, 3) + b * Math.pow(x, 2) + c * x + d;
+    let fx = (a * Math.pow(x , 3)) + (b * Math.pow(x, 2)) + (c * x) + d;
     console.log(fx.toFixed(7))
   </script>
   <script id="ch0103/08">
@@ -59,14 +59,14 @@
   <script id="ch0103/09">
     let radius = parseInt(prompt());
     let dia = radius * 2;
-    let area = radius * radius * Math.PI.toFixed(2);
-    let perimeter = dia * Math.PI.toFixed(2);
-    console.log(dia + ",周长:" + perimeter + ",面积:" + area);
+    let area = radius * radius * Math.PI.toFixed(5);
+    let perimeter = dia * Math.PI.toFixed(5);
+    console.log(dia + " " + perimeter + " " + area);
   </script>
   <script id="ch0103/10">
     let r1 = parseInt(prompt());
     let r2 = parseInt(prompt());
-    console.log(Math.round((1 / (1 / r1 + 1 / r2)) * 100) / 100);
+    console.log((1 / (1 / r1 + 1 / r2)).toFixed(2));
   </script>
   <script id="ch0103/11">
     let a = parseInt(prompt());
