@@ -150,7 +150,7 @@
     console.log(a % 2 == 0 ? "NO" : "YES");
   </script>
   <script type="x" id="ch0104/05">
-  let a = Number(prompt());
+    let a = Number(prompt());
   let b = Number(prompt());
   if(a > b){
     console.log(">")
@@ -161,11 +161,11 @@
   }
   </script>
   <script type="x" id="ch0104/06">
-  let a = parseInt(prompt());
+    let a = parseInt(prompt());
   console.log(a >= 10 && a <= 99 ? 1 : 0);
   </script>
-  <script  type="x" id="ch0104/07"> 
-  let a = Number(prompt());
+  <script type="x" id="ch0104/07">
+    let a = Number(prompt());
   let b = Number(prompt());
   if(a >= 10 || b >=20){
     console.log(1);
@@ -173,12 +173,12 @@
     console.log(0);
   }
   </script>
-  <script  type="x" id="ch0104/08">
-   let a = Number(prompt());
+  <script type="x" id="ch0104/08">
+    let a = Number(prompt());
    console.log(a % 3 == 0 && a % 5 == 0 ? "YES" : "NO")
   </script>
-  <script  type="x" id="ch0104/09">
-     let a = Number(prompt());
+  <script type="x" id="ch0104/09">
+    let a = Number(prompt());
      let con;
      if(a % 3 == 0 && a % 5 == 0 && a % 7 == 0){
        con = 3 + " " + 5 + " " + 7;
@@ -197,8 +197,8 @@
      }
      console.log(con);
   </script>
-  <script  id="ch0104/10">
-   let a = Number(prompt());
+  <script type="x" id="ch0104/10">
+    let a = Number(prompt());
    let b = Number(prompt());
    if(a < 60 || b < 60){
     console.log(1);
@@ -206,9 +206,87 @@
     console.log(0);
    }
   </script>
-   <script id="ch0104/11">
-  
-    </script>
+  <script type="x" id="ch0104/11">
+    let a = parseInt(prompt());
+    if(a == 1 || a == 3 || a == 5){
+      console.log("NO");
+    }else{
+      console.log("YES");
+    }
+  </script>
+  <script type="x" id="ch0104/12">
+    let a = parseInt(prompt());
+    if(a / 1.2 + 50 > a / 3){
+      console.log("Bike");
+    }else if(a / 1.2 + 50 == a / 3){
+      console.log("ALL");
+    }else if(a / 1.2 + 50 < a / 3){
+      console.log("Walk");
+    }
+  </script>
+  <script type="x" id="ch0104/13">
+    let a = Number(prompt());
+    if(a >= 0 && a < 5){
+      console.log((-a + 2.5).toFixed(3));
+    }else if(a >= 5 && a < 10){
+      console.log((2 - 1.5 * (a -3) * (a - 3)).toFixed(3));
+    }else if(a >= 10 && a < 20){
+      console.log((a / 2 - 1.5).toFixed(3));
+    }
+  </script>
+  <script type="x" id="ch0104/14">
+    let a = parseInt(prompt());
+    let b = String(prompt());
+    if(a <= 1000){
+      if(b == "y"){
+        console.log(13);
+      }else if(b == "n"){
+        console.log(8);
+      }
+    }else if(a > 1000){
+      if(b == "y"){
+        console.log(Math.ceil((a - 1000) / 500) * 4 + 13);
+      }else if(b == "n"){
+        console.log(Math.ceil((a - 1000) / 500) * 4 + 8);
+      }
+    }
+  </script>
+  <script  type="x" id="ch0104/15">
+    let a = parseInt(prompt());
+    let b = parseInt(prompt());
+    let c = parseInt(prompt());
+    console.log((a > b ? a : b) > c ? (a > b ? a : b ) : c)
+  </script>
+  <script type="x" id="ch0104/16">
+    let a = parseInt(prompt());
+    let b = parseInt(prompt());
+    let c = parseInt(prompt());
+    if(a + b <= c || a + c <= b || c + b <= a){
+      console.log("no");
+    }else{
+      console.log("yes");
+    }
+  </script>
+  <script type="x" id="ch0104/17">
+   let a = parseInt(prompt());
+   if(a % 400 == 0 || a % 4 == 0 && a % 100 != 0){
+     console.log("Y");
+    }else{
+      console.log("N");
+   }
+  </script>
+  <script id="ch0104/18">
+
+  </script>
+  <script id="ch0104/19">
+
+  </script>
+  <script id="ch0104/20">
+
+  </script>
+  <script id="ch0104/21">
+
+  </script>
 </body>
 
 </html>
