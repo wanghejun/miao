@@ -147,7 +147,7 @@
   </script>
   <script type="x" id="ch0104/04">
     let a = prompt().charCodeAt();
-    console.log(a % 2 == 0 ? "even" : "odd");
+    console.log(a % 2 == 0 ? "NO" : "YES");
   </script>
   <script type="x" id="ch0104/05">
   let a = Number(prompt());
@@ -160,6 +160,55 @@
     console.log("<")
   }
   </script>
+  <script type="x" id="ch0104/06">
+  let a = parseInt(prompt());
+  console.log(a >= 10 && a <= 99 ? 1 : 0);
+  </script>
+  <script  type="x" id="ch0104/07"> 
+  let a = Number(prompt());
+  let b = Number(prompt());
+  if(a >= 10 || b >=20){
+    console.log(1);
+  }else{
+    console.log(0);
+  }
+  </script>
+  <script  type="x" id="ch0104/08">
+   let a = Number(prompt());
+   console.log(a % 3 == 0 && a % 5 == 0 ? "YES" : "NO")
+  </script>
+  <script  type="x" id="ch0104/09">
+     let a = Number(prompt());
+     let con;
+     if(a % 3 == 0 && a % 5 == 0 && a % 7 == 0){
+       con = 3 + " " + 5 + " " + 7;
+     }else if(a % 3 == 0 && a % 5 == 0){
+       con = 3 + " " + 5;
+     }else if(a % 3 == 0 && a % 7 == 0){
+       con = con = 3 + " " + 7;
+     }else if(a % 5 == 0 && a % 7 == 0){
+      con = 5 + " " + 7;
+     }else if(a % 3 == 0){
+      con = 3;
+     }else if(a % 5 == 0){
+      con = 5 ;
+     }else if(a % 7 == 0){
+      con = 7;
+     }
+     console.log(con);
+  </script>
+  <script  id="ch0104/10">
+   let a = Number(prompt());
+   let b = Number(prompt());
+   if(a < 60 || b < 60){
+    console.log(1);
+  }else{
+    console.log(0);
+   }
+  </script>
+   <script id="ch0104/11">
+  
+    </script>
 </body>
 
 </html>
