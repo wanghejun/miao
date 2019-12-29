@@ -251,7 +251,7 @@
       }
     }
   </script>
-  <script  type="x" id="ch0104/15">
+  <script type="x" id="ch0104/15">
     let a = parseInt(prompt());
     let b = parseInt(prompt());
     let c = parseInt(prompt());
@@ -268,24 +268,57 @@
     }
   </script>
   <script type="x" id="ch0104/17">
-   let a = parseInt(prompt());
+    let a = parseInt(prompt());
    if(a % 400 == 0 || a % 4 == 0 && a % 100 != 0){
      console.log("Y");
     }else{
       console.log("N");
    }
   </script>
-  <script id="ch0104/18">
-
+  <script type="x" id="ch0104/18">
+    let x = parseInt(prompt());
+    let y = parseInt(prompt());
+    if( x >= -1 && x <= 1 && y >= -1 &&y <= 1){
+      console.log(`yes`);
+    }else{
+      console.log(`no`);
+    }
   </script>
-  <script id="ch0104/19">
-
+  <script type="x" id="ch0104/19">
+    let a = parseInt(prompt());
+    let b = parseInt(prompt());
+    let c = String(prompt());
+    if (a == 0) {
+      console.log("Divided by zero!");
+    } else if (c == "+" || c == "-" || c == "*" || c == "/") {
+      switch (c) {
+        case "+":
+          console.log(a + b);
+          break;
+        case "-":
+          console.log(a - b);
+          break;
+        case "*":
+          console.log(a * b);
+          break;
+        case "/":
+          console.log(a / b);
+          break;
+        default:
+          break;
+      }
+    } else {
+      console.log("Invalid operator!");
+    }
   </script>
   <script id="ch0104/20">
 
   </script>
-  <script id="ch0104/21">
-
+  <script type="x" id="ch0104/21">
+    let a = parseInt(prompt());
+    let b = parseInt(prompt());
+    let c = parseInt(prompt());
+    console.log(a - Math.ceil(c / b) )
   </script>
 </body>
 
