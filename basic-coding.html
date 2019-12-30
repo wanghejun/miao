@@ -320,20 +320,42 @@
     let c = parseInt(prompt());
     console.log(a - Math.ceil(c / b) )
   </script>
-  <script id="ch0105/01">
-   
+  <script type="x" id="ch0105/01">
+    let a = Number(prompt());
+    let b = Number(prompt());
+    let c = Number(prompt());
+    console.log(((a + b + c) / 3).toFixed(2));
   </script>
-  <script id="ch0105/02">
-   
+  <script  type="x" id="ch0105/02">
+    let a = 0;
+    for(let i = 0 ; i < 12 ; i++){
+      a+=Number(prompt());
+    }
+    console.log("$" + (a / 12).toFixed(2));
   </script>
-  <script id="ch0105/03">
-   
+  <script type="x" id="ch0105/03">
+   let a = 0;
+    for(let i = 0 ; i < 3 ; i++){
+      a+=Number(prompt());
+    }
+    console.log((a / 3).toFixed(4));
   </script>
-  <script id="ch0105/04">
-   
+  <script type="x" id="ch0105/04">
+   let a = 0;
+   let index = parseInt(prompt());
+    for(let i = 0 ; i < index ; i++){
+      a+=Number(prompt());
+    }
+    console.log(a +" " +(a / index).toFixed(5));
   </script>
-  <script id="ch0105/05">
-   
+  <script type="x" id="ch0105/05">
+    let a = 0;
+   let index = parseInt(prompt());
+    for(let i = 0 ; i < index ; i++){
+      let b = Number(prompt());
+      a < b ? a = b : a;
+    }
+    console.log(a);
   </script>
   <script id="ch0105/06">
    

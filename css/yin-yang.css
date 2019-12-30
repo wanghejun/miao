@@ -1,0 +1,591 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2c3e50), to(#95a5a6));
+  background: linear-gradient(#2c3e50, #95a5a6);
+  background: -webkit-gradient(linear, right top, left bottom, from(#bdc3c7), to(#7f8c8d));
+  background: linear-gradient(to left bottom, #bdc3c7, #7f8c8d);
+  background-blend-mode: screen;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+body > section {
+  position: relative;
+  height: 200px;
+}
+
+body > section > .dark {
+  width: 600px;
+  height: 200px;
+  background: #000;
+  position: relative;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+
+body > section > .dark::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 200px;
+  border-left: 200px solid transparent;
+  border-right: 200px solid transparent;
+  border-bottom: 200px solid black;
+  -webkit-transform: translate(0, -100%);
+          transform: translate(0, -100%);
+}
+
+body > section > .dark::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 200px;
+  border-left: 200px solid transparent;
+  border-right: 200px solid transparent;
+  border-bottom: 200px solid black;
+  -webkit-transform: translate(0, 100%) rotate(180deg);
+          transform: translate(0, 100%) rotate(180deg);
+}
+
+body > section > .light {
+  width: 600px;
+  height: 200px;
+  background: #fff;
+  position: relative;
+  -webkit-transform: translate(0, -100%);
+          transform: translate(0, -100%);
+}
+
+body > section > .light::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 200px;
+  border-left: 200px solid transparent;
+  border-right: 200px solid transparent;
+  border-bottom: 200px solid #fff;
+  -webkit-transform: translate(0, -100%);
+          transform: translate(0, -100%);
+}
+
+body > section > .light::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 200px;
+  border-left: 200px solid transparent;
+  border-right: 200px solid transparent;
+  border-bottom: 200px solid #fff;
+  -webkit-transform: translate(0, 100%) rotate(180deg);
+          transform: translate(0, 100%) rotate(180deg);
+}
+
+body > section > .main-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 350px;
+  height: 350px;
+}
+
+body > section > .main-wrap > main {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #fff), color-stop(50%, #000), to(#000));
+  background: linear-gradient(#fff 50%, #000 50%, #000);
+  border: 2px #000 solid;
+  -webkit-animation: run 3s infinite linear;
+          animation: run 3s infinite linear;
+}
+
+body > section > .main-wrap > main::before {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border: 75px solid #000;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+body > section > .main-wrap > main::after {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #000;
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  border: 75px solid #fff;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+body > section > span {
+  display: block;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+body > section > span:nth-child(1) {
+  -webkit-transform: rotate(45deg) translate(220px) rotate(90deg);
+          transform: rotate(45deg) translate(220px) rotate(90deg);
+}
+
+body > section > span:nth-child(2) {
+  -webkit-transform: rotate(90deg) translate(220px) rotate(90deg);
+          transform: rotate(90deg) translate(220px) rotate(90deg);
+}
+
+body > section > span:nth-child(3) {
+  -webkit-transform: rotate(135deg) translate(220px) rotate(90deg);
+          transform: rotate(135deg) translate(220px) rotate(90deg);
+}
+
+body > section > span:nth-child(4) {
+  -webkit-transform: rotate(180deg) translate(220px) rotate(90deg);
+          transform: rotate(180deg) translate(220px) rotate(90deg);
+}
+
+body > section > span:nth-child(5) {
+  -webkit-transform: rotate(225deg) translate(220px) rotate(90deg);
+          transform: rotate(225deg) translate(220px) rotate(90deg);
+}
+
+body > section > span:nth-child(6) {
+  -webkit-transform: rotate(270deg) translate(220px) rotate(90deg);
+          transform: rotate(270deg) translate(220px) rotate(90deg);
+}
+
+body > section > span:nth-child(7) {
+  -webkit-transform: rotate(315deg) translate(220px) rotate(90deg);
+          transform: rotate(315deg) translate(220px) rotate(90deg);
+}
+
+body > section > span:nth-child(8) {
+  -webkit-transform: rotate(360deg) translate(220px) rotate(90deg);
+          transform: rotate(360deg) translate(220px) rotate(90deg);
+}
+
+body > section > span:nth-child(1) > .p-wrap {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+body > section > span:nth-child(1) > .p-wrap > p {
+  border: 5px solid #000;
+}
+
+body > section > span:nth-child(1) > .p-wrap > p:nth-child(1) {
+  width: 90%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(1) > .p-wrap > p:nth-child(1)::before {
+  height: 20px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: #fff;
+  top: 0;
+  left: 50%;
+}
+
+body > section > span:nth-child(1) > .p-wrap > p:nth-child(2) {
+  width: 60%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(1) > .p-wrap > p:nth-child(3) {
+  width: 40%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(2) > .p-wrap {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+body > section > span:nth-child(2) > .p-wrap > p {
+  border: 5px solid #000;
+}
+
+body > section > span:nth-child(2) > .p-wrap > p:nth-child(1) {
+  width: 90%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(2) > .p-wrap > p:nth-child(1)::before {
+  height: 20px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: #fff;
+  top: 0;
+  left: 50%;
+}
+
+body > section > span:nth-child(2) > .p-wrap > p:nth-child(2) {
+  width: 60%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(2) > .p-wrap > p:nth-child(3) {
+  width: 40%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(2) > .p-wrap > p:nth-child(3)::before {
+  height: 20px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: #fff;
+  top: 0;
+  left: 50%;
+}
+
+body > section > span:nth-child(3) > .p-wrap {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+body > section > span:nth-child(3) > .p-wrap > p {
+  border: 5px solid #000;
+}
+
+body > section > span:nth-child(3) > .p-wrap > p:nth-child(1) {
+  width: 90%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(3) > .p-wrap > p:nth-child(1)::before {
+  height: 20px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: #fff;
+  top: 0;
+  left: 50%;
+}
+
+body > section > span:nth-child(3) > .p-wrap > p:nth-child(2) {
+  width: 60%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(3) > .p-wrap > p:nth-child(2)::before {
+  height: 20px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: #fff;
+  top: 0;
+  left: 50%;
+}
+
+body > section > span:nth-child(3) > .p-wrap > p:nth-child(3) {
+  width: 40%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(4) > .p-wrap {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+body > section > span:nth-child(4) > .p-wrap > p {
+  border: 5px solid #000;
+}
+
+body > section > span:nth-child(4) > .p-wrap > p:nth-child(1) {
+  width: 90%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(4) > .p-wrap > p:nth-child(2) {
+  width: 60%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(4) > .p-wrap > p:nth-child(3) {
+  width: 40%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(4) > .p-wrap > p:nth-child(3)::before {
+  height: 20px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: #fff;
+  top: 0;
+  left: 50%;
+}
+
+body > section > span:nth-child(5) > .p-wrap {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+body > section > span:nth-child(5) > .p-wrap > p {
+  border: 5px solid #000;
+}
+
+body > section > span:nth-child(5) > .p-wrap > p:nth-child(1) {
+  width: 90%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(5) > .p-wrap > p:nth-child(2) {
+  width: 60%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(5) > .p-wrap > p:nth-child(3) {
+  width: 40%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(6) > .p-wrap {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+body > section > span:nth-child(6) > .p-wrap > p {
+  border: 5px solid #000;
+}
+
+body > section > span:nth-child(6) > .p-wrap > p:nth-child(1) {
+  width: 90%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(6) > .p-wrap > p:nth-child(2) {
+  width: 60%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(6) > .p-wrap > p:nth-child(2)::before {
+  height: 20px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: #fff;
+  top: 0;
+  left: 50%;
+}
+
+body > section > span:nth-child(6) > .p-wrap > p:nth-child(3) {
+  width: 40%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(7) > .p-wrap {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+body > section > span:nth-child(7) > .p-wrap > p {
+  border: 5px solid #000;
+}
+
+body > section > span:nth-child(7) > .p-wrap > p:nth-child(1) {
+  width: 90%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(7) > .p-wrap > p:nth-child(1)::before {
+  height: 20px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: #fff;
+  top: 0;
+  left: 50%;
+}
+
+body > section > span:nth-child(7) > .p-wrap > p:nth-child(2) {
+  width: 60%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(7) > .p-wrap > p:nth-child(2)::before {
+  height: 20px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: #fff;
+  top: 0;
+  left: 50%;
+}
+
+body > section > span:nth-child(7) > .p-wrap > p:nth-child(3) {
+  width: 40%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(7) > .p-wrap > p:nth-child(3)::before {
+  height: 20px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: #fff;
+  top: 0;
+  left: 50%;
+}
+
+body > section > span:nth-child(8) > .p-wrap {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+body > section > span:nth-child(8) > .p-wrap > p {
+  border: 5px solid #000;
+}
+
+body > section > span:nth-child(8) > .p-wrap > p:nth-child(1) {
+  width: 90%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(8) > .p-wrap > p:nth-child(2) {
+  width: 60%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(8) > .p-wrap > p:nth-child(2)::before {
+  height: 20px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: #fff;
+  top: 0;
+  left: 50%;
+}
+
+body > section > span:nth-child(8) > .p-wrap > p:nth-child(3) {
+  width: 40%;
+  margin: 0 auto 5px auto;
+  position: relative;
+}
+
+body > section > span:nth-child(8) > .p-wrap > p:nth-child(3)::before {
+  height: 20px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+  position: absolute;
+  width: 10px;
+  background: #fff;
+  top: 0;
+  left: 50%;
+}
+
+@-webkit-keyframes run {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes run {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+/*# sourceMappingURL=yin-yang.css.map */
