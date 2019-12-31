@@ -178,26 +178,16 @@
    console.log(a % 3 == 0 && a % 5 == 0 ? "YES" : "NO")
   </script>
   <script type="x" id="ch0104/09">
-    let a = Number(prompt());
-     let con;
-     if(a % 3 == 0 && a % 5 == 0 && a % 7 == 0){
-       con = 3 + " " + 5 + " " + 7;
-     }else if(a % 3 == 0 && a % 5 == 0){
-       con = 3 + " " + 5;
-     }else if(a % 3 == 0 && a % 7 == 0){
-       con = 3 + " " + 7;
-     }else if(a % 5 == 0 && a % 7 == 0){
-      con = 5 + " " + 7;
-     }else if(a % 3 == 0){
-      con = 3;
-     }else if(a % 5 == 0){
-      con = 5 ;
-     }else if(a % 7 == 0){
-      con = 7;
-     }else{
-       console.log("n")
-     }
-     console.log(con);
+    let a = parseInt(prompt());
+    let arr = [];
+    if (a % 3 === 0) { arr.push(3); }
+    if (a % 5 === 0) { arr.push(5); }
+    if (a % 7 === 0) { arr.push(7); }
+    if (a % 3 !== 0 && a % 5 !== 0 && a % 7 !== 0) {
+        console.log("n")
+    } else {
+        console.log(arr.join(" "));
+    }
   </script>
   <script type="x" id="ch0104/10">
     let a = Number(prompt());
