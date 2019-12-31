@@ -387,33 +387,108 @@
     sum = a + b + c;
     console.log(a + " "+ b + " " + c +" "+sum)
   </script>
-  <script id="ch0105/08">
+  <script type="x" id="ch0105/08">
+    let n = parseInt(prompt());
+    let sum = 0;
+    for(let i = 0;i < (n -1); i++){
+      sum+=parseInt(prompt());
+    }
+    console.log((n - 2) * 180 - sum)
+  </script>
+  <script type="x" id="ch0105/09">
+   let index = parseInt(prompt());
+   let max = parseInt(prompt());
+   let sum = 0;
+   for(let i = index; i <= max ;i++){
+    if(i % 2 !=0){
+      sum+=i;  
+    };
+   }
+   console.log(sum);
+  </script>
+  <script type="x" id="ch0105/10">
+   let index = parseInt(prompt());
+   let max = parseInt(prompt());
+   let sum = 0;
+   for(let i = index; i <= max ;i++){
+    if(i % 17 ==0){
+      sum+=i;  
+    };
+   }
+   console.log(sum);
+  </script>
+  <script type="x" id="ch0105/11">
   debugger;
-
+   let index = parseInt(prompt());
+   let one = 0,five = 0 ,ten = 0,con = 0;
+   for(let i = 0; i < index ;i++){
+    con = parseInt(prompt())
+    if(con == 1){
+      one++;  
+    }else if( con == 5){
+      five++
+    }else if( con == 10){
+      ten++
+    };
+   }
+   console.log(one);
+   console.log(five);
+   console.log(ten);
   </script>
-  <script id="ch0105/09">
-   
+  <script type="x" id="ch0105/12">
+   let index = parseInt(prompt());
+   let con = parseInt(prompt());
+   let a = 0;
+   let sum = 0;
+   for(let i = 0;i < index; i++){
+      a = parseInt(prompt())
+     if(con == a){
+       sum++;
+     }
+   }
+   console.log(sum);
   </script>
-  <script id="ch0105/10">
-   
+  <script type="x" id="ch0105/13">
+   let a =parseInt(prompt());
+   let n =parseInt(prompt());
+    console.log(Math.pow(a , n))
   </script>
-  <script id="ch0105/11">
-   
+  <script type="x" id="ch0105/14">
+   let a =parseInt(prompt());
+   let n =parseInt(prompt());
+   for(let i = 0 ; i < n;i++){
+     a+=a * 0.001;
+   }
+   console.log(a.toFixed(4))
   </script>
-  <script id="ch0105/12">
-   
+  <script type="x" id="ch0105/15">
+   let a =parseInt(prompt());
+   let b =parseInt(prompt());
+   let c =parseInt(prompt());
+   a = (a + 100) * 0.01;
+   for(let i = 0;i < c; i++){
+     b*=a;
+   }
+   console.log(Math.trunc(b))
   </script>
-  <script id="ch0105/13">
-   
-  </script>
-  <script id="ch0105/14">
-   
-  </script>
-  <script id="ch0105/15">
-   
-  </script>
-  <script id="ch0105/16">
-   
+  <script type="x" id="ch0105/16">
+  debugger;
+   let a =parseInt(prompt());
+   let b =parseInt(prompt()) * 0.01 + 1;
+   let sum = 0;
+   let c = 200
+   for(let i = 1;i <= 20;i++){
+     sum+=a;
+     if(i >= 2){
+     c*=b ;
+     }
+     if(sum >= c){
+      console.log(i);
+      break;
+     }else if(sum != c && i == 20){
+      console.log("Impossible");
+     }
+   }
   </script>
   <script id="ch0105/17">
    
