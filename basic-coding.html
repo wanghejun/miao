@@ -322,10 +322,11 @@
   </script>
   <script type="x" id="ch0105/01">
     let a = 0;
-    for(let i = 0 ; i < 3 ; i++){
-      a+=Number(prompt());
+    let b = 0;
+    for(let i = 0 ; i < a ; i++){
+      b+=Number(prompt());
     }
-    console.log((a / 3).toFixed(2));
+    console.log((b / a).toFixed(2));
   </script>
   <script  type="x" id="ch0105/02">
     let a = 0;
@@ -358,14 +359,41 @@
     }
     console.log(a);
   </script>
-  <script id="ch0105/06">
-
+  <script type="x" id="ch0105/06">
+  let index = parseInt(prompt());
+  let a = parseInt(prompt());
+  let b = a;
+  let c;
+  for(let i = 0; i < index - 1 ;i++){
+    c= parseInt(prompt());
+    a < c ? a = c : a;
+    b > c ? b = c : b;
+  }
+  console.log( a -b );
   </script>
-  <script id="ch0105/07">
-   
+  <script type="x" id="ch0105/07">
+   let index = parseInt(prompt());
+   let sum;
+   for(let i = 0; i < index; i++){
+     console.log(parseInt(prompt()));
+   }
   </script>
   <script id="ch0105/08">
-   
+  debugger;
+   let index = parseInt(prompt()) * 3;
+   let sum = 0;
+   let a = 0 , b = 0 , c = 0;
+   for(let i = 1 ;i <= index; i++){
+    if(i == 1 || i == 4 || i == 7){
+      a+=parseInt(prompt());
+    }else if(i == 2 || i == 5 || i == 8){
+      b+=parseInt(prompt());
+    }else if(i == 3 || i == 6 || i == 9){
+      c+=parseInt(prompt());
+    }
+   }
+   sum = a + b + c;
+   console.log(a + " "+ b + " " + c +" "+sum)
   </script>
   <script id="ch0105/09">
    
