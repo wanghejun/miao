@@ -507,22 +507,28 @@
       console.log(current)
     </script>
     <script type="x" id="ch0105/18">
-    let index = parseInt(prompt());
-    let baseTotal = parseInt(prompt());
-    let baseEffect = parseInt(prompt());
-    let baseRatio = baseEffect / baseTotal;
-    for(let i = 0; i < index; i++){
-      let total = parseInt(prompt());
-      let effect = parseInt(prompt());
-      let ratio = effect / total;
-      if(ratio - baseEffect > 0.05){
-        console.log('better');
-      }else if(baseRatio - ratio > 0.05){
-        console.log('worse');
-      }else{
-        console.log('same');
-      }
+      const cocktail = function (n) {
+        let a = arguments
+        let arr = []
+        let s = []
+        for (let i = 1; i <= n; i++) {
+            arr[i - 1] = (a[i][1] / a[i][0])
+        }
+        for (let i = 0; i < n; i++) {
+            if (arr[i] - arr[0] > 0.05) {
+                s[i] = "better"
+            }
+            else if (arr[i] - arr[0] < -0.05) {
+                s[i] = "worse"
+            }
+            else {
+                s[i] = "same"
+            }
+        }
+        return s.splice(1).join(" ")
     }
+
+    console.log(cocktail(5, [124, 99], [112, 89], [145, 99], [99, 97], [123, 98]))
     </script>
     <script type="x" id="ch0105/19">
       let n = Number(prompt());
@@ -539,14 +545,19 @@
       console.log(Math.ceil(sum));
     </script>
     <script type="x" id="ch0105/20">
-    let h = +prompt();
-    let t = h;
-    let sum = 0;
-    for(let i = 1; i <= 10; i++){
-      sum += 2 * h;
-      h /= 2;
+      const ballHeight = function (h) {
+        let s = 0
+        let all = []
+        for (let i = 2; i <= 10; i++) {
+            h = h / 2
+            s = h * 2 + s
+        }
+        all[0] = (s + 20).toFixed(4)
+        all[1] = (h / 2).toFixed(7)
+        return all.join(" ")
     }
-    console.log(sum - t, h)
+
+    console.log(ballHeight(20))
     </script>
     <script type="x" id="ch0105/21">
       let index =parseInt(prompt());
@@ -616,21 +627,24 @@
     console.log(max);
     </script>
     <script type="x" id="ch0105/25">
-      let ten = 0;
-      let seven,nine;
-      for(let i = 100 ; i <= 999 ;i++){
-      ten = i;
-      seven = ten.toString(7);
-      nine = ten .toString(9);
-      seven = Number(seven);
-      nine = Number(nine.split("").reverse().join(""));
-      if(seven == nine){
-      console.log(ten);
-      console.log(seven);
-      console.log(nine);
-      break;
-      }
-      }
+      const naturalNumber = function () {
+        let n7 = 0
+        let n9 = 0
+        let n7s = 0
+        let arr = []
+
+        for (let i = 0; i < 1000; i++) {
+            n7 = i.toString(7)
+            n7s = n7.split("").reverse().join("")
+            n9 = i.toString(9)
+            if (n7s == n9 && (n9.length >= 3)) {
+                arr[0] = i
+                arr[1] = n7
+                arr[2] = n9
+                return arr.join(" ")
+            }
+        }
+    }
     </script>
     <script type="x" id="ch0105/26">
       let sum = 0,ge = 0,shi = 0,bai = 0,qian = 0;
@@ -661,14 +675,11 @@
       }
     </script>
     <script type="x" id="ch0105/28">
-      let num = parseInt(prompt());
-      let con = String(num).split('');
-      let index = con.length;
-      let a = new Array(index);
-      for(let i = 1; i <= index; i++){
-      a.push(con[con.length - i])
-      }
-      console.log(a.join(" "))
+      const splitNumber = function (x) {
+        let re = String(x).split("").reverse().join(" ")
+        return re
+    }
+    console.log(splitNumber(123))
     </script>
     <script type="x" id="ch0105/29">
       let num = parseInt(prompt());
