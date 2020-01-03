@@ -1,567 +1,950 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>basic-coding</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>basic-coding</title>
-</head>
-
-<body>
-  <script type="x" id="ch0103/01">
-    let a = parseInt(prompt());
-    let b = parseInt(prompt());
-    console.log(a + b);
-  </script>
-  <script type="x" id="ch0103/02">
-    let a = parseInt(prompt());
-    let b = parseInt(prompt());
-    let c = parseInt(prompt());
-    console.log((a + b) * c);
-  </script>
-  <script type="x" id="ch0103/03">
-    let a = parseInt(prompt());
-    let b = parseInt(prompt());
-    let c = parseInt(prompt());
-    console.log(Math.floor((a + b) / c));
-  </script>
-  <script type="x" id="ch0103/04">
-    let a = parseInt(prompt());
-    let b = parseInt(prompt());
-    console.log(Math.floor(a / b) + " " + (a % b));
-  </script>
-  <script type="x" id="ch0103/05">
-    let a = parseInt(prompt());
-    let b = parseInt(prompt());
-    let c = (a / b).toFixed(9);
-    console.log(c);
-  </script>
-  <script type="x" id="ch0103/06">
-    let a = parseInt(prompt());
-     let b = parseInt(prompt());
-     let c = (b / a).toFixed(5) * 100 ;
-    console.log(c + "%");
-  </script>
-  <script type="x" id="ch0103/07">
-    let x = Number(prompt());
-    let a = Number(prompt());
-    let b = Number(prompt());
-    let c = Number(prompt());
-    let d = Number(prompt());
-    let fx = (a * Math.pow(x , 3)) + (b * Math.pow(x, 2)) + (c * x) + d;
-    console.log(fx.toFixed(7))
-  </script>
-  <script type="x" id="ch0103/08">
-    let f = parseInt(prompt());
-    console.log((5 * (f - 32) / 9).toFixed(5));
-  </script>
-  <script type="x" id="ch0103/09">
-    let radius = Number(prompt());
-    let dia = (radius * 2).toFixed(4);
-    let area = (radius * radius * Math.PI.toFixed(5)).toFixed(4);
-    let perimeter = (dia * Math.PI.toFixed(5)).toFixed(4);
-    console.log(dia + " " + perimeter + " " + area);
-  </script>
-  <script type="x" id="ch0103/10">
-    let r1 = Number(prompt());  
-    let r2 = Number(prompt());
-    console.log((1 / (1 / r1 + 1 / r2)).toFixed(2));
-  </script>
-  <script type="x" id="ch0103/11">
-    let a = Number(prompt());
-    let b = Number(prompt());
-    console.log((a % b).toFixed(4));
-  </script>
-  <script type="x" id="ch0103/12">
-    let radius = Number(prompt());
-    console.log((4 / 3 * 3.14 * Math.pow(radius, 3)).toFixed(2));
-  </script>
-  <script type="x" id="ch0103/13">
-    let a = prompt();
-    console.log(a[2] + a[1] + a[0]);
-  </script>
-  <script type="x" id="ch0103/14">
-    let h = Number(prompt());
-    let r = Number(prompt());
-    let bulk = Math.PI.toFixed(5) * Math.pow(r, 2) * h;
-    console.log(Math.ceil(20000 / bulk))
-  </script>
-  <script type="x" id="ch0103/15">
-    let n = Number(prompt());
-    let x = Number(prompt());
-    let y = Number(prompt());
-    console.log((n - Math.ceil(y / x)));
-  </script>
-  <script type="x" id="ch0103/16">
-    let x1 = Number(prompt());
-    let y1 = Number(prompt());
-    let x2 = Number(prompt());
-    let y2 = Number(prompt());
-    let xy = Math.pow((x1 - x2) , 2) + Math.pow((y1 - y2) , 2);
-    console.log(Math.sqrt(xy).toFixed(3));
-  </script>
-  <script type="x" id="ch0103/17">
-    let x1 = Number(prompt());
-    let y1 = Number(prompt());
-    let x2 = Number(prompt());
-    let y2 = Number(prompt());
-    let x3 = Number(prompt());
-    let y3 = Number(prompt());
-    let s = (1 / 2) * (x1 * y2 + x2 * y3 + x3 * y1 - x1 * y3 - x2 * y1 - x3 * y2)
-    console.log(s.toFixed(2));
-  </script>
-  <script type="x" id="ch0103/18">
-    let a = Number(prompt());
-    let b = Number(prompt());
-    let c = Number(prompt());
-    let d = a + ( c - 1) * (b -a);
-    console.log(d);
-  </script>
-  <script type="x" id="ch0103/19">
-    let a = parseInt(prompt());
-    let b = parseInt(prompt());
-    console.log(a * b)
-  </script>
-  <script type="x" id="ch0103/20">
-    let n = parseInt(prompt());
-  console.log(Math.pow(2 , n));
-  </script>
-  <script type="x" id="ch0104/01">
-    let a = prompt();
-    if(a > 0){
+  <body>
+    <script type="x" id="ch0103/01">
+      let a = parseInt(prompt());
+      let b = parseInt(prompt());
+      console.log(a + b);
+    </script>
+    <script type="x" id="ch0103/02">
+      let a = parseInt(prompt());
+      let b = parseInt(prompt());
+      let c = parseInt(prompt());
+      console.log((a + b) * c);
+    </script>
+    <script type="x" id="ch0103/03">
+      let a = parseInt(prompt());
+      let b = parseInt(prompt());
+      let c = parseInt(prompt());
+      console.log(Math.floor((a + b) / c));
+    </script>
+    <script type="x" id="ch0103/04">
+      let a = parseInt(prompt());
+      let b = parseInt(prompt());
+      console.log(Math.floor(a / b) + " " + (a % b));
+    </script>
+    <script type="x" id="ch0103/05">
+      let a = parseInt(prompt());
+      let b = parseInt(prompt());
+      let c = (a / b).toFixed(9);
+      console.log(c);
+    </script>
+    <script type="x" id="ch0103/06">
+      let a = parseInt(prompt());
+      let b = parseInt(prompt());
+      let c = (b / a).toFixed(5) * 100 ;
+      console.log(c + "%");
+    </script>
+    <script type="x" id="ch0103/07">
+      let x = Number(prompt());
+      let a = Number(prompt());
+      let b = Number(prompt());
+      let c = Number(prompt());
+      let d = Number(prompt());
+      let fx = (a * Math.pow(x , 3)) + (b * Math.pow(x, 2)) + (c * x) + d;
+      console.log(fx.toFixed(7))
+    </script>
+    <script type="x" id="ch0103/08">
+      let f = parseInt(prompt());
+      console.log((5 * (f - 32) / 9).toFixed(5));
+    </script>
+    <script type="x" id="ch0103/09">
+      let radius = Number(prompt());
+      let dia = (radius * 2).toFixed(4);
+      let area = (radius * radius * Math.PI.toFixed(5)).toFixed(4);
+      let perimeter = (dia * Math.PI.toFixed(5)).toFixed(4);
+      console.log(dia + " " + perimeter + " " + area);
+    </script>
+    <script type="x" id="ch0103/10">
+      let r1 = Number(prompt());
+      let r2 = Number(prompt());
+      console.log((1 / (1 / r1 + 1 / r2)).toFixed(2));
+    </script>
+    <script type="x" id="ch0103/11">
+      let a = Number(prompt());
+      let b = Number(prompt());
+      console.log((a % b).toFixed(4));
+    </script>
+    <script type="x" id="ch0103/12">
+      let radius = Number(prompt());
+      console.log((4 / 3 * 3.14 * Math.pow(radius, 3)).toFixed(2));
+    </script>
+    <script type="x" id="ch0103/13">
+      let a = prompt();
+      console.log(a[2] + a[1] + a[0]);
+    </script>
+    <script type="x" id="ch0103/14">
+      let h = Number(prompt());
+      let r = Number(prompt());
+      let bulk = Math.PI.toFixed(5) * Math.pow(r, 2) * h;
+      console.log(Math.ceil(20000 / bulk))
+    </script>
+    <script type="x" id="ch0103/15">
+      let n = Number(prompt());
+      let x = Number(prompt());
+      let y = Number(prompt());
+      console.log((n - Math.ceil(y / x)));
+    </script>
+    <script type="x" id="ch0103/16">
+      let x1 = Number(prompt());
+      let y1 = Number(prompt());
+      let x2 = Number(prompt());
+      let y2 = Number(prompt());
+      let xy = Math.pow((x1 - x2) , 2) + Math.pow((y1 - y2) , 2);
+      console.log(Math.sqrt(xy).toFixed(3));
+    </script>
+    <script type="x" id="ch0103/17">
+      let x1 = Number(prompt());
+      let y1 = Number(prompt());
+      let x2 = Number(prompt());
+      let y2 = Number(prompt());
+      let x3 = Number(prompt());
+      let y3 = Number(prompt());
+      let s = (1 / 2) * (x1 * y2 + x2 * y3 + x3 * y1 - x1 * y3 - x2 * y1 - x3 * y2)
+      console.log(s.toFixed(2));
+    </script>
+    <script type="x" id="ch0103/18">
+      let a = Number(prompt());
+      let b = Number(prompt());
+      let c = Number(prompt());
+      let d = a + ( c - 1) * (b -a);
+      console.log(d);
+    </script>
+    <script type="x" id="ch0103/19">
+      let a = parseInt(prompt());
+      let b = parseInt(prompt());
+      console.log(a * b)
+    </script>
+    <script type="x" id="ch0103/20">
+      let n = parseInt(prompt());
+      console.log(Math.pow(2 , n));
+    </script>
+    <script type="x" id="ch0104/01">
+      let a = prompt();
+      if(a > 0){
       console.log("positive");
-    }else if(a == 0){
+      }else if(a == 0){
       console.log("zero");
-    }else if(a < 0){
+      }else if(a < 0){
       console.log("negative");
-    }
-  </script>
-  <script type="x" id="ch0104/02">
-    let a = Number(prompt());
-  console.log(Math.abs(a));
-  </script>
-  <script type="x" id="ch0104/03">
-    let a = parseInt(prompt());
-  console.log(a % 2 == 0 ? "even" : "odd");
-  </script>
-  <script type="x" id="ch0104/04">
-    let a = prompt().charCodeAt();
-    console.log(a % 2 == 0 ? "NO" : "YES");
-  </script>
-  <script type="x" id="ch0104/05">
-    let a = Number(prompt());
-  let b = Number(prompt());
-  if(a > b){
-    console.log(">")
-  }else if(a == b){
-    console.log("=")
-  }else if(a < b){
-    console.log("<")
-  }
-  </script>
-  <script type="x" id="ch0104/06">
-    let a = parseInt(prompt());
-  console.log(a >= 10 && a <= 99 ? 1 : 0);
-  </script>
-  <script type="x" id="ch0104/07">
-    let a = Number(prompt());
-  let b = Number(prompt());
-  if(a >= 10 || b >=20){
-    console.log(1);
-  }else{
-    console.log(0);
-  }
-  </script>
-  <script type="x" id="ch0104/08">
-    let a = Number(prompt());
-   console.log(a % 3 == 0 && a % 5 == 0 ? "YES" : "NO")
-  </script>
-  <script type="x" id="ch0104/09">
-    let a = parseInt(prompt());
-    let arr = [];
-    if (a % 3 === 0) { arr.push(3); }
-    if (a % 5 === 0) { arr.push(5); }
-    if (a % 7 === 0) { arr.push(7); }
-    if (a % 3 !== 0 && a % 5 !== 0 && a % 7 !== 0) {
-        console.log("n")
-    } else {
-        console.log(arr.join(" "));
-    }
-  </script>
-  <script type="x" id="ch0104/10">
-    let a = Number(prompt());
-   let b = Number(prompt());
-   if(a < 60 || b < 60){
-    console.log(1);
-  }else{
-    console.log(0);
-   }
-  </script>
-  <script type="x" id="ch0104/11">
-    let a = parseInt(prompt());
-    if(a == 1 || a == 3 || a == 5){
+      }
+    </script>
+    <script type="x" id="ch0104/02">
+      let a = Number(prompt());
+      console.log(Math.abs(a));
+    </script>
+    <script type="x" id="ch0104/03">
+      let a = parseInt(prompt());
+      console.log(a % 2 == 0 ? "even" : "odd");
+    </script>
+    <script type="x" id="ch0104/04">
+      let a = prompt().charCodeAt();
+      console.log(a % 2 == 0 ? "NO" : "YES");
+    </script>
+    <script type="x" id="ch0104/05">
+      let a = Number(prompt());
+      let b = Number(prompt());
+      if(a > b){
+      console.log(">")
+      }else if(a == b){
+      console.log("=")
+      }else if(a < b){
+      console.log("<")
+      }
+    </script>
+    <script type="x" id="ch0104/06">
+      let a = parseInt(prompt());
+      console.log(a >= 10 && a <= 99 ? 1 : 0);
+    </script>
+    <script type="x" id="ch0104/07">
+      let a = Number(prompt());
+      let b = Number(prompt());
+      if(a >= 10 || b >=20){
+      console.log(1);
+      }else{
+      console.log(0);
+      }
+    </script>
+    <script type="x" id="ch0104/08">
+      let a = Number(prompt());
+      console.log(a % 3 == 0 && a % 5 == 0 ? "YES" : "NO")
+    </script>
+    <script type="x" id="ch0104/09">
+      let a = parseInt(prompt());
+      let arr = [];
+      if (a % 3 === 0) { arr.push(3); }
+      if (a % 5 === 0) { arr.push(5); }
+      if (a % 7 === 0) { arr.push(7); }
+      if (a % 3 !== 0 && a % 5 !== 0 && a % 7 !== 0) {
+      console.log("n")
+      } else {
+      console.log(arr.join(" "));
+      }
+    </script>
+    <script type="x" id="ch0104/10">
+      let a = Number(prompt());
+      let b = Number(prompt());
+      if(a < 60 || b < 60){
+      console.log(1);
+      }else{
+      console.log(0);
+      }
+    </script>
+    <script type="x" id="ch0104/11">
+      let a = parseInt(prompt());
+      if(a == 1 || a == 3 || a == 5){
       console.log("NO");
-    }else{
+      }else{
       console.log("YES");
-    }
-  </script>
-  <script type="x" id="ch0104/12">
-    let a = parseInt(prompt());
-    if(a / 1.2 + 50 > a / 3){
+      }
+    </script>
+    <script type="x" id="ch0104/12">
+      let a = parseInt(prompt());
+      if(a / 1.2 + 50 > a / 3){
       console.log("Bike");
-    }else if(a / 1.2 + 50 == a / 3){
+      }else if(a / 1.2 + 50 == a / 3){
       console.log("ALL");
-    }else if(a / 1.2 + 50 < a / 3){
+      }else if(a / 1.2 + 50 < a / 3){
       console.log("Walk");
-    }
-  </script>
-  <script type="x" id="ch0104/13">
-    let a = Number(prompt());
-    if(a >= 0 && a < 5){
+      }
+    </script>
+    <script type="x" id="ch0104/13">
+      let a = Number(prompt());
+      if(a >= 0 && a < 5){
       console.log((-a + 2.5).toFixed(3));
-    }else if(a >= 5 && a < 10){
+      }else if(a >= 5 && a < 10){
       console.log((2 - 1.5 * (a -3) * (a - 3)).toFixed(3));
-    }else if(a >= 10 && a < 20){
+      }else if(a >= 10 && a < 20){
       console.log((a / 2 - 1.5).toFixed(3));
-    }
-  </script>
-  <script type="x" id="ch0104/14">
-    let a = parseInt(prompt());
-    let b = String(prompt());
-    if(a <= 1000){
-      if(b == "y"){
-        console.log(13);
-      }else if(b == "n"){
-        console.log(8);
       }
-    }else if(a > 1000){
+    </script>
+    <script type="x" id="ch0104/14">
+      let a = parseInt(prompt());
+      let b = String(prompt());
+      if(a <= 1000){
       if(b == "y"){
-        console.log(Math.ceil((a - 1000) / 500) * 4 + 13);
+      console.log(13);
       }else if(b == "n"){
-        console.log(Math.ceil((a - 1000) / 500) * 4 + 8);
+      console.log(8);
       }
-    }
-  </script>
-  <script type="x" id="ch0104/15">
-    let a = parseInt(prompt());
-    let b = parseInt(prompt());
-    let c = parseInt(prompt());
-    console.log((a > b ? a : b) > c ? (a > b ? a : b ) : c)
-  </script>
-  <script type="x" id="ch0104/16">
-    let a = parseInt(prompt());
-    let b = parseInt(prompt());
-    let c = parseInt(prompt());
-    if(a + b <= c || a + c <= b || c + b <= a){
+      }else if(a > 1000){
+      if(b == "y"){
+      console.log(Math.ceil((a - 1000) / 500) * 4 + 13);
+      }else if(b == "n"){
+      console.log(Math.ceil((a - 1000) / 500) * 4 + 8);
+      }
+      }
+    </script>
+    <script type="x" id="ch0104/15">
+      let a = parseInt(prompt());
+      let b = parseInt(prompt());
+      let c = parseInt(prompt());
+      console.log((a > b ? a : b) > c ? (a > b ? a : b ) : c)
+    </script>
+    <script type="x" id="ch0104/16">
+      let a = parseInt(prompt());
+      let b = parseInt(prompt());
+      let c = parseInt(prompt());
+      if(a + b <= c || a + c <= b || c + b <= a){
       console.log("no");
-    }else{
+      }else{
       console.log("yes");
-    }
-  </script>
-  <script type="x" id="ch0104/17">
-    let a = parseInt(prompt());
-   if(a % 400 == 0 || a % 4 == 0 && a % 100 != 0){
-     console.log("Y");
-    }else{
-      console.log("N");
-   }
-  </script>
-  <script type="x" id="ch0104/18">
-    let x = parseInt(prompt());
-    let y = parseInt(prompt());
-    if( x >= -1 && x <= 1 && y >= -1 &&y <= 1){
-      console.log(`yes`);
-    }else{
-      console.log(`no`);
-    }
-  </script>
-  <script type="x" id="ch0104/19">
-    let a = parseInt(prompt());
-    let b = parseInt(prompt());
-    let c = String(prompt());
-    if (a == 0) {
-      console.log("Divided by zero!");
-    } else if (c == "+" || c == "-" || c == "*" || c == "/") {
-      switch (c) {
-        case "+":
-          console.log(a + b);
-          break;
-        case "-":
-          console.log(a - b);
-          break;
-        case "*":
-          console.log(a * b);
-          break;
-        case "/":
-          console.log(a / b);
-          break;
-        default:
-          break;
       }
-    } else {
+    </script>
+    <script type="x" id="ch0104/17">
+      let a = parseInt(prompt());
+      if(a % 400 == 0 || a % 4 == 0 && a % 100 != 0){
+      console.log("Y");
+      }else{
+      console.log("N");
+      }
+    </script>
+    <script type="x" id="ch0104/18">
+      let x = parseInt(prompt());
+      let y = parseInt(prompt());
+      if( x >= -1 && x <= 1 && y >= -1 &&y <= 1){
+      console.log(`yes`);
+      }else{
+      console.log(`no`);
+      }
+    </script>
+    <script type="x" id="ch0104/19">
+      let a = parseInt(prompt());
+      let b = parseInt(prompt());
+      let c = String(prompt());
+      if (a == 0) {
+      console.log("Divided by zero!");
+      } else if (c == "+" || c == "-" || c == "*" || c == "/") {
+      switch (c) {
+      case "+":
+      console.log(a + b);
+      break;
+      case "-":
+      console.log(a - b);
+      break;
+      case "*":
+      console.log(a * b);
+      break;
+      case "/":
+      console.log(a / b);
+      break;
+      default:
+      break;
+      }
+      } else {
       console.log("Invalid operator!");
-    }
-  </script>
-  <script id="ch0104/20">
-    let a = parseFloat(prompt());
-    let b = parseFloat(prompt());
-    let c = parseFloat(prompt());
-    if (b * b < 4 * a * c) {
-        let m = (-b / (2 * a)).toFixed(5);
-        let n = (Math.sqrt(4 * a * c - b * b) / (2 * a)).toFixed(5);
-        console.log("x1=" + m + "+" + n + "i;x2=" + m + "-" + n + "i");
-    } else if (b * b > 4 * a * c) {
-        let x1 = (-b + sqrt(b * b - 4 * a * c)) / (2 * a)
-        let x2 = (-b - sqrt(b * b - 4 * a * c)) / (2 * a)
-        console.log("x1=" + x1.toFixed(5) + ";x2=" + x2.toFixed(5));
-    } else {
-        let x1 = (-b + sqrt(b * b - 4 * a * c)) / (2 * a);
-        console.log("x1=x2=" + x1.toFixed(5));
-    }
-  </script>
-  <script type="x" id="ch0104/21">
-    let a = parseInt(prompt());
-    let b = parseInt(prompt());
-    let c = parseInt(prompt());
-    console.log(a - Math.ceil(c / b) )
-  </script>
-  <script type="x" id="ch0105/01">
-    let a = parseInt(prompt());
-    let b = 0;
-    for(let i = 0 ; i < a ; i++){
+      }
+    </script>
+    <script type="x" id="ch0104/20">
+      let a = parseFloat(prompt());
+      let b = parseFloat(prompt());
+      let c = parseFloat(prompt());
+      if (b * b < 4 * a * c) {
+      let m = (-b / (2 * a)).toFixed(5);
+      let n = (Math.sqrt(4 * a * c - b * b) / (2 * a)).toFixed(5);
+      console.log("x1=" + m + "+" + n + "i;x2=" + m + "-" + n + "i");
+      } else if (b * b > 4 * a * c) {
+      let x1 = (-b + sqrt(b * b - 4 * a * c)) / (2 * a)
+      let x2 = (-b - sqrt(b * b - 4 * a * c)) / (2 * a)
+      console.log("x1=" + x1.toFixed(5) + ";x2=" + x2.toFixed(5));
+      } else {
+      let x1 = (-b + sqrt(b * b - 4 * a * c)) / (2 * a);
+      console.log("x1=x2=" + x1.toFixed(5));
+      }
+    </script>
+    <script type="x" id="ch0104/21">
+      let a = parseInt(prompt());
+      let b = parseInt(prompt());
+      let c = parseInt(prompt());
+      console.log(a - Math.ceil(c / b) )
+    </script>
+    <script type="x" id="ch0105/01">
+      let a = parseInt(prompt());
+      let b = 0;
+      for(let i = 0 ; i < a ; i++){
       b+=Number(prompt());
-    }
-    console.log((b / a).toFixed(2));
-  </script>
-  <script  type="x" id="ch0105/02">
-    let a = 0;
-    for(let i = 0 ; i < 12 ; i++){
+      }
+      console.log((b / a).toFixed(2));
+    </script>
+    <script type="x" id="ch0105/02">
+      let a = 0;
+      for(let i = 0 ; i < 12 ; i++){
       a+=Number(prompt());
-    }
-    console.log("$" + (a / 12).toFixed(2));
-  </script>
-  <script type="x" id="ch0105/03">
-   let a = 0;
-    for(let i = 0 ; i < 3 ; i++){
+      }
+      console.log("$" + (a / 12).toFixed(2));
+    </script>
+    <script type="x" id="ch0105/03">
+      let a = 0;
+      for(let i = 0 ; i < 3 ; i++){
       a+=Number(prompt());
-    }
-    console.log((a / 3).toFixed(4));
-  </script>
-  <script type="x" id="ch0105/04">
-   let a = 0;
-   let index = parseInt(prompt());
-    for(let i = 0 ; i < index ; i++){
+      }
+      console.log((a / 3).toFixed(4));
+    </script>
+    <script type="x" id="ch0105/04">
+      let a = 0;
+      let index = parseInt(prompt());
+      for(let i = 0 ; i < index ; i++){
       a+=Number(prompt());
-    }
-    console.log(a +" " +(a / index).toFixed(5));
-  </script>
-  <script type="x" id="ch0105/05">
-    let a = 0;
-   let index = parseInt(prompt());
-    for(let i = 0 ; i < index ; i++){
+      }
+      console.log(a +" " +(a / index).toFixed(5));
+    </script>
+    <script type="x" id="ch0105/05">
+      let a = 0;
+      let index = parseInt(prompt());
+      for(let i = 0 ; i < index ; i++){
       let b = Number(prompt());
       a < b ? a = b : a;
-    }
-    console.log(a);
-  </script>
-  <script type="x" id="ch0105/06">
-  let index = parseInt(prompt());
-  let a = parseInt(prompt());
-  let b = a;
-  let c;
-  for(let i = 0; i < index - 1 ;i++){
-    c= parseInt(prompt());
-    a < c ? a = c : a;
-    b > c ? b = c : b;
-  }
-  console.log( a - b );
-  </script>
-  <script type="x" id="ch0105/07">
-    let index = parseInt(prompt()) * 3;
-    let sum = 0;
-    let a = 0 , b = 0 , c = 0;
-    for(let i = 1 ;i <= index; i++){
-     if(i == 1 || i == 4 || i == 7){
-       a+=parseInt(prompt());
-     }else if(i == 2 || i == 5 || i == 8){
-       b+=parseInt(prompt());
-     }else if(i == 3 || i == 6 || i == 9){
-       c+=parseInt(prompt());
-     }
-    }
-    sum = a + b + c;
-    console.log(a + " "+ b + " " + c +" "+sum)
-  </script>
-  <script type="x" id="ch0105/08">
-    let n = parseInt(prompt());
-    let sum = 0;
-    for(let i = 0;i < (n -1); i++){
+      }
+      console.log(a);
+    </script>
+    <script type="x" id="ch0105/06">
+      let index = parseInt(prompt());
+      let a = parseInt(prompt());
+      let b = a;
+      let c;
+      for(let i = 0; i < index - 1 ;i++){
+      c= parseInt(prompt());
+      a < c ? a = c : a;
+      b > c ? b = c : b;
+      }
+      console.log( a - b );
+    </script>
+    <script type="x" id="ch0105/07">
+      let index = parseInt(prompt()) * 3;
+      let sum = 0;
+      let a = 0 , b = 0 , c = 0;
+      for(let i = 1 ;i <= index; i++){
+      if(i == 1 || i == 4 || i == 7){
+      a+=parseInt(prompt());
+      }else if(i == 2 || i == 5 || i == 8){
+      b+=parseInt(prompt());
+      }else if(i == 3 || i == 6 || i == 9){
+      c+=parseInt(prompt());
+      }
+      }
+      sum = a + b + c;
+      console.log(a + " "+ b + " " + c +" "+sum)
+    </script>
+    <script type="x" id="ch0105/08">
+      let n = parseInt(prompt());
+      let sum = 0;
+      for(let i = 0;i < (n -1); i++){
       sum+=parseInt(prompt());
-    }
-    console.log((n - 2) * 180 - sum)
-  </script>
-  <script type="x" id="ch0105/09">
-   let index = parseInt(prompt());
-   let max = parseInt(prompt());
-   let sum = 0;
-   for(let i = index; i <= max ;i++){
-    if(i % 2 !=0){
-      sum+=i;  
-    };
-   }
-   console.log(sum);
-  </script>
-  <script type="x" id="ch0105/10">
-   let index = parseInt(prompt());
-   let max = parseInt(prompt());
-   let sum = 0;
-   for(let i = index; i <= max ;i++){
-    if(i % 17 ==0){
-      sum+=i;  
-    };
-   }
-   console.log(sum);
-  </script>
-  <script type="x" id="ch0105/11">
-  debugger;
-   let index = parseInt(prompt());
-   let one = 0,five = 0 ,ten = 0,con = 0;
-   for(let i = 0; i < index ;i++){
-    con = parseInt(prompt())
-    if(con == 1){
-      one++;  
-    }else if( con == 5){
+      }
+      console.log((n - 2) * 180 - sum)
+    </script>
+    <script type="x" id="ch0105/09">
+      let index = parseInt(prompt());
+      let max = parseInt(prompt());
+      let sum = 0;
+      for(let i = index; i <= max ;i++){
+      if(i % 2 !=0){
+      sum+=i;
+      };
+      }
+      console.log(sum);
+    </script>
+    <script type="x" id="ch0105/10">
+      let index = parseInt(prompt());
+      let max = parseInt(prompt());
+      let sum = 0;
+      for(let i = index; i <= max ;i++){
+      if(i % 17 ==0){
+      sum+=i;
+      };
+      }
+      console.log(sum);
+    </script>
+    <script type="x" id="ch0105/11">
+      debugger;
+      let index = parseInt(prompt());
+      let one = 0,five = 0 ,ten = 0,con = 0;
+      for(let i = 0; i < index ;i++){
+      con = parseInt(prompt())
+      if(con == 1){
+      one++;
+      }else if( con == 5){
       five++
-    }else if( con == 10){
+      }else if( con == 10){
       ten++
-    };
-   }
-   console.log(one);
-   console.log(five);
-   console.log(ten);
-  </script>
-  <script type="x" id="ch0105/12">
-   let index = parseInt(prompt());
-   let con = parseInt(prompt());
-   let a = 0;
-   let sum = 0;
-   for(let i = 0;i < index; i++){
+      };
+      }
+      console.log(one);
+      console.log(five);
+      console.log(ten);
+    </script>
+    <script type="x" id="ch0105/12">
+      let index = parseInt(prompt());
+      let con = parseInt(prompt());
+      let a = 0;
+      let sum = 0;
+      for(let i = 0;i < index; i++){
       a = parseInt(prompt())
-     if(con == a){
-       sum++;
-     }
-   }
-   console.log(sum);
-  </script>
-  <script type="x" id="ch0105/13">
-   let a =parseInt(prompt());
-   let n =parseInt(prompt());
-    console.log(Math.pow(a , n))
-  </script>
-  <script type="x" id="ch0105/14">
-   let a =parseInt(prompt());
-   let n =parseInt(prompt());
-   for(let i = 0 ; i < n;i++){
-     a+=a * 0.001;
-   }
-   console.log(a.toFixed(4))
-  </script>
-  <script type="x" id="ch0105/15">
-   let a =parseInt(prompt());
-   let b =parseInt(prompt());
-   let c =parseInt(prompt());
-   a = (a + 100) * 0.01;
-   for(let i = 0;i < c; i++){
-     b*=a;
-   }
-   console.log(Math.trunc(b))
-  </script>
-  <script type="x" id="ch0105/16">
-  debugger;
-   let a =parseInt(prompt());
-   let b =parseInt(prompt()) * 0.01 + 1;
-   let sum = 0;
-   let c = 200
-   for(let i = 1;i <= 20;i++){
-     sum+=a;
-     if(i >= 2){
-     c*=b ;
-     }
-     if(sum >= c){
+      if(con == a){
+      sum++;
+      }
+      }
+      console.log(sum);
+    </script>
+    <script type="x" id="ch0105/13">
+      let a =parseInt(prompt());
+      let n =parseInt(prompt());
+      console.log(Math.pow(a , n))
+    </script>
+    <script type="x" id="ch0105/14">
+      let a =parseInt(prompt());
+      let n =parseInt(prompt());
+      for(let i = 0 ; i < n;i++){
+      a+=a * 0.001;
+      }
+      console.log(a.toFixed(4))
+    </script>
+    <script type="x" id="ch0105/15">
+      let a =parseInt(prompt());
+      let b =parseInt(prompt());
+      let c =parseInt(prompt());
+      a = (a + 100) * 0.01;
+      for(let i = 0;i < c; i++){
+      b*=a;
+      }
+      console.log(Math.trunc(b))
+    </script>
+    <script type="x" id="ch0105/16">
+      let a =parseInt(prompt());
+      let b =parseInt(prompt()) * 0.01 + 1;
+      let sum = 0;
+      let c = 200
+      for(let i = 1;i <= 20;i++){
+      sum+=a;
+      if(i >= 2){
+      c*=b ;
+      }
+      if(sum >= c){
       console.log(i);
       break;
-     }else if(sum != c && i == 20){
+      }else if(sum != c && i == 20){
       console.log("Impossible");
-     }
-   }
-  </script>
-  <script id="ch0105/17">
-   
-  </script>
-  <script id="ch0105/18">
-   
-  </script>
-  <script id="ch0105/19">
-   
-  </script>
-  <script id="ch0105/20">
-   
-  </script>
-  <script id="ch0105/21">
-   
-  </script>
-  <script id="ch0105/22">
-   
-  </script>
-  <script id="ch0105/23">
-   
-  </script>
-  <script id="ch0105/24">
-   
-  </script>
-  <script id="ch0105/25">
-   
-  </script>
-  <script id="ch0105/26">
-   
-  </script>
-  <script id="ch0105/27">
-   
-  </script>
-  <script id="ch0105/28">
-   
-  </script>
-  <script id="ch0105/29">
-   
-  </script>
-  <script id="ch0105/30">
-   
-  </script>
-  <script id="ch0105/31">
-   
-  </script>
-  <script id="ch0105/32">
-   
-  </script>
-  <script id="ch0105/33">
-   
-  </script>
-  <script id="ch0105/34">
-   
-  </script>
-  <script id="ch0105/35">
-   
-  </script>
-  <script id="ch0105/36">
-   
-  </script>
-  <script id="ch0105/37">
-   
-  </script>
-  <script id="ch0105/38">
-   
-  </script>
-</body>
+      }
+      }
+    </script>
+    <script type="x" id="ch0105/17">
+      let index =parseInt(prompt());
+      let last = 1;
+      let last2 = 0;
+      let current = last2;
+      for(let i=1;i<=index;i++){
+      last2 = last;
+      last = current;
+      current = last + last2;
+      }
+      console.log(current)
+    </script>
+    <script type="x" id="ch0105/18">
+    let index = parseInt(prompt());
+    let baseTotal = parseInt(prompt());
+    let baseEffect = parseInt(prompt());
+    let baseRatio = baseEffect / baseTotal;
+    for(let i = 0; i < index; i++){
+      let total = parseInt(prompt());
+      let effect = parseInt(prompt());
+      let ratio = effect / total;
+      if(ratio - baseEffect > 0.05){
+        console.log('better');
+      }else if(baseRatio - ratio > 0.05){
+        console.log('worse');
+      }else{
+        console.log('same');
+      }
+    }
+    </script>
+    <script type="x" id="ch0105/19">
+      let n = Number(prompt());
+      let sum = 0;
+      for(let i = 0; i < n ; i++){
+        let x =+prompt();
+        let y =+prompt();
+        let p =+prompt();
 
+        let d = Math.sqrt(x * x + y *y);
+        let time = d * 2/ 50 +p * 1.5;
+        sum += time;
+      }
+      console.log(Math.ceil(sum));
+    </script>
+    <script type="x" id="ch0105/20">
+    let h = +prompt();
+    let t = h;
+    let sum = 0;
+    for(let i = 1; i <= 10; i++){
+      sum += 2 * h;
+      h /= 2;
+    }
+    console.log(sum - t, h)
+    </script>
+    <script type="x" id="ch0105/21">
+      let index =parseInt(prompt());
+      while(index != 1){
+      if(index % 2 == 0){
+      console.log(index +"/"+ "2" + "=" + index / 2)
+      index /= 2;
+      }else{
+      console.log(index +"*"+ "3" + "+" + "1" + "=" + (index * 3 + 1));
+      index = index * 3 + 1;
+      }
+      }
+      console.log("End")
+    </script>
+    <script type="x" id="ch0105/22">
+      let mm = 300;
+      let jinjin = 0;
+      let sum = 0;
+      for (let i = 0; i < 12; i++) {
+      jinjin += (mm - parseInt(prompt()));
+      if (jinjin >= 200) {
+      sum += (100 * Math.floor(jinjin / 100));
+      jinjin -= (100 * Math.floor(jinjin / 100));
+      if (i == 11) {
+      console.log(jinjin + (sum *= 1.2))
+      }
+      } else if (jinjin >= 100) {
+      sum += 100;
+      jinjin -= 100;
+      } else if (jinjin < 0) {
+      console.log("-" + (i + 1));
+      break;
+      }
+      }
+    </script>
+    <script type="x" id="ch0105/23">
+      let sum =parseInt(prompt());
+      let index =parseInt(prompt());
+      let no = 0;
+      let a = 0;
+      for(let i = 0;i < index;i++){
+      a = parseInt(prompt());
+      if( sum - a < 0){
+      no++;
+      }else{
+      sum -= a;
+      }
+      }
+      console.log(no);
+    </script>
+    <script type="x" id="ch0105/24">
+    let n = parseInt(prompt());
+    let count = 0;
+    let max = 0;
+    for (i = 0; i < n; i++) {
+        let a = parseInt(prompt());
+        let b = parseInt(prompt());
+        if (a >= 90 && a <= 140 && b >= 60 && b <= 90) {
+            count += 1;
+            if (max < count) {
+                max = count;
+            }
+        } else {
+            count = 0;
+        }
+    }
+    console.log(max);
+    </script>
+    <script type="x" id="ch0105/25">
+      let ten = 0;
+      let seven,nine;
+      for(let i = 100 ; i <= 999 ;i++){
+      ten = i;
+      seven = ten.toString(7);
+      nine = ten .toString(9);
+      seven = Number(seven);
+      nine = Number(nine.split("").reverse().join(""));
+      if(seven == nine){
+      console.log(ten);
+      console.log(seven);
+      console.log(nine);
+      break;
+      }
+      }
+    </script>
+    <script type="x" id="ch0105/26">
+      let sum = 0,ge = 0,shi = 0,bai = 0,qian = 0;
+      let con = 0;
+      let index = parseInt(prompt());
+      for(let i = 0;i < index ; i++){
+      con = parseInt(prompt());
+      ge = con % 10;
+      shi = Math.trunc( con % 100 /10);
+      bai = Math.trunc( con % 1000 /100);
+      qian = Math.trunc( con % 10000 /1000);
+      ge -= (shi + bai + qian);
+      if(ge >= 0 ){
+      sum++;
+      }
+      }
+      console.log(sum)
+    </script>
+    <script type="x" id="ch0105/27">
+      let sum = 1;
+      let a = parseInt(prompt())
+      for(let i = 2; i < 999 ;i++){
+      sum +=(1 / i);
+      if(sum > a){
+      console.log(i)
+      break;
+      }
+      }
+    </script>
+    <script type="x" id="ch0105/28">
+      let num = parseInt(prompt());
+      let con = String(num).split('');
+      let index = con.length;
+      let a = new Array(index);
+      for(let i = 1; i <= index; i++){
+      a.push(con[con.length - i])
+      }
+      console.log(a.join(" "))
+    </script>
+    <script type="x" id="ch0105/29">
+      let num = parseInt(prompt());
+      let con = String(num).split('');
+      let index = con.length;
+      let a = new Array(index);
+      for(let i = 1; i <= index; i++){
+      a.push(con[con.length - i])
+      }
+      if(num < 0){
+      console.log(parseInt(a.join("")) - parseInt(a.join("")) * 2)
+      }else{
+      console.log(parseInt(a.join("")) )
+      }
+    </script>
+    <script type="x" id="ch0105/30">
+      let m = parseInt(prompt());
+      let k = parseInt(prompt());
+      if(m % 19 == 0 && k >= 3){
+      console.log(`YES`);
+      }else{
+      console.log(`NO`);
+
+      }
+    </script>
+    <script type="x" id="ch0105/31">
+    let a = [];
+    let b = [];
+    let n = parseInt(prompt());
+    let m = parseInt(prompt());
+    for (i = 0; i < n; i++) {
+        a.push(true);
+    }
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++) {
+            if (j % i === 0) {
+                a[j] = !a[j];
+            }
+        }
+    }
+    for (i = 1; i <= a.length; i++) {
+        if (a[i] === false) {
+            b.push(i);
+        }
+    }
+    console.log(b.join(","));
+    </script>
+    <script  type="x" id="ch0105/32">
+    let n = parseInt(prompt());
+    let p1 = 1;
+    let q1 = 2;
+    let p = p1;
+    let q = q1;
+    let temp = 0;
+    let total = 0;
+    for (i = 0; i < n; i++) {
+        total += q / p;
+        temp = p;
+        p = q;
+        q = q + temp;
+    }
+    console.log(total.toFixed(4));</script>
+    <script type="x" id="ch0105/33">
+      let sum = 1;
+      let a = parseInt(prompt());
+      for (let i = 2; i < 999; i++) {
+        if (i % 2 == 0) {
+          sum -= 1 / i;
+        } else {
+          sum += 1 / i;
+        }
+        if (i == a ) {
+          console.log(sum.toFixed(4));
+          break;
+        }
+      }
+    </script>
+    <script type="x" id="ch0105/34">
+    let sum = 0;
+    let fac = 1
+    let index =parseInt(prompt());
+    for(let i = 1; i <= index; i++){
+       fac*=i; 
+       sum+=fac;
+    }
+    console.log(sum);
+    </script>
+    <script type="x" id="ch0105/35">
+      let n = parseInt(prompt());
+      let totalI = 1;
+      let totalJ = 1;
+      for (i = 1; i <= n; i++) {
+          for (j = 1; j <= i; j++) {
+              totalJ *= j;
+          }
+          totalI += 1 / totalJ;
+          totalJ = 1;
+      }
+      console.log(totalI.toFixed(10));
+    </script>
+    <script type="x" id="ch0105/36">
+    let x =Number(prompt());
+    let n =parseInt(prompt());
+    let sum = 0;
+    for(let i = n;i > 0;i--){
+      sum += Math.pow(x , i)
+    }
+    console.log((sum + 1).toFixed(2))
+    </script>
+    <script type="x" id="ch0105/37">
+        let M = +prompt('inter M');
+        let N = +prompt('inter N');
+        let X = +prompt('inter X');
+
+        for (; X > 0; X--) {
+            N += Math.floor(M / N);
+        }
+        console.log(N);
+    </script>
+    <script type="x" id="ch0105/38">
+      let b = parseInt(prompt());
+        for (c = 0; c < b; c++) {
+          let n = parseInt(prompt("power"));
+          let a = [];
+            for (i = n; i >= 0; i--) {
+              let m = parseInt(prompt());
+                if (i !== 0) {
+                    a.push(m * i);
+                }
+            }
+            if (n === 0) {
+                console.log(0);
+            } else {
+                console.log(a.join(" "));
+            }
+        }
+    </script>
+    <script type="x" id="ch0105/39">
+    let index = parseInt(prompt());
+    let sum = 0;
+    for(let i = 1;i <= index;i++){
+      if(i % 7 == 0 || Math.floor(i % 100) == 7 || Math.floor(i % 10) == 7 ){
+        continue;
+      }else{
+        sum += Math.pow(i , 2);
+      }
+    }
+    console.log(sum)
+    </script>
+    <script type="x" id="ch0105/40">
+    let index = parseInt(prompt());
+    let count = 0;
+    for(let i = 1;i <= index;i++){
+      if(i == 1){
+        count++;
+      }else if(Math.floor(i % 1000 * 0.01) == 1 && Math.floor(i % 100 * 0.1)  == 1 && i % 10 == 1){
+          count+=3;
+      }else if(Math.floor(i % 100 * 0.1) == 1 && i % 10 == 1){
+          count+=2;
+      }else if(Math.floor(i % 100 * 0.1) == 1){
+          count++;
+      }else if(i % 10 == 1){
+          count++;
+      }
+    }
+    console.log(count);
+    </script>
+    <script type="x" id="ch0105/41">
+    let a = parseInt(prompt());
+    let b = parseInt(prompt());
+    let count = 0;
+    for (i = a; i <= b; i++) {
+        let n = i;
+        while (n !== 0) {
+            if (n % 10 === 2) {
+                count += 1;
+            }
+            n = Math.trunc(n / 10);
+        }
+    }
+    console.log(count);
+    </script>
+    <script type="x" id="ch0105/42">
+      let a = parseInt(prompt());
+      let b = parseInt(prompt());
+      let char = prompt();
+      let c = parseInt(prompt());
+      let str = "";
+      for (i = 0; i < a; i++) {
+          if (i === 0 || i === a - 1) {
+              for (j = 0; j < b; j++) {
+                  str += char;
+              }
+              console.log(str);
+              str = "";
+          } else {
+              if (c === 1) {
+                  for (j = 0; j < b; j++) {
+                      str += char;
+                  }
+                  console.log(str);
+                  str = "";
+              }
+              if (c === 0) {
+                  str += char;
+                  for (j = 0; j < b - 2; j++) {
+                      str += " ";
+                  }
+                  str += char;
+                  console.log(str);
+                  str = "";
+              }
+          }
+      }
+    </script>
+    <script type="x" id="ch0105/43">
+      let a = parseInt(prompt());
+      let divisor = 0;
+      let isPrime = true;
+      if (a % 2 === 0) {
+          console.log(a / 2);
+      }
+      for (i = 3; i < a; i++) {
+          for (j = 2; j < i / 2; j++) {
+              if (i !== j && i % j === 0) {
+                  isPrime = false;
+                  break;
+              }
+          }
+          if (isPrime) {
+              if (a % i === 0) {
+                  console.log(a / i);
+                  break;
+              }
+          }
+      }
+    </script>
+    <script type="x" id="ch0105/44">
+      let a = parseInt(prompt());
+      let count = 0;
+      let isPrime = true;
+      let m = 2;
+      while (count <= a) {
+          for (j = 2; j < m / 2; j++) {
+              if (m !== j && m % j === 0) {
+                  isPrime = false;
+                  break;
+              }
+          }
+          if (isPrime) {
+              count += 1;
+          }
+          isPrime = true;
+          m += 1;
+      }
+      console.log(m - 1);
+    </script>
+    <script type="x" id="ch0105/45">
+      let count = 0;
+      let day = parseInt(prompt());
+      let i = 0;
+      let total = 0;
+      while (true) {
+          i += 1;
+          for (j = 0; j < i; j++) {
+              total += i;
+              count += 1;
+              if (count === day) {
+                  break;
+              }
+          }
+          if (count === day) {
+              console.log(total);
+              break;
+          }
+      }
+    </script>
+  </body>
 </html>
