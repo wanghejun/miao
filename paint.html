@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>画图</title>
+  <style>
+    canvas {
+      border: 2px solid #f0f;
+      display: block;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <canvas width="400" height="300"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector('canvas')
+  canvas.style.imageRendering = 'pixelated'
+  var ctx = canvas.getContext('2d')
+
+  function dot(x, y, color = 'black') {
+    ctx.fillStyle = color
+    ctx.fillRect(x, y, 1, 1)
+  }
+  /**
+   * YOUR TASK
+画图的题：
+画一条实线
+画一条一个实点一个空点的虚线
+画一条两个实点两个空点的虚线
+画一条三个实点两个空点的虚线
+画一条45度的斜线
+画一条跨越画布左上角和右下角的对角线
+画一个空心矩形
+画一个实心矩形
+画一个rgb色彩空间的某一面
+画一个空心的圆
+画一个实心的圆
+画一个大小合适的sin(x)的图像
+   */
+</script>
+<script>
+  // YOUR CODE GOES BELOW
+  //直线
+for (let i = 10; i < 299 ; i++){
+  dot(i , 10 , 'black')
+}
+//虚线
+for (let i = 10; i < 299 ; i++){
+  if(i % 2 == 0){
+    dot(i , 15 , 'black')
+  }
+}
+//画一条两个实点两个空点的虚线
+for(let i = 10; i < 299; i+=4){
+  dot(i , 20)
+  dot(i + 1 , 20)
+}
+
+//画一条三个实点两个空点的虚线
+for(let i = 10; i < 299; i+=5){
+  dot(i , 25)
+  dot(i + 1 , 25)
+  dot(i + 2 , 25)
+}
+//画一条45度的斜线
+for(let i = 0; i < 100; i++){
+  dot(i , i , '#8e44ad' )
+}
+//画一条跨越画布左上角和右下角的对角线
+for(let i = 1; i < 500; i++){
+  dot((4 / 3 *i) , i , '#8e44ad' )
+}
+//实心矩形
+for(let i = 300; i < 400; i++){
+  for(let j = 1; j < 100; j++){
+    dot(i , j ,'pink')
+  }
+}
+//空心矩形
+for(let i = 1; i < 100; i++){
+  dot(290 + i , 110);
+  dot(291 , 110 + i);
+  dot(389 , 110 + i);
+  dot(290 + i , 210);
+}
+  //一个rgb色彩空间的某一面↓
+  for(let i = 0 ;i <= 100; i++){
+    for(let j = 0; j <= 100; j++){
+      dot(20 + i , 110 + j ,'rgb('+ (4 * i)+ ','+(256 - 4 * j)+',' +'206'+')')
+    }
+  }
+ //画一个空心的圆↓
+ for (let i = 0; i <= 90;i=i + 0.1 ){
+    let a = Math.sin(2*i)*30
+    let b = Math.cos(2*i)*30
+    dot(120+a,80+b)
+  }  
+  //  一个实心圆↓
+  
+  for (let i = 0; i <= 90 ; i = i + 0.1 ){
+    let b = Math.cos(2*i)
+    let a = Math.sin(2*i)
+    for(let k = 0; k <= 30;k++){ 
+    dot(220+a*k,80+b*k,'#8e44ad')
+    }  
+  }
+  //一个大小合适的sin(x)的图像↓
+  for (let i = 0; i <= 90;i=i + 0.01 ){
+    let a = Math.cos(i*10)*10
+    let b = Math.sin(i/5)*300
+    dot(200+b,260+a,'black')
+  }
+
+</script>
+</html>

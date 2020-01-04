@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+
+  body{
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-blend-mode: screen;
+    }
+    section{
+      width: 200px;
+      height: 50px;
+      border-radius: 50%;
+      background: #e67e22;
+      position: relative;
+    }
+    section::before{
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      content: "";
+      width: 50px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, .2);
+      animation: shadows 1s infinite alternate;
+    }
+    section::after{
+      animation: colors 1s infinite alternate;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      content: "";
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      animation: run 1s infinite alternate , colors 1s infinite alternate;
+      background: #D980FA;
+    }
+
+    @keyframes run {
+      from{
+        transform: translate(0 , -15px);
+        
+      }
+      to{
+        transform: translate(0 , -400px);
+      }
+    }
+    @keyframes shadows {
+      from{
+        opacity: .8;
+      }
+      to{
+        opacity: 0;
+      }
+    }
+    @keyframes colors {
+      from{
+        filter: hue-rotate(0);
+
+      }
+      to{
+        filter: hue-rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <section>
+
+  </section>
+</body>
+</html>

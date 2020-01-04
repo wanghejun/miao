@@ -8,6 +8,80 @@
   </head>
 
   <body>
+    <script  type="x" id="7">
+      let a = +prompt();
+      if(a % 7 == 0 || a % 10 == 0 || Math.floor(a % 100 * 0.1) == 7 || Math.floor(a % 1000 * 0.01) == 7){
+        console.log(`YES`);
+      }else{
+        console.log(`NO`);
+      }
+    </script>
+    <script  type="x" id="sort">
+    let a = +prompt();
+    let b = +prompt();
+    let c = +prompt();
+    console.log(Math.max(a , b , c))
+    </script>
+    <script type="x" id="narcissistic">
+    let a = String(prompt()) ;
+    let n = Number(a);
+    let index = a.length;
+    let sum = 0;
+    for(let i = 1 ; i <= index ; i++){
+      if(i == 1){
+        sum += Math.pow(Math.floor( a % 10) , index) ;
+      }else if (i == 2){
+        sum += Math.pow(Math.floor( a % 100 * 0.1) , index) ;
+      }else if (i == 3){
+        sum += Math.pow(Math.floor( a % 1000 * 0.01) , index);
+      }
+    }
+    if(sum == n){
+      console.log(`YES`)
+    }else{
+      console.log(`NO`)
+    }
+    </script>
+    <script type="x" id="narcissistics">
+      for(let j = 1 ; j < 999 ; j++){
+        let a = String(j) ;
+        let n = Number(a);
+        let index = a.length;
+        let sum = 0;
+        for(let i = 1 ; i <= index ; i++){
+          if(i == 1){
+            sum += Math.pow(Math.floor( a % 10) , index) ;
+          }else if (i == 2){
+            sum += Math.pow(Math.floor( a % 100 * 0.1) , index) ;
+          }else if (i == 3){
+            sum += Math.pow(Math.floor( a % 1000 * 0.01) , index);
+          }
+        }
+        if(sum == n){
+          console.log(sum)
+        }
+      }
+      
+    </script>
+    <script type="x" id="palindrom">
+      let num = +prompt();
+      let str = String(num);
+      let arr = str.split("")
+      let con = Number(arr.reverse().join(""));
+      if(num == con){
+        console.log(`YES`);
+      }else{
+        console.log(`NO`);
+      }
+    </script>
+    <script type="x"  id="itob">
+    console.log(prompt());
+    </script>
+    <script></script>
+    <script  type="x" id="sqrt">
+    let a =+prompt();
+    console.log(Math.sqrt(a).toFixed(3))
+    </script>
     <script type="x" id="ch0103/01">
       let a = parseInt(prompt());
       let b = parseInt(prompt());
