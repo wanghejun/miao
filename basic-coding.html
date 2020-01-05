@@ -12,15 +12,19 @@
       let a = +prompt();
       if(a % 7 == 0 || a % 10 == 0 || Math.floor(a % 100 * 0.1) == 7 || Math.floor(a % 1000 * 0.01) == 7){
         console.log(`YES`);
+      }else if(a == 0{
+        console.log("get out!")
       }else{
         console.log(`NO`);
       }
     </script>
     <script  type="x" id="sort">
-    let a = +prompt();
-    let b = +prompt();
-    let c = +prompt();
-    console.log(Math.max(a , b , c))
+    let arr = [];
+    for(let i = 0;i <3 ;i++){
+     arr.unshift(+prompt());
+    }
+    arr.sort();
+    console.log(arr.toString())
     </script>
     <script type="x" id="narcissistic">
     let a = String(prompt()) ;
