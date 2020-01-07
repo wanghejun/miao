@@ -18,6 +18,136 @@
         console.log(`NO`);
       }
     </script>
+    <script type="x" id="complete-number">
+      let a = +prompt();
+      var checkPerfectNumber = function(num) {
+      if(num == 1){return false}
+      let sum = 1;
+      for(let i = 2; i * i <= num ; i++){
+      if(num % i == 0){
+      let com = num / i;
+      sum = sum + i +com;
+      }
+      }
+      return sum == num
+      };
+      if(checkPerfectNumber(a)){
+      console.log(`YES`);
+      }else{
+      console.log(`NO`);
+
+      }
+    </script>
+    <script type="x"  id="complete-numbers">
+      var checkPerfectNumber = function(num) {
+      if(num == 1){return false}
+      let sum = 1;
+      for(let i = 2; i * i <= num ; i++){
+      if(num % i == 0){
+      let com = num / i;
+      sum = sum + i +com;
+      }
+      }
+      return sum == num
+      };
+      for(let i = 0 ; i <=1000;i++){
+        if(checkPerfectNumber(i)){
+          console.log(i);
+        }
+      }
+    </script>
+    <script type="x" id="prime">
+    function isprime(n){
+    if(n < 2){
+        return false
+    }else if(n == 2 || n == 3){
+        return true
+    }else if(n % 2 == 0){
+        return false
+    }else if (n % 6 !== 5 && n % 6 !== 1){
+        return false;
+    }
+    var sqrt_n = Math.sqrt(n);
+    for(let i = 3; i <= sqrt_n; i += 2){
+        if(n % i == 0){
+            return false;
+        }
+    }
+    return true
+}
+    let a = +prompt();
+    if(isprime(a)){
+      console.log(`YES`);
+    }else{
+      console.log(`NO`);
+    }
+    </script>
+    <script type="x"  id="lcf&lcm">
+    let a = +prompt();
+    let b = +prompt();
+    let c = a > b ? a : b;
+    let max = 0;
+    let min = 0;
+    for(let i = c;i > 0;i--){
+      if(a % i == 0 && b % i == 0){
+        max = i;
+        break;
+      }
+    }
+    min = a * b / max;
+    console.log(max+' '+min)
+    </script>
+    <script type="x" id="weekday">
+      let year = +prompt();
+      let month = +prompt();
+      console.log(weekday(year,month))
+      function isLeapYear(year) {
+      if (year % 400 == 0) {
+        return true
+      }
+      if (year % 100 == 0) {
+        return false
+      }
+      if (year % 4 == 0) {
+        return true
+      }
+      return false
+    }
+
+    function weekday(year, month) {
+      var sum = 0
+      var y = year - 1
+      
+      sum = y * 365 + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400)
+
+      for(var m = 1; m < month; m++) {
+        sum += getDayOfMonth(m, year)
+      }
+
+      return (sum + 1) % 7
+    }
+
+    function getDayOfMonth(m, y) {
+      if (m == 2) {
+        if (isLeapYear(y)) {
+          return 29
+        } else {
+          return 28
+        }
+      } else {
+        switch(m) {
+          case 1:
+          case 3:
+          case 5:
+          case 7:
+          case 8:
+          case 10:
+          case 12: return 31
+        }
+        return 30
+      }
+    }
+    </script>
     <script type="x" id="sort">
     let arr = [];
     for(let i = 0;i <3 ;i++){
