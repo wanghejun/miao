@@ -68,7 +68,7 @@ var wanghejun = {
      },
      fill:function (array,str,star=0,end=array.length) { 
         for(let i = star; i < end;i++){
-          array = str;
+          array[i] = str;
         }
         return array
       },
