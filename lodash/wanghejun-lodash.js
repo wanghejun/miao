@@ -131,27 +131,35 @@ var wanghejun = {
     var result = '';
     for (let i = 0; i < array.length; i++) {
       if (i == array.length - 1) {
-        result += i;
+        result += array[i];
         break;
       }
-      result = result + i + str
+      result = result + array[i] + str
     }
     return result
   },
   last:function (array) { 
     return array[array.length - 1]
    },
-   lastIndexOf:function (array,value,index = array.length - 1) { 
-     for(let i = index;i > array.length; i--){
-       if(array[i] == value){
-         return i
-       }
-     }
+   lastIndexOf:function (array,value,index = 1) { 
+    if (isNaN(str)) {
+      for (let i = array.length - index;i > array.length; i--) {
+        if (isNaN(array[i])) {
+          return i
+        }
+      }
+    }else{
+      for(let i = array.length - index;i > array.length; i--){
+        if(array[i] == value){
+          return i
+        }
+      }
+    }
      return -1
     },
     nth:function (array,n=0) { 
       if(n < 0){
-        return array[array.length - n]
+        return array[array.length + n]
       }
       return array[n]
      },
