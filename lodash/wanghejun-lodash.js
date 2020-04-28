@@ -196,10 +196,11 @@ var wanghejun = {
        },
        pullAt:function (array,values) { 
          var result = []
+         values.sort((a,b)=>{return b - a})
          for(let i of values){
-          result.push(...array.splice(array.indexOf(i),1))
+          result.push(...array.splice(i,1))
          }
-         return result
+         return result.reverse()
         },
       without:function (array,...values) { 
         var result = []
