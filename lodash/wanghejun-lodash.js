@@ -63,6 +63,15 @@ var wanghejun = {
       }
       return result
     },
+    drop:function (array,n=1) { 
+      return array.slice(n)
+     },
+     fill:function (array,str,star=0,end=array.length) { 
+        for(let i = star; i < end;i++){
+          array = str;
+        }
+        return array
+      },
     /**
     * 判断一个值是否null
     * @param {*} val 判断的值
