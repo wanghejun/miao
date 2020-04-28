@@ -211,6 +211,12 @@ var wanghejun = {
         }
         return result
        },
+       isNaN:function (val) { 
+         if(typeof val === 'object'){
+          return val.toString() === 'NaN'
+         }
+         return val !== val
+        },
   /**
    * 判断一个值是否null
    * @param {*} val 判断的值
