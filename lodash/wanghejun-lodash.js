@@ -106,7 +106,25 @@ var wanghejun = {
            }
          }
          return -1
-       }
+       },
+       initial:function (array) {
+         return array.slice(0,array.length - 1)
+       },
+       intersection:function (array) { 
+         var arrays = []
+         for(let i of array[0]){
+           for(let j = 1;j < array.length;j++){
+             if(array[j].includes(i)){
+                if(j == array.length - 1){
+                arrays.push(i)
+                }
+             }else{
+               break;
+             }
+           }
+         }
+         return arrays
+        }
       ,
     /**
     * 判断一个值是否null
