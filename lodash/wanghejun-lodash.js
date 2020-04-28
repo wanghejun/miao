@@ -110,7 +110,7 @@ var wanghejun = {
        initial:function (array) {
          return array.slice(0,array.length - 1)
        },
-       intersection:function (array) { 
+       intersection:function (...array) { 
          var arrays = []
          for(let i of array[0]){
            for(let j = 1;j < array.length;j++){
