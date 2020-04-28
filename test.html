@@ -11,5 +11,36 @@
 <div class="box">
   <img src="img/m-xiaomiMax.jpg" alt="">
 </div>
+<ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
+<script>
+  // console.log(document.getElementsByTagName('img'))
+  // console.log(document.querySelector('div'))
+  const items = document.querySelectorAll('li')
+  console.log([...items])
+  var a = 0;
+  items.forEach((li)=>{
+    li.innerHTML=a++;
+    li.style.listStyle='none';
+    li.innerHTML == 7?li.remove():true;
+    li.addEventListener('click',(e)=>{
+      // console.dir(e.target.style.background='red')
+      console.log(this)
+    })
+    }
+  )
+  let ul = document.querySelector('ul')
+  ul.firstElementChild.innerHTML='hello'
+  ul.children[1].innerHTML='<h1>hi</h1>'
+  ul.lastElementChild.innerText='bye';
+</script>
 </body>
 </html>

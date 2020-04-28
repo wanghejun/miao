@@ -43,167 +43,167 @@
     return head;
   }
   //数组转链表递归版 + 改进版
-  function arrtolist4(arr,star = 0){
-    if(star == arr.length){
+  function arrtolist4(arr, star = 0) {
+    if (star == arr.length) {
       return null
     }
     var head = {
-      val:arr[star],
-      next:arrtolist4(arr,star + 1)
+      val: arr[star],
+      next: arrtolist4(arr, star + 1)
     }
     return head
   }
   //链表转数组
-  function listtoarr(head) { 
+  function listtoarr(head) {
     var arr = [];
-    if(head == null){
+    if (head == null) {
       return arr;
     }
-    while(head){
+    while (head) {
       arr.push(head.val);
       head = head.next
     }
     return arr;
   }
   //链表转数组 递归版
-  function listtoarr2(head) { 
-    if(head == null){
+  function listtoarr2(head) {
+    if (head == null) {
       return [];
     }
     return [head.val].concat(listtoarr2(head.next))
-   }
-   //给链表头部添加一个元素
-   function prepend(val,head) { 
-       var node = {
-         val :val,
-         next : head
-       }
-       return node
+  }
+  //给链表头部添加一个元素
+  function prepend(val, head) {
+    var node = {
+      val: val,
+      next: head
     }
-    //给链表尾部添加一个元素
-    function append(val,head) { 
-      if(head == null){
+    return node
+  }
+  //给链表尾部添加一个元素
+  function append(val, head) {
+    if (head == null) {
       return {
-        val:val,
-        next:null
+        val: val,
+        next: null
       }
     }
-      var p = head
-      while(p.next){
-        p = p.next
+    var p = head
+    while (p.next) {
+      p = p.next
+    }
+    p.next = {
+      val: val,
+      next: null
+    }
+    return head
+  }
+  //给链表尾部添加一个元素+递归版
+  function append2(val, head) {
+    if (head == null) {
+      return {
+        val: val,
+        next: null
       }
-      p.next ={
-        val:val,
-        next:null
-      }
+    }
+    head.next = append2(val, head.next)
+    return head
+  }
+  //取得第几个链表
+  //自己写的↓
+  function nth(head, idx) {
+    if (head == null || idx < 0) {
+      return undefined
+    }
+    let p = head
+    for (let i = 0; i < idx; i++) {
+      p = p.next
+    }
+    if (p == null) {
+      return undefined
+    }
+    return p
+  }
+  //老师的↓
+  function nth(head, idx) {
+    if (head == null || idx < 0) {
+      return undefined
+    }
+    var i = 0
+    var p = head
+    while (p.next && i < idx) {
+      p = p.next
+      i++
+    }
+    if (i == idx) {
+      return p.val
+    } else {
+      return undefined
+    }
+  }
+  //取得第几个链表+递归版 
+  function nth(head, idx) {
+    if (head == null || idx < 0) {
+      return undefined
+    }
+    if (idx == 0) {
       return head
-     }
-     //给链表尾部添加一个元素+递归版
-     function append2(val,head) { 
-       if(head == null){
-         return {
-           val :val,
-           next:null
-         }
-       }
-       head.next = append2(val,head.next)
-       return head
+    }
+    return nth(head.next, idx - 1)
+  }
+  /*note→链表与数组的不同 
+  链表不能随机访问
+  数组可以随机访问()
+  链表易增删，难查找
+  数组易查找，难增删 
+  */
+  //反转链表+递归版
+  function reversList(head) {
+    if (head == null || head.next == null) {
+      return head
+    }
+    var tail = head.next;
+    head = null;
+    var newhead = reversList(head);
+    tail.next = head;
+    return newhead;
+  }
+  //反转链表
+  function reverList(head) {
+    if (head == null || head.next == null) {
+      return head
+    }
+    var a = null;
+    var b = null;
+    var c = head;
+    while (c) {
+      a = b
+      b = c
+      c = c.next
+      b.next = a
+    }
+    return b
+  }
+  //删除指定的链表节点
+  function deleteNode(node) {
+    node.val = node.next.val;
+    node.next = node.next.next;
+  }
+  //合并排序链表
+  function mergeTwoList(l1, l2) {
+    var dummy = new ListNode(0)
+    var t = dummy
+    while (l1 && l2) {
+      if (l1.val < l2.val) {
+        t.next = l1
+        l1 = l1.next
+      } else {
+        t.next = l2
+        l2 = l2.next
       }
-      //取得第几个链表
-      //自己写的↓
-      function nth(head,idx){
-        if(head == null || idx < 0){
-          return undefined
-        }
-        let p = head
-        for(let i = 0;i < idx;i++){
-          p = p.next
-        }
-        if(p == null){
-          return undefined
-        }
-        return p
-      }
-      //老师的↓
-      function nth(head,idx){
-        if(head == null || idx < 0){
-          return undefined
-        }
-        var i = 0
-        var p = head
-        while(p.next && i < idx ){
-          p = p.next
-          i++
-        }
-        if(i == idx ){
-          return p.val
-        } else {
-          return undefined
-        }
-      }
-      //取得第几个链表+递归版 
-      function nth(head,idx){
-        if(head == null || idx < 0){
-          return undefined
-        }
-        if(idx == 0){
-          return head
-        }
-        return nth(head.next,idx-1)
-      }
-      /*note→链表与数组的不同 
-      链表不能随机访问
-      数组可以随机访问()
-      链表易增删，难查找
-      数组易查找，难增删 
-      */
-      //反转链表+递归版
-      function reversList(head){
-        if(head == null || head.next == null){
-          return head
-        }
-        var tail = head.next;
-        head = null;
-        var newhead = reversList(head);
-        tail.next = head;
-        return newhead;
-      }
-      //反转链表
-      function reverList(head) { 
-        if(head == null || head.next == null){
-          return head
-        }
-        var a = null;
-        var b = null;
-        var c = head;
-        while(c){
-          a = b
-          b = c
-          c = c.next
-          b.next = a
-        }
-        return b
-       }
-       //删除指定的链表节点
-       function deleteNode(node) {
-        node.val = node.next.val;
-        node.next = node.next.next; 
-      }
-      //合并排序链表
-      function mergeTwoList(l1,l2){
-        var dummy = new ListNode(0)
-        var t = dummy
-        while(l1 && l2){
-          if(l1.val < l2.val){
-            t.next = l1
-            l1 = l1.next
-          }else{
-            t.next = l2
-            l2 = l2.next
-          }
-          t = t.next
-        }
-        t.next = l1 || l2
-        return dummy.next
-      }
+      t = t.next
+    }
+    t.next = l1 || l2
+    return dummy.next
+  }
 </script>

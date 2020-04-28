@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    body{
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #222;
+    }
+    li{
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      float: left;
+      margin-left: 15px;
+      position: relative;
+    }
+    ul>li:first-child{
+      background:#64b9bc;
+    }
+    ul>li:nth-child(2){
+      background: #6a9ab3;
+    }
+    ul>li:nth-child(3){
+      background: #3d6687;
+    }
+    ul>li:nth-child(4){
+      background: #154589;
+    }
+    ul>li:nth-child(5){
+      background: #0c0a64;
+    }
+    ul>li::before{
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      border-radius: inherit;
+      animation: 3s run ease-out infinite;
+    }
+    ul>li:nth-child(2)::before{
+      animation-delay: .5s;
+    }
+    ul>li:nth-child(3)::before{
+      animation-delay: 1s;
+    }
+    ul>li:nth-child(4)::before{
+      animation-delay: 1.5s;
+    }
+    ul>li:nth-child(5)::before{
+      animation-delay: 2s;
+    }
+    @keyframes run{
+      50%{transform: scale(2.3);}
+      65%,
+      100%{opacity: 0;}
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</body>
+</html>

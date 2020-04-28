@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    section{
+      height: 700px;
+      background: #222;
+      position: relative;
+    }
+    p{
+      margin: 20px auto;
+      text-align: center;
+    }
+    span{
+      position: absolute;
+      top: 0;
+      right: 0;
+      animation: run 5s linear forwards;
+      color: #ffffff;
+      font-size: 25px;
+    }
+    @keyframes run {
+      from{right: 0;}
+      to{right: 100%;display: none;}
+    }
+  </style>
+</head>
+<body>
+  <section></section>
+  <p>
+    <input type="text" placeholder="发送弹幕">
+    <button>发送</button>
+  </p>
+  <script>
+  let sec = document.querySelector('section');
+  let inp = document.querySelector('input');
+  let btn = document.querySelector('button');
+  btn.addEventListener('click',()=>{
+    if(inp.value.length == 0){
+      return false;
+    }else{
+      let sp = document.createElement('span');
+      let num = Math.floor(Math.random() * 100 + 1)
+      sp.innerHTML = inp.value;
+      sp.style.top = num +'%';
+      sec.appendChild(sp)
+    }
+  })
+  </script>
+</body>
+</html>
