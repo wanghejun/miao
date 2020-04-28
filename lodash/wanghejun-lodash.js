@@ -194,14 +194,13 @@ var wanghejun = {
         }
         return array
        },
-       pullAt:function (array,...values) { 
+       pullAt:function (array,values) { 
          var result = []
          for(let i of values){
-          result.push(array.splice(i,1))
+          result.push(...array.splice(array.indexOf(i),1))
          }
          return result
-        }
-      ,
+        },
       without:function (array,...values) { 
         var result = []
         for(let i of array){
