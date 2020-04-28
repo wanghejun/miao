@@ -92,9 +92,17 @@ var wanghejun = {
          return arrays
        },
        indexOf:function (array,str,star=0) {
-         for(let i = star; i<array.length;i++){
-           if(array[i] == str){
-             return i
+         if(isNaN(str)){
+          for(let i = star; i<array.length;i++){
+            if(isNaN(array[i])){
+              return i
+            }
+          }
+         }else{
+           for(let i = star; i<array.length;i++){
+             if(array[i] == str){
+               return i
+             }
            }
          }
          return -1
