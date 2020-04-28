@@ -70,8 +70,36 @@ var wanghejun = {
         for(let i = star; i < end;i++){
           array[i] = str;
         }
-        return array
+        return array;
       },
+      // find:function (param) { 
+
+      //  },
+       head:function (array) {
+         return array[0];
+       },
+       flatten:function (array) {
+         var arrays = []
+         for(let i of array){
+           if(i instanceof Array){
+             for(let j of i){
+               arrays.push(j)
+              }
+              break;
+            }
+            arrays.push(i)
+         }
+         return arrays
+       },
+       indexOf:function (array,str,star=0) {
+         for(let i = star; i<array.length;i++){
+           if(array[i] == str){
+             return i
+           }
+         }
+         return -1
+       }
+      ,
     /**
     * 判断一个值是否null
     * @param {*} val 判断的值
