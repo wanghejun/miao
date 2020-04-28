@@ -36,7 +36,7 @@ var wanghejun = {
 
      }
     },
-    concat:function (array) { 
+    compact:function (array) { 
       return array.filter((items)=>{return items > 0})
      },
     /**
@@ -50,12 +50,16 @@ var wanghejun = {
       }
       return array
     },
-    difference:function (array,values){
+    difference:function (array,...values){
       var result = []
+      var arrays = []
+      for (let j of values){
+        arrays = arrays.concat(j)
+      }
       for (let i of array){
-        if (!values.includes(i)){
-          result.push(i)
-        }
+            if (!arrays.includes(i)){
+              result.push(i)
+            }
       }
       return result
     },
