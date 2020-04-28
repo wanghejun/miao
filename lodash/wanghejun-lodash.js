@@ -58,7 +58,7 @@ var wanghejun = {
         }
       }
       return result
-    }
+    },
     /**
     * 判断一个值是否null
     * @param {*} val 判断的值
