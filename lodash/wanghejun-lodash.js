@@ -23,7 +23,7 @@ var wanghejun = {
     }
     return result
    },
-   /**
+      /**
     * 判断一个值是否null
     * @param {*} val 判断的值
     * @returns {boolean}
@@ -35,7 +35,11 @@ var wanghejun = {
        return false
 
      }
-    },/**
+    },
+    concat:function (array) { 
+      return array.filter((items)=>{return items > 0})
+     },
+    /**
      * 
      * @param {Array} array 
      * @param {Array} values 
@@ -45,5 +49,27 @@ var wanghejun = {
         array = array.concat(i)
       }
       return array
+    },
+    difference:function (array,values){
+      var result = []
+      for (let i of array){
+        if (!values.includes(i)){
+          result.push(i)
+        }
+      }
+      return result
     }
+    /**
+    * 判断一个值是否null
+    * @param {*} val 判断的值
+    * @returns {boolean}
+    */
+   isNull:function (val) { 
+    if(val === null){
+     return true
+    }else{
+      return false
+
+    }
+   },
 }
