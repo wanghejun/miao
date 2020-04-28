@@ -142,14 +142,17 @@ var wanghejun = {
     return array[array.length - 1]
    },
    lastIndexOf:function (array,value,index = 1) { 
+    if(index < -array.length){
+      return -1
+    }
     if (isNaN(value)) {
-      for (let i = array.length - index;i > array.length; i--) {
+      for (let i = array.length - index ;i > 0; i--) {
         if (isNaN(array[i])) {
           return i
         }
       }
     }else{
-      for(let i = array.length - index;i > array.length; i--){
+      for(let i = array.length - index;i > 0; i--){
         if(array[i] == value){
           return i
         }
