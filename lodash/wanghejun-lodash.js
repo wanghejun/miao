@@ -342,18 +342,17 @@ var wanghejun = {
   },
   zip: function (...array) {
     var result = [];
-    var flag = true;
+    var max = 0
+    for(let i of array){
+      if(i.length > max){
+        max = i.length
+      }
+    }
+    for(let i = 0;i < max; i++){
+      result.push([]);
+    }
     for (let i = 0; i < array.length; i++) {
-      for (let j = 0; j < array[i].length; j++) {
-        if (flag) {
-          result.push([]);
-          if (j == array[i].length - 1) {
-            flag = false;
-          }
-        }
-        if (array[i][j] === undefined) {
-          break;
-        }
+      for (let j = 0; j < max; j++) {
         result[j].push(array[i][j]);
       }
     }
