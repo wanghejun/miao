@@ -270,43 +270,42 @@ var wanghejun = {
     }
     return arrays.reverse();
   },
-  union:function (...value) { 
-    var result = []
-    for(let i of value){
-      for(let j of i){
-        if(!result.includes(j)){
-          result.push(j)
+  union: function (...value) {
+    var result = [];
+    for (let i of value) {
+      for (let j of i) {
+        if (!result.includes(j)) {
+          result.push(j);
         }
       }
     }
-    return result
-   },
-   uniq:function (array) { 
-     var result = []
-     for(let i of array){
-       if(!result.includes(i)){
-         result.push(i)
-       }
-     }
-     return result
-    },
-    unzip:function (array) { 
-      var result = []
-      var flag = true
-      for(let i = 0; i<array.length; i++){
-        for(let j = 0; j < array[i].length; j++){
-          if(flag){
-            result.push([])
-            if(j == array[i].length - 1){
-              flag = false
-            }
-          }
-          result[j].push(array[i][j])
-        }
+    return result;
+  },
+  uniq: function (array) {
+    var result = [];
+    for (let i of array) {
+      if (!result.includes(i)) {
+        result.push(i);
       }
-      return result
-     }
-  ,
+    }
+    return result;
+  },
+  unzip: function (array) {
+    var result = [];
+    var flag = true;
+    for (let i = 0; i < array.length; i++) {
+      for (let j = 0; j < array[i].length; j++) {
+        if (flag) {
+          result.push([]);
+          if (j == array[i].length - 1) {
+            flag = false;
+          }
+        }
+        result[j].push(array[i][j]);
+      }
+    }
+    return result;
+  },
   without: function (array, ...values) {
     var result = [];
     for (let i of array) {
@@ -322,42 +321,44 @@ var wanghejun = {
     }
     return val !== val;
   },
-  xor:function (...array) { 
-    var map = {}
-    var result = []
-    for(let i of array){
-      for(let j of i){
-        if(j in map){
-          map[j]++
-        }else{
-          map[j] = 1
+  xor: function (...array) {
+    var map = {};
+    var result = [];
+    for (let i of array) {
+      for (let j of i) {
+        if (j in map) {
+          map[j]++;
+        } else {
+          map[j] = 1;
         }
       }
     }
-    for(let i in map){
-      if(map[i] == 1){
-        result.push(Number(i))
+    for (let i in map) {
+      if (map[i] == 1) {
+        result.push(Number(i));
       }
     }
-    return result
-   },
-   zip:function (...array) { 
-      var result = []
-      var flag = true
-      for(let i = 0; i<array.length; i++){
-        for(let j = 0; j < array[i].length; j++){
-          if(flag){
-            result.push([])
-            if(j == array[i].length - 1){
-              flag = false
-            }
+    return result;
+  },
+  zip: function (...array) {
+    var result = [];
+    var flag = true;
+    for (let i = 0; i < array.length; i++) {
+      for (let j = 0; j < array[i].length; j++) {
+        if (flag) {
+          result.push([]);
+          if (j == array[i].length - 1) {
+            flag = false;
           }
-        result[j].push(array[i][j])
+        }
+        if (array[i][j] === undefined) {
+          break;
+        }
+        result[j].push(array[i][j]);
       }
     }
-    return result
-   }
-    ,
+    return result;
+  },
   /**
    * 判断一个值是否null
    * @param {*} val 判断的值
