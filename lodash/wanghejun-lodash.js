@@ -358,6 +358,53 @@ var wanghejun = {
     }
     return result;
   },
+  zipObject:function (array,value) { 
+    var result = {}
+    for(let i = 0;i <array.length; i++){
+      result[array[i]] = value[i]
+    }
+    return result
+   },
+   includes:function (list,value,star = 0) { 
+     if(list instanceof Array){
+      for(let i = star; i < list.length; i++){
+        if(list[i] == value){
+          return true
+        }
+      }
+      return false
+     }else if(list instanceof Object){
+      for(let i in list){
+        if(list[i] == value){
+          return true
+        }
+      }
+      return false
+     }else{
+      return list.indexOf(value) != -1
+     }
+    },
+    sample:function (array) { 
+      return array[Math.floor(Math.random() * (array.length - 1 - 0 + 1) + 0)]
+     },
+     sampleSize:function (array,n = 1) { 
+       var result = []
+       if(n > array.length){
+         n = array.length
+       }
+       for(let i = 0; i < n; i++){
+        result.push(array[Math.floor(Math.random() * (array.length - 1 - 0 + 1) + 0)])
+       }
+        return result
+      },
+      shuffle:function (array) { 
+        var result = []
+        for(let i of array){
+          result.push(this.sample(array))
+        }
+        return result
+       }
+  ,
   /**
    * 判断一个值是否null
    * @param {*} val 判断的值
