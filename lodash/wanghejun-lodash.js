@@ -45,11 +45,16 @@ var wanghejun = {
    * @param {Array} array
    * @param {Array} values
    */
-  concat: function (array, ...values) {
+  concat: function (...values) {
+    var result = []
     for (let i of values) {
-      array = array.concat(i);
+      if(i instanceof Array){
+        result.push(i[0])
+      }else{
+        result.push(i)
+      }
     }
-    return array;
+    return result;
   },
   difference: function (array, ...values) {
     var result = [];
@@ -403,7 +408,27 @@ var wanghejun = {
           result.push(this.sample(array))
         }
         return result
-       }
+       },
+       size:function (value) { 
+         if(value instanceof Array){
+          return value.length
+         }else if(value instanceof Object){
+          var num = 0
+          for(let i in value){
+            num++
+          }
+          return num
+         }else{
+          return value.length
+         }
+        },
+        eq:function (first,last) { 
+          if(first === last || isNaN(first) == isNaN(last)){
+            return true
+          }else{
+            return false
+          }
+         }
   ,
   /**
    * 判断一个值是否null
