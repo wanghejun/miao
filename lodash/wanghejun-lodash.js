@@ -434,6 +434,132 @@ var wanghejun = {
       return false;
     }
   },
+  gt: function (value, other) {
+    return value > other;
+  },
+  gte: function (value, other) {
+    return value >= other;
+  },
+  lt: function (value, other) {
+    return value < other;
+  },
+  lte: function (value, other) {
+    return value <= other;
+  },
+  add: function (first, last) {
+    return first + last;
+  },
+  ceil: function (value, pre = 0) {
+    if (pre > 0) {
+      for (let i = 0; i < pre; i++) {
+        value *= 10;
+      }
+      value = Math.ceil(value);
+      for (let i = 0; i < pre; i++) {
+        value /= 10;
+      }
+      return value;
+    } else {
+      for (let i = pre; i < 0; i++) {
+        value /= 10;
+      }
+      value = Math.ceil(value);
+      for (let i = pre; i < 0; i++) {
+        value *= 10;
+      }
+      return value;
+    }
+  },
+  divide: function (first, last) {
+    return first / last;
+  },
+  floor: function (value, pre = 0) {
+    if (pre > 0) {
+      for (let i = 0; i < pre; i++) {
+        value *= 10;
+      }
+      value = Math.floor(value);
+      for (let i = 0; i < pre; i++) {
+        value /= 10;
+      }
+      return value;
+    } else {
+      for (let i = pre; i < 0; i++) {
+        value /= 10;
+      }
+      value = Math.floor(value);
+      for (let i = pre; i < 0; i++) {
+        value *= 10;
+      }
+      return value;
+    }
+  },
+  max: function (array) {
+    if (array.length == 0) {
+      return undefined;
+    }
+    var result = array[0];
+    for (let i of array) {
+      if (i > result) {
+        result = i;
+      }
+    }
+    return result;
+  },
+  mean: function (array) {
+    var result = 0;
+    for (let i of array) {
+      result += i;
+    }
+    return result / array.length;
+  },
+  min: function (array) {
+    if (array.length == 0) {
+      return undefined;
+    }
+    var result = array[0];
+    for (let i of array) {
+      if (i < result) {
+        result = i;
+      }
+    }
+    return result;
+  },
+  multiply: function (first, last) {
+    return first * last;
+  },
+  round:function (value, pre = 0) {
+    if (pre > 0) {
+      for (let i = 0; i < pre; i++) {
+        value *= 10;
+      }
+      value = Math.round(value);
+      for (let i = 0; i < pre; i++) {
+        value /= 10;
+      }
+      return value;
+    } else {
+      for (let i = pre; i < 0; i++) {
+        value /= 10;
+      }
+      value = Math.round(value);
+      for (let i = pre; i < 0; i++) {
+        value *= 10;
+      }
+      return value;
+    }
+  },
+  subtract:function (first,last) { 
+    return first - last
+   },
+  sum:function (array) { 
+    var result = 0;
+    for (let i of array) {
+      result += i;
+    }
+    return result 
+   }
+  ,
   /**
    * 判断一个值是否null
    * @param {*} val 判断的值
