@@ -528,7 +528,7 @@ var wanghejun = {
   multiply: function (first, last) {
     return first * last;
   },
-  round:function (value, pre = 0) {
+  round: function (value, pre = 0) {
     if (pre > 0) {
       for (let i = 0; i < pre; i++) {
         value *= 10;
@@ -549,75 +549,86 @@ var wanghejun = {
       return value;
     }
   },
-  subtract:function (first,last) { 
-    return first - last
-   },
-  sum:function (array) { 
+  subtract: function (first, last) {
+    return first - last;
+  },
+  sum: function (array) {
     var result = 0;
     for (let i of array) {
       result += i;
     }
-    return result 
-   },
-  at:function (object,path) { 
-    return path.map(items => this.property(items)(object))
-   },
-  defaults:function (object,...values) { 
-    for(let i of values){
-      for(let j in i){
-        if(!(j in object)){
-          object[j] = i[j]
+    return result;
+  },
+  at: function (object, path) {
+    return path.map((items) => this.property(items)(object));
+  },
+  defaults: function (object, ...values) {
+    for (let i of values) {
+      for (let j in i) {
+        if (!(j in object)) {
+          object[j] = i[j];
         }
       }
     }
-    return object
-   },
-  invert:function (object) { 
-    for(let i in object){
-      object[object[i]] = i
-      delete object[i]
+    return object;
+  },
+  invert: function (object) {
+    for (let i in object) {
+      object[object[i]] = i;
+      delete object[i];
     }
-    return object
-   },
-  keys:function (object) { 
-    var result = []
-    for(let i in object){
-      result.push(i)
-    }
-    return result
-   },
-  omit:function (object,array) { 
-    var result = {}
-    for(let i in object){
-      if(!array.includes(i)){
-        result[i] = object[i]
+    return object;
+  },
+  keys: function (object) {
+    var result = [];
+    for (let i in object) {
+      if (object.hasOwnProperty(i)) {
+        result.push(i);
       }
     }
-    return result
-   },
-   pick:function (object,array) { 
-    var result = {}
-    for(let i in object){
-      if(array.includes(i)){
-        result[i] = object[i]
+    return result;
+  },
+  omit: function (object, array) {
+    var result = {};
+    for (let i in object) {
+      if (!array.includes(i)) {
+        result[i] = object[i];
       }
     }
-    return result
-    },
-  values:function (object) { 
-    var result = []
-    for(let i in object){
-      result.push(object[i])
+    return result;
+  },
+  pick: function (object, array) {
+    var result = {};
+    for (let i in object) {
+      if (array.includes(i)) {
+        result[i] = object[i];
+      }
     }
-    return result
-   },
-  camelCase:function (str) { 
-    var array = str.match(/[a-z]+/ig)
-    return array.map(items => {
-      return items[0].toUpperCase() + items.substring(1).toLowerCase()
-    }).join('')
-   }
-  ,
+    return result;
+  },
+  values: function (object) {
+    var result = [];
+    for (let i in object) {
+      if (object.hasOwnProperty(i)) {
+        result.push(i);
+      }
+    }
+    return result;
+  },
+  camelCase: function (str) {
+    var array = str.match(/[a-z]+/gi);
+    var flag = true;
+    return array
+      .map((items) => {
+        if (flag) {
+          flag = false;
+          return items.toLowerCase();
+        } else {
+          return items[0].toUpperCase() + items.substring(1).toLowerCase();
+        }
+      })
+      .join("");
+  },
   /**
    * 判断一个值是否null
    * @param {*} val 判断的值
