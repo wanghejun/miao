@@ -610,7 +610,7 @@ var wanghejun = {
     var result = [];
     for (let i in object) {
       if (object.hasOwnProperty(i)) {
-        result.push(i);
+        result.push(object[i]);
       }
     }
     return result;
