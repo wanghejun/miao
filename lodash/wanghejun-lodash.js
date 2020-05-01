@@ -558,6 +558,64 @@ var wanghejun = {
       result += i;
     }
     return result 
+   },
+  at:function (object,path) { 
+    return path.map(items => this.property(items)(object))
+   },
+  defaults:function (object,...values) { 
+    for(let i of values){
+      for(let j in i){
+        if(!(j in object)){
+          object[j] = i[j]
+        }
+      }
+    }
+    return object
+   },
+  invert:function (object) { 
+    for(let i in object){
+      object[object[i]] = i
+      delete object[i]
+    }
+    return object
+   },
+  keys:function (object) { 
+    var result = []
+    for(let i in object){
+      result.push(i)
+    }
+    return result
+   },
+  omit:function (object,array) { 
+    var result = {}
+    for(let i in object){
+      if(!array.includes(i)){
+        result[i] = object[i]
+      }
+    }
+    return result
+   },
+   pick:function (object,array) { 
+    var result = {}
+    for(let i in object){
+      if(array.includes(i)){
+        result[i] = object[i]
+      }
+    }
+    return result
+    },
+  values:function (object) { 
+    var result = []
+    for(let i in object){
+      result.push(object[i])
+    }
+    return result
+   },
+  camelCase:function (str) { 
+    var array = str.match(/[a-z]+/ig)
+    return array.map(items => {
+      return items[0].toUpperCase() + items.substring(1).toLowerCase()
+    }).join('')
    }
   ,
   /**
