@@ -559,9 +559,9 @@ var wanghejun = {
     }
     return result;
   },
-  at: function (object, path) {
-    return path.map((items) => this.property(items)(object));
-  },
+  // at: function (object, path) {
+  //   return path.map((items) => this.property(items)(object));
+  // },
   defaults: function (object, ...values) {
     for (let i of values) {
       for (let j in i) {
@@ -629,6 +629,33 @@ var wanghejun = {
       })
       .join("");
   },
+  capitalize:function (str) { 
+    return str[0].toUpperCase() + str.substring(1).toLowerCase();
+   },
+   endsWith:function (str,end,index = str.length) { 
+     return str[index - 1] === end
+    },
+  escape:function (str) { 
+    var map = {
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      "'":"&#39",
+      '"':'&quot'
+    }
+    return str.replace(/["'<>&]/g,function (items) { 
+      return items = map[items]
+     })
+   },
+   kebabCase:function (str) { 
+     str = str.toLowerCase()
+     return str.match(/[a-z]{1,3}/g).join('-')
+    },
+    lowerCase:function (str) { 
+      str = str.toLowerCase()
+     return str.match(/[a-z]{1,3}/g).join(' ')
+     }
+  ,
   /**
    * 判断一个值是否null
    * @param {*} val 判断的值
