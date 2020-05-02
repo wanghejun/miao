@@ -658,67 +658,68 @@ var wanghejun = {
   lowerFirst: function (str) {
     return str[0].toLowerCase() + str.substring(1);
   },
-  pad:function (str,length,repeat = ' ') { 
-    var flag = true
-    while(true){
-      if(str.length >= length){
+  pad: function (str, length, repeat = " ") {
+    var flag = true;
+    while (true) {
+      if (str.length >= length) {
         break;
       }
-      if(flag){
-        str+=repeat
-        flag = false
-      }else{
-        str = repeat + str
-        flag =true
+      if (flag) {
+        str += repeat;
+        flag = false;
+      } else {
+        str = repeat + str;
+        flag = true;
       }
     }
-    return str.substr(0,length)
-   },
-  padEnd:function (str,length,repeat = ' ') { 
-    while(true){
-      if(str.length >= length){
+    return str.substr(0, length);
+  },
+  padEnd: function (str, length, repeat = " ") {
+    while (true) {
+      if (str.length >= length) {
         break;
       }
-        str+=repeat
-      }
-    return str.substr(0,length)
-   },
-  padStart:function (str,length,repeat = ' ') { 
-    while(true){
-      if(str.length >= length){
-        break;
-      }
-        str = repeat +str
-      }
-    return str.substr(0,length)
-   },
-   parseInt:function (str,radix = 10) { 
-      return Number(str).toString(radix) * 1
-    },
-  repeat:function (str,n=0) { 
-    var result = ''
-    for(let i = 0;i < n;i++){
-      result += str
+      str += repeat;
     }
-    return result
-   },
-  replace:function (str,pat,rep) { 
-    return str.replace(pat,rep)
-   },
-  snakeCase:function (str) {
+    return str.substr(0, length);
+  },
+  padStart: function (str, length, repeat = " ") {
+    while (true) {
+      if (str.length >= length) {
+        break;
+      }
+      str = repeat + str;
+    }
+    return str.substr(0, length);
+  },
+  parseInt: function (str, radix = 10) {
+    return Number(str).toString(radix) * 1;
+  },
+  repeat: function (str, n = 0) {
+    var result = "";
+    for (let i = 0; i < n; i++) {
+      result += str;
+    }
+    return result;
+  },
+  replace: function (str, pat, rep) {
+    return str.replace(pat, rep);
+  },
+  snakeCase: function (str) {
     str = str.toLowerCase();
     return str.match(/[a-z]{1,3}/g).join("_");
   },
-  split:function (str,rep,n) { 
-    return str.split(rep,n)
-   },
-  startCase:function (str) {
-    str = str.match(/[a-z]{1,3}/ig)
-    return str.map(items => {
-      return items[0].toUpperCase() + items.substring(1)
-    }).join(" ");
-  }
-  ,
+  split: function (str, rep, n) {
+    return str.split(rep, n);
+  },
+  startCase: function (str) {
+    str = str.match(/[a-z]{1,3}/gi);
+    return str
+      .map((items) => {
+        return items[0].toUpperCase() + items.substring(1);
+      })
+      .join(" ");
+  },
   /**
    * 判断一个值是否null
    * @param {*} val 判断的值
