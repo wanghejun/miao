@@ -684,17 +684,17 @@ var wanghejun = {
     return str.substr(0, length);
   },
   padStart: function (str, length, repeat = " ") {
-    var result = ''
+    var result = "";
     while (true) {
       if (str.length + result.length >= length) {
         break;
       }
       result = repeat + result;
     }
-    if(str.length + result.length > length){
-      result = result.substr(0,length - str.length)
+    if (str.length + result.length > length) {
+      result = result.substr(0, length - str.length);
     }
-    return result + str
+    return result + str;
   },
   parseInt: function (str, radix = 10) {
     return Number(str).toString(radix) * 1;
