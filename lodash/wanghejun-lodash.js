@@ -629,32 +629,95 @@ var wanghejun = {
       })
       .join("");
   },
-  capitalize:function (str) { 
+  capitalize: function (str) {
     return str[0].toUpperCase() + str.substring(1).toLowerCase();
-   },
-   endsWith:function (str,end,index = str.length) { 
-     return str[index - 1] === end
-    },
-  escape:function (str) { 
+  },
+  endsWith: function (str, end, index = str.length) {
+    return str[index - 1] === end;
+  },
+  escape: function (str) {
     var map = {
-      '&':'&amp;',
-      '<':'&lt;',
-      '>':'&gt;',
-      "'":"&#39",
-      '"':'&quot'
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "'": "&#39",
+      '"': "&quot",
+    };
+    return str.replace(/["'<>&]/g, function (items) {
+      return (items = map[items]);
+    });
+  },
+  kebabCase: function (str) {
+    str = str.toLowerCase();
+    return str.match(/[a-z]{1,3}/g).join("-");
+  },
+  lowerCase: function (str) {
+    str = str.toLowerCase();
+    return str.match(/[a-z]{1,3}/g).join(" ");
+  },
+  lowerFirst: function (str) {
+    return str[0].toLowerCase() + str.substring(1);
+  },
+  pad:function (str,length,repeat = ' ') { 
+    var flag = true
+    while(true){
+      if(str.length >= length){
+        break;
+      }
+      if(flag){
+        str+=repeat
+        flag = false
+      }else{
+        str = repeat + str
+        flag =true
+      }
     }
-    return str.replace(/["'<>&]/g,function (items) { 
-      return items = map[items]
-     })
+    return str.substr(0,length)
    },
-   kebabCase:function (str) { 
-     str = str.toLowerCase()
-     return str.match(/[a-z]{1,3}/g).join('-')
+  padEnd:function (str,length,repeat = ' ') { 
+    while(true){
+      if(str.length >= length){
+        break;
+      }
+        str+=repeat
+      }
+    return str.substr(0,length)
+   },
+  padStart:function (str,length,repeat = ' ') { 
+    while(true){
+      if(str.length >= length){
+        break;
+      }
+        str = repeat +str
+      }
+    return str.substr(0,length)
+   },
+   parseInt:function (str,radix = 10) { 
+      return Number(str).toString(radix) * 1
     },
-    lowerCase:function (str) { 
-      str = str.toLowerCase()
-     return str.match(/[a-z]{1,3}/g).join(' ')
-     }
+  repeat:function (str,n=0) { 
+    var result = ''
+    for(let i = 0;i < n;i++){
+      result += str
+    }
+    return result
+   },
+  replace:function (str,pat,rep) { 
+    return str.replace(pat,rep)
+   },
+  snakeCase:function (str) {
+    str = str.toLowerCase();
+    return str.match(/[a-z]{1,3}/g).join("_");
+  },
+  split:function (str,rep,n) { 
+    return str.split(rep,n)
+   },
+  startCase:function (str) {
+    str = str.match(/[a-z]{1,3}/ig)
+    return str.map(items => {
+      return items[0].toUpperCase() + items.substring(1)
+    }).join(" ");
+  }
   ,
   /**
    * 判断一个值是否null
