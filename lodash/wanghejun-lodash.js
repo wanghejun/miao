@@ -690,6 +690,9 @@ var wanghejun = {
       }
       str = repeat + str;
     }
+    if(str.length > length){
+      return str.substr(str.length - length, length);
+    }
     return str.substr(0, length);
   },
   parseInt: function (str, radix = 10) {
