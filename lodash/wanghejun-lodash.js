@@ -727,7 +727,7 @@ var wanghejun = {
   startsWith:function (str,star,index = 0) { 
     return str.indexOf(star) === index
    },
-   trim:function (str,rep=' ') { 
+   trim:function (str,rep='   ') { 
      var i = 0
      var j = str.length - 1
      while(i < str.length){
@@ -744,7 +744,7 @@ var wanghejun = {
      }
      return str.slice(i,j+1)
     },
-    trimEnd:function (str,rep=' ') { 
+    trimEnd:function (str,rep='   ') { 
       var j = str.length - 1
       while(j > 0){
        if(!rep.includes(str[j])){
@@ -754,7 +754,7 @@ var wanghejun = {
       }
       return str.slice(0,j + 1)
      },
-     trimStart:function (str,rep=' ') { 
+     trimStart:function (str,rep='   ') { 
       var i = 0
       while(i < str.length){
        if(!rep.includes(str[i])){
