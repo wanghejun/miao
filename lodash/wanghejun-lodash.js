@@ -724,6 +724,76 @@ var wanghejun = {
       })
       .join(" ");
   },
+  startsWith:function (str,star,index = 0) { 
+    return str.indexOf(star) === index
+   },
+   trim:function (str,rep=' ') { 
+     var i = 0
+     var j = str.length - 1
+     while(i < str.length){
+      if(!rep.includes(str[i])){
+        break;
+      }
+      i++
+     }
+     while(j > 0){
+      if(!rep.includes(str[j])){
+        break;
+      }
+      j--
+     }
+     return str.slice(i,j+1)
+    },
+    trimEnd:function (str,rep=' ') { 
+      var j = str.length - 1
+      while(j > 0){
+       if(!rep.includes(str[j])){
+         break;
+       }
+       j--
+      }
+      return str.slice(0,j + 1)
+     },
+     trimStart:function (str,rep=' ') { 
+      var i = 0
+      while(i < str.length){
+       if(!rep.includes(str[i])){
+         break;
+       }
+       i++
+      }
+      return str.slice(i)
+     },
+     truncate:function (str,object = {length:30,omission:'...'}) { 
+      if(object.length === undefined){
+        object.length = 30
+      }
+      if(object.omission === undefined){
+        object.omission = '...'
+      }
+      if(object.separator === undefined){
+      return str.slice(0,object.length - object.omission.length) + object.omission
+      }
+      str = str.slice(0,object.length)
+      var regexp = new RegExp(object.separator,'g')
+      var index = true;
+      var number = true;
+      while(index && number){
+        index = regexp.exec(str)
+        if(!index){
+          break;
+        }
+        number = regexp.exec(str)
+        if(!number){
+          break;
+        }
+      }
+      if(!index){
+        return str.slice(0,number.index) + object.omission
+      }
+      return str.slice(0,index.index) + object.omission
+      }
+  ,
   /**
    * 判断一个值是否null
    * @param {*} val 判断的值
