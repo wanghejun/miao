@@ -807,6 +807,23 @@ var wanghejun = {
       return (items = map[items]);
     });
   },
+  upperCase:function (str) { 
+    str = str.match(/[a-z]{1,3}/gi);
+    return str.map((items) => {
+        return items.toUpperCase()
+      })
+      .join(" ");
+   },
+   upperFirst:function (str) { 
+     if(str[0].charCodeAt() > 96){
+       return String.fromCharCode(str[0].charCodeAt() - 32) + str.substr(1)
+     }
+     return str
+    },
+    words:function (str,regexp = /\w+/g) { 
+      return str.match(regexp)
+     }
+  ,
   /**
    * 判断一个值是否null
    * @param {*} val 判断的值
