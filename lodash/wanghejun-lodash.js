@@ -807,22 +807,75 @@ var wanghejun = {
       return (items = map[items]);
     });
   },
-  upperCase:function (str) { 
+  upperCase: function (str) {
     str = str.match(/[a-z]{1,3}/gi);
-    return str.map((items) => {
-        return items.toUpperCase()
+    return str
+      .map((items) => {
+        return items.toUpperCase();
       })
       .join(" ");
+  },
+  upperFirst: function (str) {
+    if (str[0].charCodeAt() > 96) {
+      return String.fromCharCode(str[0].charCodeAt() - 32) + str.substr(1);
+    }
+    return str;
+  },
+  words: function (str, regexp = /\w+/g) {
+    return str.match(regexp);
+  },
+  range: function (...array) {
+    var result = [];
+    var star = 0;
+    var end = 0;
+    var step = 1;
+    if (array.length == 1) {
+      end = array[0];
+      if (end < 0) {
+        step = -1;
+      }
+    }
+    if (array.length == 2) {
+      star = array[0];
+      end = array[1];
+    }
+    if (array.length == 3) {
+      star = array[0];
+      end = array[1];
+      step = array[2];
+    }
+    if (step == 0) {
+      var index = star;
+      for (let i = star; i < end; i++) {
+        result.push(index);
+      }
+      return result;
+    }
+    if (end >= 0) {
+      for (let i = star; i < end; i += step) {
+        result.push(i);
+      }
+      return result;
+    }
+    for (let i = star; i > end; i += step) {
+      result.push(i);
+    }
+    return result;
+  },
+  dropRight:function (array,n=1) { 
+    var result = [...array]
+    for(let i = 0;i < n; i++){
+      result.pop()
+    }
+    return result
    },
-   upperFirst:function (str) { 
-     if(str[0].charCodeAt() > 96){
-       return String.fromCharCode(str[0].charCodeAt() - 32) + str.substr(1)
+   fill:function (array,str,star=0,end=array.length) { 
+     var result = [...array]
+     for(let i = star; i < end; i++){
+       result[i] = str
      }
-     return str
-    },
-    words:function (str,regexp = /\w+/g) { 
-      return str.match(regexp)
-     }
+     return result
+    }
   ,
   /**
    * 判断一个值是否null
