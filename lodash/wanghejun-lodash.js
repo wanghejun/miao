@@ -875,6 +875,12 @@ var wanghejun = {
        result[i] = str
      }
      return result
+    },
+  flattenDeep:function (array) { 
+    return array.flat(Infinity)
+   },
+   flattenDepth:function (array,n=1) { 
+     return array.flat(n)
     }
   ,
   /**
