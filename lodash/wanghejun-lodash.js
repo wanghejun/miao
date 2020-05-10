@@ -862,27 +862,65 @@ var wanghejun = {
     }
     return result;
   },
-  dropRight:function (array,n=1) { 
-    var result = [...array]
-    for(let i = 0;i < n; i++){
-      result.pop()
+  dropRight: function (array, n = 1) {
+    var result = [...array];
+    for (let i = 0; i < n; i++) {
+      result.pop();
     }
-    return result
-   },
-   fill:function (array,str,star=0,end=array.length) { 
-     var result = [...array]
-     for(let i = star; i < end; i++){
-       result[i] = str
-     }
-     return result
-    },
-  flattenDeep:function (array) { 
-    return array.flat(Infinity)
-   },
-   flattenDepth:function (array,n=1) { 
-     return array.flat(n)
+    return result;
+  },
+  fill: function (array, str, star = 0, end = array.length) {
+    var result = [...array];
+    for (let i = star; i < end; i++) {
+      result[i] = str;
     }
-  ,
+    return result;
+  },
+  flattenDeep: function (array) {
+    return array.flat(Infinity);
+  },
+  flattenDepth: function (array, n = 1) {
+    return array.flat(n);
+  },
+  fromPairs: function (array) {
+    var result = {};
+    for (let [key, value] of array) {
+      result[key] = value;
+    }
+    return result;
+  },
+  toPairs: function (object) {
+    var result = [];
+    for (let i in object) {
+      result.push([i, object[i]]);
+    }
+    return result;
+  },
+  sortedLastIndex: function (array, value) {
+    for (let i = array.length - 1; i >= 0; i--) {
+      if (array[i] <= value && value < array[i + 1]) {
+        return i + 1;
+      }
+    }
+    return -1;
+  },
+  sortedLastIndexOf: function (array, value) {
+    for (let i = array.length - 1; i >= 0; i--) {
+      if (array[i] === value) {
+        return i;
+      }
+    }
+    return -1;
+  },
+  sortedUniq: function (array) {
+    return new Array(
+      ...new Set(
+        array.sort((a, b) => {
+          return a - b;
+        })
+      )
+    );
+  },
   /**
    * 判断一个值是否null
    * @param {*} val 判断的值
@@ -895,4 +933,40 @@ var wanghejun = {
       return false;
     }
   },
+  castArray: function (value) {
+    if (value instanceof Array) {
+      return value;
+    } else if (arguments.length == 0) {
+      return [];
+    } else {
+      return [value];
+    }
+  },
+  differenceBy:function (array,...values) { 
+    var ft = values[values.length - 1]
+    var result = []
+    if(Array.isArray(ft)){
+      return this.difference(array,values.flat().slice(0,values.length - 1))
+    }
+    if(typeof ft === 'function'){
+      values = values.flat()
+      values = values.slice(0,values.length - 1)
+      values = values.map(item => {return ft(item)})
+      for(let i of array){
+        if(!values.includes(ft(i))){
+          result.push(i)
+        }
+      }
+    }
+    if(typeof ft === 'string'){
+      values = values.flat().slice(0,values.length - 1)
+      for(let i of array){
+        if(!(i[ft] === values[0][ft])){
+          result.push(i)
+        }
+      }
+    }
+    return result
+   }
+  ,
 };
