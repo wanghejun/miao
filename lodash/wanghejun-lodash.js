@@ -892,7 +892,9 @@ var wanghejun = {
   toPairs: function (object) {
     var result = [];
     for (let i in object) {
-      result.push([i, object[i]]);
+      if (object.hasOwnProperty(i)) {
+        result.push([i, object[i]]);
+      }
     }
     return result;
   },
@@ -971,21 +973,20 @@ var wanghejun = {
     }
     return result;
   },
-  differenceWith:function (array,...values) { 
-    var ft = values[values.length - 1]
-    values = values.flat()
-    values = values.slice(0,values.length - 1)
-    for(let i = 0;i <array.length; i++){
-      if(ft(array[i],values[0])){
-        array.splice(i,1)
+  differenceWith: function (array, ...values) {
+    var ft = values[values.length - 1];
+    values = values.flat();
+    values = values.slice(0, values.length - 1);
+    for (let i = 0; i < array.length; i++) {
+      if (ft(array[i], values[0])) {
+        array.splice(i, 1);
       }
     }
-    return array
-   }
-  ,
+    return array;
+  },
   isEqual: function (first, last) {
-    if(Array.isArray(first) && !Array.isArray(last)){
-      return false
+    if (Array.isArray(first) && !Array.isArray(last)) {
+      return false;
     }
     if (typeof first == "object" || typeof last == "object") {
       if (first.length > last.length) {
