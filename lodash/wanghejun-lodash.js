@@ -946,7 +946,8 @@ var wanghejun = {
     var ft = values[values.length - 1]
     var result = []
     if(Array.isArray(ft)){
-      return this.difference(array,values.flat().slice(0,values.length - 1))
+      values = values.flat()
+      return this.difference(array,values)
     }
     if(typeof ft === 'function'){
       values = values.flat()
