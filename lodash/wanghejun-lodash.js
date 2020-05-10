@@ -972,10 +972,11 @@ var wanghejun = {
     return result;
   },
   differenceWith:function (array,...values) { 
+    var ft = values[values.length - 1]
     values = values.flat()
     values = values.slice(0,values.length - 1)
     for(let i = 0;i <array.length; i++){
-      if(this.isEqual(array[i],values[0])){
+      if(ft(array[i],values[0])){
         array.splice(i,1)
       }
     }
@@ -983,7 +984,7 @@ var wanghejun = {
    }
   ,
   isEqual: function (first, last) {
-    if(Array.isArray(first) && last instanceof object){
+    if(Array.isArray(first) && last instanceof Object){
       return false
     }
     if (typeof first == "object" || typeof last == "object") {
