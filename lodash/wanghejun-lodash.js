@@ -984,7 +984,7 @@ var wanghejun = {
    }
   ,
   isEqual: function (first, last) {
-    if(Array.isArray(first) && last instanceof Object){
+    if(Array.isArray(first) && !Array.isArray(last)){
       return false
     }
     if (typeof first == "object" || typeof last == "object") {
