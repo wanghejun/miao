@@ -942,32 +942,60 @@ var wanghejun = {
       return [value];
     }
   },
-  differenceBy:function (array,...values) { 
-    var ft = values[values.length - 1]
-    var result = []
-    if(Array.isArray(ft)){
-      values = values.flat()
-      return this.difference(array,values)
+  differenceBy: function (array, ...values) {
+    var ft = values[values.length - 1];
+    var result = [];
+    if (Array.isArray(ft)) {
+      values = values.flat();
+      return this.difference(array, values);
     }
-    if(typeof ft === 'function'){
-      values = values.flat()
-      values = values.slice(0,values.length - 1)
-      values = values.map(item => {return ft(item)})
-      for(let i of array){
-        if(!values.includes(ft(i))){
-          result.push(i)
+    if (typeof ft === "function") {
+      values = values.flat();
+      values = values.slice(0, values.length - 1);
+      values = values.map((item) => {
+        return ft(item);
+      });
+      for (let i of array) {
+        if (!values.includes(ft(i))) {
+          result.push(i);
         }
       }
     }
-    if(typeof ft === 'string'){
-      values = values.flat().slice(0,values.length - 1)
-      for(let i of array){
-        if(!(i[ft] === values[0][ft])){
-          result.push(i)
+    if (typeof ft === "string") {
+      values = values.flat().slice(0, values.length - 1);
+      for (let i of array) {
+        if (!(i[ft] === values[0][ft])) {
+          result.push(i);
         }
       }
     }
-    return result
-   }
-  ,
+    return result;
+  },
+  isEqual: function (first, last) {
+    if (typeof first == "object" || typeof last == "object") {
+      if (first.length > last.length) {
+        for (let i in first) {
+          if (typeof first[i] == "object") {
+            return isEqual(first[i], last[i]);
+          }
+          if (first[i] !== last[i]) {
+            return false;
+          }
+        }
+        return true;
+      } else {
+        for (let i in last) {
+          if (typeof first[i] == "object") {
+            return isEqual(first[i], last[i]);
+          }
+          if (last[i] !== first[i]) {
+            return false;
+          }
+        }
+        return true;
+      }
+    } else {
+      return first === last;
+    }
+  },
 };
