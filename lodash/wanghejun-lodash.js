@@ -971,12 +971,18 @@ var wanghejun = {
     }
     return result;
   },
+  differenceWith:function (array,...values) { 
+    values = values.flat()
+    values = values.slice(0,values.length - 1)
+
+   }
+  ,
   isEqual: function (first, last) {
     if (typeof first == "object" || typeof last == "object") {
       if (first.length > last.length) {
         for (let i in first) {
           if (typeof first[i] == "object") {
-            return isEqual(first[i], last[i]);
+            return this.isEqual(first[i], last[i]);
           }
           if (first[i] !== last[i]) {
             return false;
@@ -986,7 +992,7 @@ var wanghejun = {
       } else {
         for (let i in last) {
           if (typeof first[i] == "object") {
-            return isEqual(first[i], last[i]);
+            return this.isEqual(first[i], last[i]);
           }
           if (last[i] !== first[i]) {
             return false;
