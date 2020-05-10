@@ -974,10 +974,18 @@ var wanghejun = {
   differenceWith:function (array,...values) { 
     values = values.flat()
     values = values.slice(0,values.length - 1)
-
+    for(let i = 0;i <array.length; i++){
+      if(this.isEqual(array[i],values[0])){
+        array.splice(i,1)
+      }
+    }
+    return array
    }
   ,
   isEqual: function (first, last) {
+    if(Array.isArray(first) && last instanceof object){
+      return false
+    }
     if (typeof first == "object" || typeof last == "object") {
       if (first.length > last.length) {
         for (let i in first) {
