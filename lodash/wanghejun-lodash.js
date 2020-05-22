@@ -1014,4 +1014,18 @@ var wanghejun = {
       return first === last;
     }
   },
+  sortedUniqBy:function (array,fun) { 
+    var map = {};
+    var result = []
+    array.forEach(element => {
+      var value = fun(element)
+      if(!( value in map)){
+        map[value] = element
+      }
+    });
+    for(let i in map){
+      result.push(Number(map[i]))
+    }
+    return result
+   }
 };
