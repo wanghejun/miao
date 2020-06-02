@@ -1141,7 +1141,7 @@ var wanghejun = {
     return value.__proto__.constructor === RegExp;
   },
   isSafeInteger: function (value) {
-    return number.isSafeInteger(value);
+    return Number.isSafeInteger(value);
   },
   isSet: function (value) {
     return value.__proto__.constructor === Set;
@@ -1177,6 +1177,9 @@ var wanghejun = {
     return Number(value);
   },
   toInteger : function (value) { 
+    if(value === Infinity){
+      return Number.MAX_VALUE
+    }
     return Math.trunc(value)
    },
    toLength: function (value) { 
@@ -1193,8 +1196,8 @@ var wanghejun = {
      toSafeInteger: function (value) { 
       value = this.toInteger(value)
       if(value < 0){return 0 }
-      if(value > Number.MAX_VALUE){
-        return Number.MAX_VALUE
+      if(value > Number.MAX_SAFE_INTEGER){
+        return Number.MAX_SAFE_INTEGER
       }
       return value
       },
