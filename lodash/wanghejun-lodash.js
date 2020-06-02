@@ -1063,12 +1063,18 @@ var wanghejun = {
     return false;
   },
   isBoolean: function (value) {
+    if(value === null){
+      return false
+    }
     return value.__proto__.constructor == Boolean;
   },
   isDate: function (value) {
     return value.__proto__.constructor == Date;
   },
   isElement: function (value) {
+    if(value === null){
+      return false
+    }
     return value.__proto__.constructor == HTMLBodyElement;
   },
   isEmpty: function (value) {
