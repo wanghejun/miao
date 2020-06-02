@@ -1014,18 +1014,104 @@ var wanghejun = {
       return first === last;
     }
   },
-  sortedUniqBy:function (array,fun) { 
+  sortedUniqBy: function (array, fun) {
     var map = {};
-    var result = []
-    array.forEach(element => {
-      var value = fun(element)
-      if(!( value in map)){
-        map[value] = element
+    var result = [];
+    array.forEach((element) => {
+      var value = fun(element);
+      if (!(value in map)) {
+        map[value] = element;
       }
     });
-    for(let i in map){
-      result.push(Number(map[i]))
+    for (let i in map) {
+      result.push(Number(map[i]));
     }
-    return result
-   }
+    return result;
+  },
+  conformsTo: function (object, value) {
+    for (let i in value) {
+      return value[i](object[i]);
+    }
+  },
+  isArguments: function (value) {
+    return value.toString() === "[object Arguments]";
+  },
+  isArray: function (value) {
+    return value instanceof Array;
+  },
+  isArrayBuffer: function (value) {
+    return value.toString() === "[object ArrayBuffer]";
+  },
+  isArrayLike: function (value) {
+    if (
+      typeof value != "function" &&
+      value.length >= 0 &&
+      value.length <= Number.MAX_SAFE_INTEGER
+    ) {
+      return true;
+    }
+    return false;
+  },
+  isArrayLikeObject: function (value) {
+    if (
+      typeof value == "object" &&
+      value.length >= 0 &&
+      value.length <= Number.MAX_SAFE_INTEGER
+    ) {
+      return true;
+    }
+    return false;
+  },
+  isBoolean: function (value) {
+    return value.__proto__.constructor == Boolean;
+  },
+  isDate: function (value) {
+    return value.__proto__.constructor == Date;
+  },
+  isElement: function (value) {
+    return value.__proto__.constructor == HTMLBodyElement;
+  },
+  isEmpty: function (value) {
+    for (let i in value) {
+      return false;
+    }
+    return true;
+  },
+  isError: function (value) {
+    return value.__proto__.constructor == Error;
+  },
+  isFinite: function (value) {
+    if (
+      typeof value === "number" &&
+      value >= Number.MIN_VALUE &&
+      value <= Number.MAX_VALUE
+    ) {
+      return true;
+    }
+    return false;
+  },
+  isFunction: function (value) {
+    return typeof value === "function";
+  },
+  isInteger: function (value) {
+    return this.isFinite(value) && value % 1 === 0;
+  },
+  isLength : function (value) { 
+    if (
+      typeof value === "number" &&
+      value >= 2 &&
+      value <= Number.MAX_VALUE
+    ) {
+      return true;
+    }
+    return false;
+   },
+   isMap :function (value) { 
+    return value.__proto__.constructor == Map;
+    },
+    isMatch :function (object,value) { 
+      for(let i in value){
+        return this.isEqual(object[i],value[i])
+      }
+     }
 };
