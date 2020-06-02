@@ -1063,8 +1063,8 @@ var wanghejun = {
     return false;
   },
   isBoolean: function (value) {
-    if(value === null){
-      return false
+    if (value === null) {
+      return false;
     }
     return value.__proto__.constructor == Boolean;
   },
@@ -1072,8 +1072,8 @@ var wanghejun = {
     return value.__proto__.constructor == Date;
   },
   isElement: function (value) {
-    if(value === null){
-      return false
+    if (value === null) {
+      return false;
     }
     return value.__proto__.constructor == HTMLBodyElement;
   },
@@ -1102,22 +1102,110 @@ var wanghejun = {
   isInteger: function (value) {
     return this.isFinite(value) && value % 1 === 0;
   },
-  isLength : function (value) { 
-    if (
-      typeof value === "number" &&
-      value >= 2 &&
-      value <= Number.MAX_VALUE
-    ) {
+  isLength: function (value) {
+    if (typeof value === "number" && value >= 2 && value <= Number.MAX_VALUE) {
       return true;
     }
     return false;
-   },
-   isMap :function (value) { 
+  },
+  isMap: function (value) {
     return value.__proto__.constructor == Map;
-    },
-    isMatch :function (object,value) { 
-      for(let i in value){
-        return this.isEqual(object[i],value[i])
-      }
+  },
+  isMatch: function (object, value) {
+    for (let i in value) {
+      return this.isEqual(object[i], value[i]);
+    }
+  },
+  isNative: function (value) {
+    return value.toString().includes("[native code]");
+  },
+  isNil: function (value) {
+    return value === null || value === undefined;
+  },
+  isNumber: function (value) {
+    return typeof value === "number";
+  },
+  isObject: function (value) {
+    return value instanceof Object;
+  },
+  isObjectLike: function (value) {
+    if (value != null && typeof value === "object") {
+      return true;
+    }
+    return false;
+  },
+  isPlainObject: function (value) {
+    return value.__proto__ === null || value.__proto__.constructor === Object;
+  },
+  isRegExp: function (value) {
+    return value.__proto__.constructor === RegExp;
+  },
+  isSafeInteger: function (value) {
+    return number.isSafeInteger(value);
+  },
+  isSet: function (value) {
+    return value.__proto__.constructor === Set;
+  },
+  isString: function (value) {
+    return value.__proto__.constructor === String;
+  },
+  isSymbol: function (value) {
+    return value.__proto__.constructor === Symbol;
+  },
+  isTypedArray: function (value) {
+    return value.__proto__.constructor === Uint8Array;
+  },
+  isUndefined: function (value) {
+    return value === undefined;
+  },
+  isWeakMap: function (value) {
+    return value.__proto__.constructor === WeakMap;
+  },
+  isWeakSet: function (value) {
+    return value.__proto__.constructor === WeakSet;
+  },
+  toArray: function (value) {
+    let result = [];
+    for (let i in value) {
+      result.push(value[i]);
+    }
+    return result;
+  },
+  toFinite: function (value) {
+    if (value === Infinity) return Number.MAX_VALUE;
+    if (value === -Infinity) return Number.MIN_VALUE;
+    return Number(value);
+  },
+  toInteger : function (value) { 
+    return Math.trunc(value)
+   },
+   toLength: function (value) { 
+     value = this.toInteger(value)
+     if(value < 0){return 0 }
+     if(value > Math.pow(2,32) - 1){
+       return Math.pow(2,32) - 1
      }
+     return value
+    },
+    toNumber:function (value) { 
+      return Number(value)
+     },
+     toSafeInteger: function (value) { 
+      value = this.toInteger(value)
+      if(value < 0){return 0 }
+      if(value > Number.MAX_VALUE){
+        return Number.MAX_VALUE
+      }
+      return value
+      },
+      assign : function (object,...value) { 
+        for(let i of value){
+          for(let j in i){
+            if(i.hasOwnProperty(j)){
+              object[j] = i[j]
+            }
+          }
+        }
+        return object
+       }
 };
