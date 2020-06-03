@@ -1176,39 +1176,77 @@ var wanghejun = {
     if (value === -Infinity) return Number.MIN_VALUE;
     return Number(value);
   },
-  toInteger : function (value) { 
-    if(value === Infinity){
-      return Number.MAX_VALUE
+  toInteger: function (value) {
+    if (value === Infinity) {
+      return Number.MAX_VALUE;
     }
-    return Math.trunc(value)
-   },
-   toLength: function (value) { 
-     value = this.toInteger(value)
-     if(value < 0){return 0 }
-     if(value > Math.pow(2,32) - 1){
-       return Math.pow(2,32) - 1
-     }
-     return value
-    },
-    toNumber:function (value) { 
-      return Number(value)
-     },
-     toSafeInteger: function (value) { 
-      value = this.toInteger(value)
-      if(value < 0){return 0 }
-      if(value > Number.MAX_SAFE_INTEGER){
-        return Number.MAX_SAFE_INTEGER
-      }
-      return value
-      },
-      assign : function (object,...value) { 
-        for(let i of value){
-          for(let j in i){
-            if(i.hasOwnProperty(j)){
-              object[j] = i[j]
-            }
-          }
+    return Math.trunc(value);
+  },
+  toLength: function (value) {
+    value = this.toInteger(value);
+    if (value < 0) {
+      return 0;
+    }
+    if (value > Math.pow(2, 32) - 1) {
+      return Math.pow(2, 32) - 1;
+    }
+    return value;
+  },
+  toNumber: function (value) {
+    return Number(value);
+  },
+  toSafeInteger: function (value) {
+    value = this.toInteger(value);
+    if (value < 0) {
+      return 0;
+    }
+    if (value > Number.MAX_SAFE_INTEGER) {
+      return Number.MAX_SAFE_INTEGER;
+    }
+    return value;
+  },
+  assign: function (object, ...value) {
+    for (let i of value) {
+      for (let j in i) {
+        if (i.hasOwnProperty(j)) {
+          object[j] = i[j];
         }
-        return object
-       }
+      }
+    }
+    return object;
+  },
+  toLower: (value) => value.toLowerCase(),
+  toUpper: (value) => value.toUpperCase(),
+  defaultTo: (value, defaultValue) => {
+    if (this.isNaN(value) || this.isNil(value)) {
+      return defaultValue;
+    }
+    return value;
+  },
+  clamp: (value, lower, upper) => {
+    if (value < lower) {
+      return lower;
+    } else if (value > upper) {
+      return upper;
+    }
+    return value;
+  },
+  inRange: (...values) => {
+    if (values.length == 2) {
+      if (values[1] < 0) {
+        return values[0] >= values[1] && values[0] < 0;
+      }
+      return values[0] >= 0 && values[0] < values[1];
+    } else {
+      if (values[1] < 0) {
+        return values[0] >= values[2] && values[0] < values[1];
+      }
+      return values[0] >= values[1] && values[0] < values[2];
+    }
+  },
+  // random:(...values) => {
+  //   if(values.length == 1){
+  //     return Math.floor( Math.random() * (values[0] - 0 + 1) + 0)
+  //   }
+  // }
 };
