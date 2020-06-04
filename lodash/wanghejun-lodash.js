@@ -1251,7 +1251,7 @@ var wanghejun = {
   // }
   make : value => {
     if(typeof(value) === 'string'){
-      return it => value.it
+      return it => it.value
     }
     if(typeof(value) === 'object'){
       return value
