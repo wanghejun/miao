@@ -1217,7 +1217,7 @@ var wanghejun = {
   },
   toLower: (value) => value.toLowerCase(),
   toUpper: (value) => value.toUpperCase(),
-  defaultTo: (value, defaultValue) => {
+  defaultTo: function (value, defaultValue) {
     if (this.isNaN(value) || this.isNil(value)) {
       return defaultValue;
     }
@@ -1249,25 +1249,24 @@ var wanghejun = {
   //     return Math.floor( Math.random() * (values[0] - 0 + 1) + 0)
   //   }
   // }
-  make : value => {
-    if(typeof(value) === 'string'){
-      return it => it.value
+  make: (value) => {
+    if (typeof value === "string") {
+      return (it) => it.value;
     }
-    if(typeof(value) === 'object'){
-      return value
+    if (typeof value === "function") {
+      return value;
     }
-  }
-  ,
-  groupBy :function (arr,action) {
+  },
+  groupBy: function (arr, action) {
     var result = {};
     action = this.make(action);
-    arr.forEach(it => {
-      var key = action(it)
-      if(!(key in result)){
-        result[key] = []
+    arr.forEach((it) => {
+      var key = action(it);
+      if (!(key in result)) {
+        result[key] = [];
       }
-      result[key].push(it)
-    })
-    return result
-  }
+      result[key].push(it);
+    });
+    return result;
+  },
 };
