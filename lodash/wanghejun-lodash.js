@@ -1258,9 +1258,9 @@ var wanghejun = {
     }
   }
   ,
-  groupBy : (arr,action) => {
-    var result = {}
-    action = this.make(action)
+  groupBy :function (arr,action) {
+    var result = {};
+    action = this.make(action);
     arr.forEach(it => {
       var key = action(it)
       if(!(key in result)){
