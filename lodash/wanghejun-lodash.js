@@ -1249,4 +1249,25 @@ var wanghejun = {
   //     return Math.floor( Math.random() * (values[0] - 0 + 1) + 0)
   //   }
   // }
+  make : value => {
+    if(typeof(value) === 'string'){
+      return it => value.it
+    }
+    if(typeof(value) === 'object'){
+      return value
+    }
+  }
+  ,
+  groupBy : (arr,action) => {
+    var result = {}
+    action = this.make(action)
+    arr.forEach(it => {
+      var key = action(it)
+      if(!(key in result)){
+        result[key] = []
+      }
+      result[key].push(it)
+    })
+    return result
+  }
 };
