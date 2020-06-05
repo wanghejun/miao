@@ -1250,13 +1250,21 @@ var wanghejun = {
   //   }
   // }
   make: (value) => {
-    if (typeof value === "string") {
-      return (it) => it.value;
+    if (typeof(value)  === "string") {
+      return (it) => it[value]
     }
-    if (typeof value === "function") {
+    if (typeof(value) === "function") {
       return value;
     }
   },
+  keyBy : function (arr,action) { 
+    action = this.make(action)
+    arr.reduce((a,b) => {
+      a[action[b]] = b
+      return a
+    },{})
+   }
+  ,
   groupBy: function (arr, action) {
     var result = {};
     action = this.make(action);
