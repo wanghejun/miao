@@ -198,6 +198,33 @@ var wanghejun = {
     }
     return array;
   },
+  pullAllBy : function (arr,values,action){
+    var result = []
+    action = this.make(action)
+    for(let i = 0;i <arr.length;i++){
+      for(let j = 0;j < values.length;j++){
+        if(action(arr[i]) === action(values[j])){
+          break
+        }else if(action(arr[i]) !== action(values[j]) && j == values.length - 1){
+          result.push(arr[i])
+        }
+      }
+    }
+    return result
+  },
+  pullAllWith : function (arr,values,action) { 
+    let result = []
+    action = this.make(action)
+    for(let i of arr){
+      for(let j of values){
+        if(!action(i,j)){
+          result.push(i)
+        }
+      }
+    }
+    return result
+   }
+  ,
   pullAt: function (array, values) {
     var result = [];
     values.sort((a, b) => {
@@ -322,7 +349,7 @@ var wanghejun = {
   },
   isNaN: function (val) {
     if (typeof val === "object") {
-      return val.toString() === "NaN";
+      return val.__proto__.constructor === Number
     }
     return val !== val;
   },
@@ -1273,11 +1300,28 @@ var wanghejun = {
     if (typeof value === "function") {
       return value;
     }
+    if (value instanceof Array) {
+      return (it) => {
+        var i = value[0]
+        var j = value[1]
+        return it[i] === j
+      }
+    }
+    if (value instanceof Object) {
+      return (it) => {
+        for(let i in value){
+          if(it[i] !== value[i]){
+            return false
+          }
+        }
+        return true
+      }
+    }
   },
   keyBy: function (arr, action) {
     action = this.make(action);
     return arr.reduce((a, b) => {
-      a[action[b]] = b;
+      a[action(b)] = b;
       return a;
     }, {});
   },
@@ -1293,6 +1337,28 @@ var wanghejun = {
     });
     return result;
   },
+  findIndex : function (arr,action,from = 0) { 
+    action = this.make(action)
+    var index = 0;
+    for(let i = from;i < arr.length;i++){
+      if(action(arr[i])) {
+        index = i;
+        break
+      }
+    }
+    return index
+   },
+   findLastIndex:function (arr,action,from = arr.length - 1) { 
+    action = this.make(action)
+    var index = -1;
+    for(let i = from;i >= 0;i--){
+      if(action(arr[i])) {
+        index = i;
+        break;
+      }
+    }
+    return index
+   }
 };
 // function (ary) {
 //   for(let i = 0;i < ary.length;i++){
@@ -1317,3 +1383,33 @@ var wanghejun = {
 //    }
 //    return ary
 //   }
+function avg (a,b,c,d){
+  if(c == d.length - 1){
+    return (a + b) / d.length
+  }
+  return a + b
+}
+function every(ary, test) {
+  for(let i = 0;i <ary.length;i++){
+    if(!test(ary[i])){
+      return false
+    }
+  }
+  return true
+}
+function every(ary, test) {
+ ary.reduce((a,b,c,d) => {
+   if(!test(a)){
+     return false
+   }
+ })
+}
+
+function some(ary, test) {
+  for(let i = 0;i <ary.length;i++){
+    if(test(ary[i])){
+      return true
+    }
+  }
+  return false
+}
