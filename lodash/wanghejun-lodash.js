@@ -876,11 +876,28 @@ var wanghejun = {
     }
     return result;
   },
-  flattenDeep: function (array) {
-    return array.flat(Infinity);
+  flattenDeep: function (ary) {
+    for (let i = 0; i < ary.length; i++) {
+      if (ary[i] instanceof Array) {
+        var value = ary.splice(i, 1);
+        ary.splice(i, 0, ...value[0]);
+      }
+    }
+    return ary;
   },
-  flattenDepth: function (array, n = 1) {
-    return array.flat(n);
+  flattenDepth: function (ary, depth = 1) {
+    for (let i = 0; i < depth; i++) {
+      var j = 0;
+      while (j < ary.length) {
+        if (ary[j] instanceof Array) {
+          var value = ary.splice(j, 1);
+          ary.splice(j, 0, ...value[0]);
+          j += value[0].length - 1;
+        }
+        j++;
+      }
+    }
+    return ary;
   },
   fromPairs: function (array) {
     var result = {};
@@ -1250,21 +1267,20 @@ var wanghejun = {
   //   }
   // }
   make: (value) => {
-    if (typeof(value)  === "string") {
-      return (it) => it[value]
+    if (typeof value === "string") {
+      return (it) => it[value];
     }
-    if (typeof(value) === "function") {
+    if (typeof value === "function") {
       return value;
     }
   },
-  keyBy : function (arr,action) { 
-    action = this.make(action)
-    arr.reduce((a,b) => {
-      a[action[b]] = b
-      return a
-    },{})
-   }
-  ,
+  keyBy: function (arr, action) {
+    action = this.make(action);
+    return arr.reduce((a, b) => {
+      a[action[b]] = b;
+      return a;
+    }, {});
+  },
   groupBy: function (arr, action) {
     var result = {};
     action = this.make(action);
@@ -1278,3 +1294,26 @@ var wanghejun = {
     return result;
   },
 };
+// function (ary) {
+//   for(let i = 0;i < ary.length;i++){
+//     if(ary[i] instanceof Array){
+//       var value = ary.splice(i,1)
+//       ary.splice(i,0,...value[0])
+//     }
+//   }
+//   return ary
+//  }
+//  function (ary,depth = 1) {
+//    for(let i = 0; i < depth;i++){
+//     var j = 0
+//     while(j < ary.length){
+//       if(ary[j] instanceof Array){
+//         var value = ary.splice(j,1)
+//         ary.splice(j,0,...value[0])
+//         j += value[0].length - 1
+//       }
+//       j++
+//     }
+//    }
+//    return ary
+//   }
