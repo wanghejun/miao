@@ -936,6 +936,76 @@ var wanghejun = {
     }
     return result;
   },
+  dropRightWhile : function (arr,action) { 
+    let makes = (value) => {
+      if (typeof value === "string") {
+        return (it) => value in it;
+      }
+      if (typeof value === "function") {
+        return value;
+      }
+      if (value instanceof Array) {
+        return (it) => {
+          var i = value[0];
+          var j = value[1];
+          return it[i] === j;
+        };
+      }
+      if (value instanceof Object) {
+        return (it) => {
+          for (let i in value) {
+            if (it[i] !== value[i]) {
+              return false;
+            }
+          }
+          return true;
+        };
+      }
+    }
+    action = makes(action)
+    for(let i = arr.length - 1; i >= 0;i--){
+      if(!action(arr[i])){
+        arr.splice(i+1,arr.length)
+        break;
+      }
+    }
+    return arr
+   },
+   dropWhile : function (arr,action) { 
+    let makes = (value) => {
+      if (typeof value === "string") {
+        return (it) => value in it;
+      }
+      if (typeof value === "function") {
+        return value;
+      }
+      if (value instanceof Array) {
+        return (it) => {
+          var i = value[0];
+          var j = value[1];
+          return it[i] === j;
+        };
+      }
+      if (value instanceof Object) {
+        return (it) => {
+          for (let i in value) {
+            if (it[i] !== value[i]) {
+              return false;
+            }
+          }
+          return true;
+        };
+      }
+    }
+    action = makes(action)
+    for(let i in arr){
+      if(!action(arr[i])){
+        arr.splice(0,i)
+        break;
+      }
+    }
+    return arr
+  },
   fill: function (array, str, star = 0, end = array.length) {
     var result = [...array];
     for (let i = star; i < end; i++) {
