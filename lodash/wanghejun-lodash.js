@@ -131,6 +131,44 @@ var wanghejun = {
     }
     return arrays;
   },
+  intersectionBy : function (...args) { 
+    var action = this.make(args[args.length - 1])
+    args.pop()
+    var result = [] 
+    for(let i of args){
+      result.push(i.map(it => action(it)))
+    }
+    
+    var arrays = [];//返回
+    for (let i = 0; i < result[0].length;i++) {
+      for (let j = 1; j < result.length; j++) {
+        if (result[j].includes(result[0][i])) {
+          if (j == result.length - 1) {
+            arrays.push(args[0][i]);
+          }
+        } else {
+          break;
+        }
+      }
+    }
+    return arrays
+   },
+   intersectionWith : function (fi,la,action){
+     action = this.make(action)
+     var result = []
+     for (let i of fi) {
+        for (let j = 0; j < la.length; j++) {
+          if (action(i,la[j])) {
+            if (j == la.length - 1) {
+              result.push(i);
+              break;
+            }
+          } 
+        }
+     }
+     return result
+   }
+   ,
   join: function (array, str) {
     var result = "";
     for (let i = 0; i < array.length; i++) {
