@@ -308,6 +308,15 @@ var wanghejun = {
     }
     return array.length;
   },
+  sortedIndexBy : function (arr,value,action) { 
+    action = this.make(action)
+    for(let i in arr){
+      if(action(arr[i]) === action(value)){
+        return Number(i) 
+      }
+    }
+    return arr.length
+   },
   sortedIndexOf: function (array, value) {
     for (let i = 0; i < array.length; i++) {
       if (array[i] == value) {
@@ -1060,6 +1069,16 @@ var wanghejun = {
     }
     return -1;
   },
+  sortedLastIndexBy : function (arr,value,action) { 
+    action = this.make(action)
+    for(let i in arr){
+      if(action(arr[i]) > action(value)){
+        return Number(i) 
+      }
+    }
+    return arr.length
+   }
+  ,
   sortedLastIndexOf: function (array, value) {
     for (let i = array.length - 1; i >= 0; i--) {
       if (array[i] === value) {
