@@ -1,12 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lodashtest</title>
   <script src="./wanghejun-lodash.js"></script>
 </head>
+
 <body>
-  
+  <script>
+    function before(n, func) {
+      var i = 0;
+      var result;
+      return function (...args) {
+        if (i < n) {
+          i++
+          result = func
+        }
+        return result
+      }
+    }
+
+    function after(n, func) {
+      var i = 0;
+      var result;
+      return function (...args) {
+        i++
+        if (i > n) {
+          result = func
+        }
+        return result(...args)
+      }
+    }
+
+    function ary(func, n = func.length) {
+      return function (...args) {
+        return func(...args.slice(0, n))
+      }
+    }
+
+    function unary(func) {
+      return function (args) {
+        return func(args)
+      }
+    }
+
+    function flip(func) {
+      return function (...args) {
+        return func(...args.reverse())
+      }
+    }
+
+    function negate(func) {
+      return function (...args) {
+        return !func(...args)
+      }
+    }
+
+    function reject(ary, test) {
+      return this.filter(ary, negate(test))
+    }
+
+    function spread(func) {
+      return function (args) {
+        return func(...args)
+      }
+    }
+    function bind(func, ...arg) {
+      return function (...args) {
+        var copy = arg.slice()
+        var j = 0
+
+        for (var i = 0; i < copy.length; i++) {
+          if (copy[i] === null) {
+            copy[i] = args[j++]
+          }
+        }
+        while (j < args.length) {
+          copy.push(args[j++])
+        }
+        return func(...copy)
+      }
+    }
+    function filter(ary,action) { 
+
+     }
+     function matches(src) { 
+       return function (obj) { 
+         return this.isMatch(obj,src)
+        }
+      }
+  </script>
 </body>
+
 </html>

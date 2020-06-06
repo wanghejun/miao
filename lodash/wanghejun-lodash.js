@@ -1361,6 +1361,57 @@ var wanghejun = {
     }
     return index;
   },
+  before : function (n, func) {
+    var i = 0;
+    var result;
+    return function (...args) {
+      if (i < n) {
+        i++
+        result = func
+      }
+      return result
+    }
+  },
+  after : function (n, func) {
+    var i = 0;
+    var result;
+    return function (...args) {
+      i++
+      if (i > n) {
+        result = func
+      }
+      return result(...args)
+    }
+  }
+  ,
+  ary: function (func, n = func.length) {
+    return function (...args) {
+      return func(...args.slice(0, n))
+    }
+  },
+  unary : function (func) {
+    return function (args) {
+      return func(args)
+    }
+  },
+  flip : function (func) {
+    return function (...args) {
+      return func(...args.reverse())
+    }
+  },
+  negate : function (func) {
+    return function (...args) {
+      return !func(...args)
+    }
+  },
+  spread : function (func) {
+    return function (args) {
+      return func(...args)
+    }
+  },
+  reject : function (ary, test) {
+    return this.filter(ary, this.negate(test))
+  }
 };
 // function (ary) {
 //   for(let i = 0;i < ary.length;i++){
