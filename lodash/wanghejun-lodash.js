@@ -388,6 +388,41 @@ var wanghejun = {
     }
     return result;
   },
+  uniqBy: function (array, action) {
+    var a = action;
+    var result = [];
+    var map = {};
+    action = this.make(action);
+    var arr = array.map((it) => action(it));
+    arr.forEach((it, index) => {
+      if (!(it in map)) {
+        map[it] = index;
+      }
+    });
+    for (let i in map) {
+      result.push(array[map[i]]);
+    }
+    if (typeof a == "function") {
+      return result.reverse();
+    }
+    return result;
+  },
+  uniqWith: function (array, action) {
+    action = this.make(action);
+    var result = [];
+    for (let i of array) {
+      let flag = true;
+      for (let k of result) {
+        if (action(i, k)) {
+          flag = false;
+        }
+      }
+      if (flag) {
+        result.push(i);
+      }
+    }
+    return result;
+  },
   unionBy: function (...args) {
     var action = this.make(args.pop());
     args = args.flat();
@@ -478,6 +513,136 @@ var wanghejun = {
     }
     return result;
   },
+  countBy: function (array, action) {
+    action = this.make(action);
+    return array
+      .map((it) => action(it))
+      .reduce((pr, cu) => {
+        if (cu in pr) {
+          pr[cu]++;
+        } else {
+          pr[cu] = 1;
+        }
+        return pr;
+      }, {});
+  },
+  every: function (array, action) {
+    action = this.make(action);
+    for (let i of array) {
+      if (!action(i)) {
+        return false;
+      }
+    }
+    return true;
+  },
+  filter: function (array, action) {
+    action = this.make(action);
+    var result = [];
+    for (let i of array) {
+      if (action(i)) {
+        result.push(i);
+      }
+    }
+    return result;
+  },
+  find: function (array, action, star = 0) {
+    action = this.make(action);
+    for (let i = star; i < array.length; i++) {
+      if (action(array[i])) {
+        return array[i];
+      }
+    }
+    return undefined;
+  },
+  findLast: function (array, action, star = array.length) {
+    return this.find(array.reverse(), action, array.length - star);
+  },
+  flatMap: function (array, action) {
+    action = this.make(action);
+    return array.reduce((pr, cu) => {
+      pr.push(...action(cu));
+      return pr;
+    }, []);
+  },
+  flatMapDeep: function (array, action, n = Infinity) {
+    action = this.make(action);
+    return array.reduce((pr, cu) => {
+      pr.push(...action(cu).flat(n));
+      return pr;
+    }, []);
+  },
+  flatMapDepth: function (array, action, n) {
+    return this.flatMapDeep(array, action, n - 1);
+  },
+  forEach: function (array, action) {
+    action = this.make(action);
+    for (let i in array) {
+      action(array[i], i, array);
+    }
+  },
+  forEachRight: function (array, action) {
+    if (Array.isArray(array)) {
+      return this.forEach(array.reverse(), action);
+    } else {
+      var key = Object.keys(array).reverse();
+      var value = Object.values(array).reverse();
+      for (let i in value) {
+        action(value[i], key[i]);
+      }
+    }
+  },
+  //   invokeMap : function (array,action,arg) {
+  //     var result = []
+  //     if( typeof action == 'string'){
+  //       for(let i of array){
+  //         result.push(...i[action])
+  //       }
+  //     }else{
+  //         for(let i of array){
+
+  //         }
+  //     }
+  //     return result
+  //    }
+  // ,
+  map: function (array, action) {
+    action = this.make(action);
+    var result = [];
+    for (let i in array) {
+      result.push(action(array[i], i, array));
+    }
+    return result;
+  },
+  partition: function (array, action) {
+    action = this.make(action);
+    var result = [];
+    result.push([]);
+    result.push([]);
+    for (let i of array) {
+      if (action(i)) {
+        result[0].push(i);
+      } else {
+        result[1].push(i);
+      }
+    }
+    return result;
+  },
+  // reduce : function (ary,reducer,initial) {
+  //   if(Array.isArray(ary)){
+  //     var star = 0
+  //     if(arguments.length == 2){
+  //       initial = ary[0]
+  //       star = 1
+  //     }
+  //     for(let i = star; i< ary.length; i++){
+  //       initial = reducer(initial,ary[i],i,ary)
+  //     }
+  //     return initial
+  //   }else{
+
+  //   }
+  //  }
+  // ,
   without: function (array, ...values) {
     var result = [];
     for (let i of array) {
