@@ -131,16 +131,16 @@ var wanghejun = {
     }
     return arrays;
   },
-  intersectionBy : function (...args) { 
-    var action = this.make(args[args.length - 1])
-    args.pop()
-    var result = [] 
-    for(let i of args){
-      result.push(i.map(it => action(it)))
+  intersectionBy: function (...args) {
+    var action = this.make(args[args.length - 1]);
+    args.pop();
+    var result = [];
+    for (let i of args) {
+      result.push(i.map((it) => action(it)));
     }
-    
-    var arrays = [];//返回
-    for (let i = 0; i < result[0].length;i++) {
+
+    var arrays = []; //返回
+    for (let i = 0; i < result[0].length; i++) {
       for (let j = 1; j < result.length; j++) {
         if (result[j].includes(result[0][i])) {
           if (j == result.length - 1) {
@@ -151,24 +151,23 @@ var wanghejun = {
         }
       }
     }
-    return arrays
-   },
-   intersectionWith : function (fi,la,action){
-     action = this.make(action)
-     var result = []
-     for (let i of fi) {
-        for (let j = 0; j < la.length; j++) {
-          if (action(i,la[j])) {
-            if (j == la.length - 1) {
-              result.push(i);
-              break;
-            }
-          } 
+    return arrays;
+  },
+  intersectionWith: function (fi, la, action) {
+    action = this.make(action);
+    var result = [];
+    for (let i of fi) {
+      for (let j = 0; j < la.length; j++) {
+        if (action(i, la[j])) {
+          if (j == la.length - 1) {
+            result.push(i);
+            break;
+          }
         }
-     }
-     return result
-   }
-   ,
+      }
+    }
+    return result;
+  },
   join: function (array, str) {
     var result = "";
     for (let i = 0; i < array.length; i++) {
@@ -308,15 +307,15 @@ var wanghejun = {
     }
     return array.length;
   },
-  sortedIndexBy : function (arr,value,action) { 
-    action = this.make(action)
-    for(let i in arr){
-      if(action(arr[i]) === action(value)){
-        return Number(i) 
+  sortedIndexBy: function (arr, value, action) {
+    action = this.make(action);
+    for (let i in arr) {
+      if (action(arr[i]) === action(value)) {
+        return Number(i);
       }
     }
-    return arr.length
-   },
+    return arr.length;
+  },
   sortedIndexOf: function (array, value) {
     for (let i = 0; i < array.length; i++) {
       if (array[i] == value) {
@@ -351,6 +350,24 @@ var wanghejun = {
     }
     return arrays.reverse();
   },
+  takeRightWhile: function (arr, action, tr = true) {
+    var result = [];
+    action = this.make(action);
+    for (let i = arr.length - 1; i >= 0; i--) {
+      if (!action(arr[i])) {
+        break;
+      }
+      if (tr) {
+        result.unshift(arr[i]);
+      } else {
+        result.push(arr[i]);
+      }
+    }
+    return result;
+  },
+  takeWhile: function (arr, action) {
+    return this.takeRightWhile(arr.reverse(), action, false);
+  },
   union: function (...value) {
     var result = [];
     for (let i of value) {
@@ -371,6 +388,42 @@ var wanghejun = {
     }
     return result;
   },
+  unionBy: function (...args) {
+    var action = this.make(args.pop());
+    args = args.flat();
+    var arr = args.map((it) => action(it));
+    var result = [];
+    for (let i in arr) {
+      var index = arr.indexOf(arr[i]);
+      if (index != -1 && i == index) {
+        result.push(args[i]);
+      }
+    }
+    return result;
+  },
+  unionWith: function (arr, value, action) {
+    action = this.make(action);
+    var result = [];
+
+    for (let i of arr) {
+      for (let j of value) {
+        if (!action(i, j)) {
+          result.push(i);
+        }
+        break;
+      }
+    }
+
+    for (let i of value) {
+      for (let j of arr) {
+        if (!action(i, j)) {
+          result.push(i);
+        }
+        break;
+      }
+    }
+    return result;
+  },
   unzip: function (array) {
     var result = [];
     var flag = true;
@@ -383,6 +436,44 @@ var wanghejun = {
           }
         }
         result[j].push(array[i][j]);
+      }
+    }
+    return result;
+  },
+  unzipWith: function (...arrays) {
+    var action = this.make(arrays.pop());
+
+    var arr = [];
+    arrays = arrays.flat();
+    for (let i in arrays[0]) {
+      arr.push([]);
+    }
+
+    var result = [];
+    for (let i in arrays) {
+      for (let j in arrays[i]) {
+        arr[j].push(arrays[i][j]);
+        if (i == arrays.length - 1) {
+          result.push(action(...arr[j]));
+        }
+      }
+    }
+
+    return result;
+  },
+  zipWith: function (...arrays) {
+    var action = arrays.pop();
+    var arr = [];
+    for (let i in arrays[0]) {
+      arr.push([]);
+    }
+    var result = [];
+    for (let i in arrays) {
+      for (let j in arrays[i]) {
+        arr[j].push(arrays[i][j]);
+        if (i == arrays.length - 1) {
+          result.push(action(...arr[j]));
+        }
       }
     }
     return result;
@@ -417,6 +508,52 @@ var wanghejun = {
     for (let i in map) {
       if (map[i] == 1) {
         result.push(Number(i));
+      }
+    }
+    return result;
+  },
+  xorBy: function (...args) {
+    var action = this.make(args.pop());
+    var map = {};
+    var result = [];
+    args = args.flat();
+    args.forEach((it, index) => {
+      var val = action(it);
+      if (val in map) {
+        map[val] = "false";
+      } else {
+        map[val] = index;
+      }
+    });
+    for (let i in map) {
+      if (map[i] != "false") {
+        result.push(args[map[i]]);
+      }
+    }
+    return result;
+  },
+  xorWith: function (fr, la, acton) {
+    acton = this.make(acton);
+    var result = [];
+    for (let i in fr) {
+      for (let j in la) {
+        if (acton(fr[i], la[j])) {
+          break;
+        }
+        if (!acton(fr[i], la[j]) && j == la.length - 1) {
+          result.push(fr[i]);
+        }
+      }
+    }
+
+    for (let i in la) {
+      for (let j in fr) {
+        if (acton(la[i], fr[j])) {
+          break;
+        }
+        if (!acton(la[i], fr[j]) && j == fr.length - 1) {
+          result.push(la[i]);
+        }
       }
     }
     return result;
@@ -945,7 +1082,7 @@ var wanghejun = {
     }
     return result;
   },
-  dropRightWhile : function (arr,action) { 
+  dropRightWhile: function (arr, action) {
     let makes = (value) => {
       if (typeof value === "string") {
         return (it) => value in it;
@@ -970,17 +1107,17 @@ var wanghejun = {
           return true;
         };
       }
-    }
-    action = makes(action)
-    for(let i = arr.length - 1; i >= 0;i--){
-      if(!action(arr[i])){
-        arr.splice(i+1,arr.length)
+    };
+    action = makes(action);
+    for (let i = arr.length - 1; i >= 0; i--) {
+      if (!action(arr[i])) {
+        arr.splice(i + 1, arr.length);
         break;
       }
     }
-    return arr
-   },
-   dropWhile : function (arr,action) { 
+    return arr;
+  },
+  dropWhile: function (arr, action) {
     let makes = (value) => {
       if (typeof value === "string") {
         return (it) => value in it;
@@ -1005,15 +1142,15 @@ var wanghejun = {
           return true;
         };
       }
-    }
-    action = makes(action)
-    for(let i in arr){
-      if(!action(arr[i])){
-        arr.splice(0,i)
+    };
+    action = makes(action);
+    for (let i in arr) {
+      if (!action(arr[i])) {
+        arr.splice(0, i);
         break;
       }
     }
-    return arr
+    return arr;
   },
   fill: function (array, str, star = 0, end = array.length) {
     var result = [...array];
@@ -1069,16 +1206,15 @@ var wanghejun = {
     }
     return -1;
   },
-  sortedLastIndexBy : function (arr,value,action) { 
-    action = this.make(action)
-    for(let i in arr){
-      if(action(arr[i]) > action(value)){
-        return Number(i) 
+  sortedLastIndexBy: function (arr, value, action) {
+    action = this.make(action);
+    for (let i in arr) {
+      if (action(arr[i]) > action(value)) {
+        return Number(i);
       }
     }
-    return arr.length
-   }
-  ,
+    return arr.length;
+  },
   sortedLastIndexOf: function (array, value) {
     for (let i = array.length - 1; i >= 0; i--) {
       if (array[i] === value) {
@@ -1488,57 +1624,56 @@ var wanghejun = {
     }
     return index;
   },
-  before : function (n, func) {
+  before: function (n, func) {
     var i = 0;
     var result;
     return function (...args) {
       if (i < n) {
-        i++
-        result = func
+        i++;
+        result = func;
       }
-      return result
-    }
+      return result;
+    };
   },
-  after : function (n, func) {
+  after: function (n, func) {
     var i = 0;
     var result;
     return function (...args) {
-      i++
+      i++;
       if (i > n) {
-        result = func
+        result = func;
       }
-      return result(...args)
-    }
-  }
-  ,
+      return result(...args);
+    };
+  },
   ary: function (func, n = func.length) {
     return function (...args) {
-      return func(...args.slice(0, n))
-    }
+      return func(...args.slice(0, n));
+    };
   },
-  unary : function (func) {
+  unary: function (func) {
     return function (args) {
-      return func(args)
-    }
+      return func(args);
+    };
   },
-  flip : function (func) {
+  flip: function (func) {
     return function (...args) {
-      return func(...args.reverse())
-    }
+      return func(...args.reverse());
+    };
   },
-  negate : function (func) {
+  negate: function (func) {
     return function (...args) {
-      return !func(...args)
-    }
+      return !func(...args);
+    };
   },
-  spread : function (func) {
+  spread: function (func) {
     return function (args) {
-      return func(...args)
-    }
+      return func(...args);
+    };
   },
-  reject : function (ary, test) {
-    return this.filter(ary, this.negate(test))
-  }
+  reject: function (ary, test) {
+    return this.filter(ary, this.negate(test));
+  },
 };
 // function (ary) {
 //   for(let i = 0;i < ary.length;i++){
