@@ -579,7 +579,7 @@ var wanghejun = {
     for (let i in array) {
       action(array[i], i, array);
     }
-    return array
+    return array;
   },
   forEachRight: function (array, action) {
     if (Array.isArray(array)) {
@@ -591,7 +591,7 @@ var wanghejun = {
         action(value[i], key[i]);
       }
     }
-    return array
+    return array;
   },
   //   invokeMap : function (array,action,arg) {
   //     var result = []
