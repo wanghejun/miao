@@ -582,16 +582,7 @@ var wanghejun = {
     return array;
   },
   forEachRight: function (array, action) {
-    if (Array.isArray(array)) {
       return this.forEach(array.reverse(), action);
-    } else {
-      var key = Object.keys(array).reverse();
-      var value = Object.values(array).reverse();
-      for (let i in value) {
-        action(value[i], key[i]);
-      }
-    }
-    return array;
   },
   //   invokeMap : function (array,action,arg) {
   //     var result = []
@@ -804,6 +795,15 @@ var wanghejun = {
       return value.length;
     }
   },
+  some : function (arr,action) { 
+    action = this.make(action)
+    for(let i in arr){
+      if(action(arr[i])){
+        return true
+      }
+    }
+    return false
+   },
   eq: function (first, last) {
     if (this.isNaN(first)) {
       return this.isNaN(first) === this.isNaN(last);
