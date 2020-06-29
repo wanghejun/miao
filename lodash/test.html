@@ -2,17 +2,10 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lodashtest</title>
   <script src="./wanghejun-lodash.js"></script>
-  <style>
-    p{
-      width: 100px;
-      height: 100px;
-      border: 1px red solid;
-    }
-  </style>
 </head>
 
 <body>
@@ -22,84 +15,82 @@
       var result;
       return function (...args) {
         if (i < n) {
-          i++
-          result = func
+          i++;
+          result = func;
         }
-        return result
-      }
+        return result;
+      };
     }
 
     function after(n, func) {
       var i = 0;
       var result;
       return function (...args) {
-        i++
+        i++;
         if (i > n) {
-          result = func
+          result = func;
         }
-        return result(...args)
-      }
+        return result(...args);
+      };
     }
 
     function ary(func, n = func.length) {
       return function (...args) {
-        return func(...args.slice(0, n))
-      }
+        return func(...args.slice(0, n));
+      };
     }
 
     function unary(func) {
       return function (args) {
-        return func(args)
-      }
+        return func(args);
+      };
     }
 
     function flip(func) {
       return function (...args) {
-        return func(...args.reverse())
-      }
+        return func(...args.reverse());
+      };
     }
 
     function negate(func) {
       return function (...args) {
-        return !func(...args)
-      }
+        return !func(...args);
+      };
     }
 
     function reject(ary, test) {
-      return this.filter(ary, negate(test))
+      return this.filter(ary, negate(test));
     }
 
     function spread(func) {
       return function (args) {
-        return func(...args)
-      }
+        return func(...args);
+      };
     }
 
     function bind(func, ...arg) {
       return function (...args) {
-        var copy = arg.slice()
-        var j = 0
+        var copy = arg.slice();
+        var j = 0;
 
         for (var i = 0; i < copy.length; i++) {
           if (copy[i] === null) {
-            copy[i] = args[j++]
+            copy[i] = args[j++];
           }
         }
         while (j < args.length) {
-          copy.push(args[j++])
+          copy.push(args[j++]);
         }
-        return func(...copy)
-      }
+        return func(...copy);
+      };
     }
 
-    function filter(ary, action) {
-
-    }
+    function filter(ary, action) {}
 
     function matches(src) {
       return function (obj) {
-        return this.isMatch(obj, src)
-      }
+        return this.isMatch(obj, src);
+      };
     }
     /**
      * 二叉树系列
@@ -109,407 +100,666 @@
       return {
         val,
         left: null,
-        right: null
-      }
+        right: null,
+      };
     }
     //将数组表达的二叉树转换成对链式表达法的二叉树
     function arytotree(ary, i = 0) {
-      if (ary[i] == null) return null
+      if (ary[i] == null) return null;
 
-      var root = createTreeNode(ary[i])
+      var root = createTreeNode(ary[i]);
 
-      root.left = arytotree(ary, 2 * i + 1)
-      root.right = arytotree(ary, 2 * i + 2)
-      return root
-
+      root.left = arytotree(ary, 2 * i + 1);
+      root.right = arytotree(ary, 2 * i + 2);
+      return root;
     }
     //将链式表达法的二叉树转换成对数组表达的二叉树
-    function treetoary(root, ary = [], idx = 0, ) {
-      if (root == null) return
-      ary[idx] = root.val
-      treetoary(root.left, ary, idx * 2 + 1)
-      treetoary(root.right, ary, idx * 2 + 2)
-      return ary
+    function treetoary(root, ary = [], idx = 0) {
+      if (root == null) return;
+      ary[idx] = root.val;
+      treetoary(root.left, ary, idx * 2 + 1);
+      treetoary(root.right, ary, idx * 2 + 2);
+      return ary;
     }
     //链表转数组 紧凑版（正版）
     function treeToAry(root) {
       if (!root) {
-        return []
-      }
-      var result = []
-      var nodes = [root]
-      var nextRow = []
+        return [];
+      } 
+      var result = [];
+      var nodes = [root];
+      var nextRow = [];
       while (nodes.length) {
         for (let i in nodes) {
-          var node = nodes[i]
+          var node = nodes[i];
           if (node == null) {
-            result.push(null)
+            result.push(null);
           } else {
             result.push(nodes[i].val);
             nextRow.push(nodes[i].left);
             nextRow.push(nodes[i].right);
           }
         }
-        nodes = nextRow
-        nextRow = []
+        nodes = nextRow;
+        nextRow = [];
       }
-      return result
+      return result;
     }
     //链表转数组 紧凑版（正版）修改版
     function treeToAry2(root) {
       if (!root) {
-        return []
+        return [];
       }
-      var result = []
+      var result = [];
 
-      var nodes = [root]
-      var i = 0
+      var nodes = [root];
+      var i = 0;
 
       while (i < nodes.length) {
-        var node = nodes[i++]
+        var node = nodes[i++];
         if (node == null) {
-          result.push(null)
+          result.push(null);
         } else {
-          result.push(node.val)
-          nodes.push(node.left)
-          nodes.push(node.right)
+          result.push(node.val);
+          nodes.push(node.left);
+          nodes.push(node.right);
         }
       }
 
-      return result
+      return result;
     }
     //链表转数组 紧凑版（正版）最终修改版
     function treeToAry2(root) {
       if (!root) {
-        return []
+        return [];
       }
-      var result = []
+      var result = [];
 
-      var nodes = [root]
+      var nodes = [root];
 
       while (nodes.length) {
-        var node = nodes.shift()
+        var node = nodes.shift();
         if (node == null) {
-          result.push(null)
+          result.push(null);
         } else {
-          result.push(node.val)
-          nodes.push(node.left)
-          nodes.push(node.right)
+          result.push(node.val);
+          nodes.push(node.left);
+          nodes.push(node.right);
         }
       }
 
       while (result[result.length - 1] === null) {
-        result.pop()
+        result.pop();
       }
 
-      return result
+      return result;
     }
     //去除最后为null版
     function treeToArys(root) {
       if (!root) {
-        return []
+        return [];
       }
-      var result = [root.val]
+      var result = [root.val];
 
-      var nodes = [root]
+      var nodes = [root];
 
       while (nodes.length) {
-        var node = nodes.shift()
+        var node = nodes.shift();
         if (node.left) {
-          nodes.push(node.left)
-          result.push(node.left.val)
+          nodes.push(node.left);
+          result.push(node.left.val);
         } else {
-          result.push(null)
+          result.push(null);
         }
         if (node.right) {
-          nodes.push(node.right)
-          result.push(node.right.val)
+          nodes.push(node.right);
+          result.push(node.right.val);
         } else {
-          result.push(null)
+          result.push(null);
         }
       }
       while (result[result.length - 1] === null) {
-        result.pop()
+        result.pop();
       }
-      return result
+      return result;
     }
     // //数组转链表 紧凑版
     function ArrtoTree(arr) {
       if (arr.length == 0) {
-        return null
+        return null;
       }
-      var root = createTreeNode(arr[0])
-      var queue = [root]
+      var root = createTreeNode(arr[0]);
+      var queue = [root];
 
       for (let i = 1; i < arr.length; i++) {
-        var node = queue.shift()
+        var node = queue.shift();
         if (arr[i] !== null) {
-          node.left = createTreeNode(arr[i])
-          queue.push(node.left)
+          node.left = createTreeNode(arr[i]);
+          queue.push(node.left);
         }
-        i++
+        i++;
         if (i > arr.length - 1) {
-          break
+          break;
         }
         if (arr[i] !== null) {
-          node.right = createTreeNode(arr[i])
-          queue.push(node.right)
+          node.right = createTreeNode(arr[i]);
+          queue.push(node.right);
         }
       }
-      return root
+      return root;
     }
     //二叉树的遍历 前中后(序) 递归版
     //前
     function preOrderTraverse(root) {
       if (root) {
-        console.log(root.val)
-        preOrderTraverse(root.left)
-        preOrderTraverse(root.right)
+        console.log(root.val);
+        preOrderTraverse(root.left);
+        preOrderTraverse(root.right);
       }
     }
     //前   action带操作
     function preOrderTraverse(root, action) {
       if (root) {
-        action(root.val)
-        preOrderTraverse(root.left, action)
-        preOrderTraverse(root.right, action)
+        action(root.val);
+        preOrderTraverse(root.left, action);
+        preOrderTraverse(root.right, action);
       }
     }
     //中
     function inOrderTraverse(root) {
       if (root) {
-        preOrderTraverse(root.left)
-        console.log(root.val)
-        preOrderTraverse(root.right)
+        preOrderTraverse(root.left);
+        console.log(root.val);
+        preOrderTraverse(root.right);
       }
     }
     //后
     function postOrderTraverse(root) {
       if (root) {
-        preOrderTraverse(root.left)
-        preOrderTraverse(root.right)
-        console.log(root.val)
+        preOrderTraverse(root.left);
+        preOrderTraverse(root.right);
+        console.log(root.val);
       }
     }
     //先序遍历--循环版本
     function preOrderTraverseLoop(root) {
-      var stack = []
+      var stack = [];
       while (true) {
         while (root) {
-          console.log(root.val)
-          stack.push(root)
-          root = root.left
+          console.log(root.val);
+          stack.push(root);
+          root = root.left;
         }
-        if (!stack.length) break
-        var node = stack.pop()
-        root = node.right
+        if (!stack.length) break;
+        var node = stack.pop();
+        root = node.right;
       }
     }
-    //先序遍历--循环版本+优化 
+    //先序遍历--循环版本+优化
     function preOrderTraverseLoop(root) {
-      var stack = []
+      var stack = [];
       while (true) {
         if (root) {
-          console.log(root.val)
-          stack.push(root)
-          root = root.left
+          console.log(root.val);
+          stack.push(root);
+          root = root.left;
         } else if (stack.length) {
-          root = stack.pop().right
+          root = stack.pop().right;
         } else {
-          break
+          break;
         }
       }
     }
     //中序遍历--循环版本
     function inOrderTraverseLoop(root) {
-      var stack = []
+      var stack = [];
 
       while (true) {
         if (root) {
-          stack.push(root)
-          root = root.left
+          stack.push(root);
+          root = root.left;
         } else if (stack.length) {
-          root = stack.pop()
-          console.log(root.val)
-          root = root.right
+          root = stack.pop();
+          console.log(root.val);
+          root = root.right;
         } else {
-          break
+          break;
         }
       }
     }
     //BST(二叉排序) binary search tree
     function insertIntoBST(bst, val) {
       if (bst === null) {
-        return createTreeNode(val)
+        return createTreeNode(val);
       }
       if (val < bst.val) {
-        bst.left = insertIntoBST(bst.left, val)
+        bst.left = insertIntoBST(bst.left, val);
       } else {
-        bst.right = insertIntoBST(bst.right, val)
+        bst.right = insertIntoBST(bst.right, val);
       }
-      return bst
+      return bst;
     }
     //插入，循环版
     function insertIntoBSTloop(bst, val) {
       if (bst === null) {
-        return createTreeNode(val)
+        return createTreeNode(val);
       }
 
-      var p = bst
+      var p = bst;
 
       while (true) {
         if (val < p.val) {
           if (p.left) {
-            p = p.left
+            p = p.left;
           } else {
-            p.left = createTreeNode(val)
-            break
+            p.left = createTreeNode(val);
+            break;
           }
         } else {
           if (p.right) {
-            p = p.right
+            p = p.right;
           } else {
-            p.right = createTreeNode(val)
-            break
+            p.right = createTreeNode(val);
+            break;
           }
         }
       }
 
-      return bst
+      return bst;
     }
 
     function inOrderTraverse(root, action) {
       if (root) {
-        inOrderTraverse(root.left, action)
-        action(root.val)
-        inOrderTraverse(root.right, action)
+        inOrderTraverse(root.left, action);
+        action(root.val);
+        inOrderTraverse(root.right, action);
       }
     }
 
     function bstSort(ary) {
-      var tree = null
+      var tree = null;
       for (let i of ary) {
-        tree = insertIntoBST(tree, i)
+        tree = insertIntoBST(tree, i);
       }
-      var result = []
-      inOrderTraverse(tree, val => {
-        result.push(val)
-      })
-      return result
+      var result = [];
+      inOrderTraverse(tree, (val) => {
+        result.push(val);
+      });
+      return result;
     }
     //默写
     function a(arr, i = 0) {
       if (arr[i] == null) {
-        return null
+        return null;
       }
-      var root = createTreeNode(arr[i])
-      root.left = a(arr, i * 2 + 1)
-      root.right = a(arr, i * 2 + 2)
-      return root
+      var root = createTreeNode(arr[i]);
+      root.left = a(arr, i * 2 + 1);
+      root.right = a(arr, i * 2 + 2);
+      return root;
     }
 
     function b(root, ary = [], idx = 0) {
-      if (ary[idx] == null) return
-      ary[idx] = root.val
-      b(root.left, ary, idx * 2 + 1)
-      b(root.right, ary, idx * 2 + 2)
-      return ary
+      if (ary[idx] == null) return;
+      ary[idx] = root.val;
+      b(root.left, ary, idx * 2 + 1);
+      b(root.right, ary, idx * 2 + 2);
+      return ary;
     }
 
     function treeToAry2s(root) {
-      var result = []
-      var nodes = [root]
+      var result = [];
+      var nodes = [root];
       var i = 0;
       while (i < nodes.length) {
         if (nodes[i] == null) {
-          result.push(null)
+          result.push(null);
         } else {
-          result.push(nodes[i].val)
-          nodes.push(nodes[i].left)
-          nodes.push(nodes[i].right)
+          result.push(nodes[i].val);
+          nodes.push(nodes[i].left);
+          nodes.push(nodes[i].right);
         }
-        i++
+        i++;
       }
-      return result
+      return result;
     }
     //表格绘制程序
     var data = [
-      ['hello world', 'asdasdafsdfgdsf', 'i have a pen/n you do not have'],
-      ['hello world', 'asdasdafsdfgdsf', 'i have a pen/n you do not have'],
-      ['hello world', 'asdasdafsdfgdsf', 'i have a pen/n you do not have']
-    ]
-    var rows = data.map(row => {
-      return row.map(str => new Cell(str))
-    })
+      ["hello world", "asdasdafsdfgdsf", "i have a pen/n you do not have"],
+      ["hello world", "asdasdafsdfgdsf", "i have a pen/n you do not have"],
+      ["hello world", "asdasdafsdfgdsf", "i have a pen/n you do not have"],
+    ];
+    var rows = data.map((row) => {
+      return row.map((str) => new Cell(str));
+    });
 
     function Cell(str) {
-      this.str = str
+      this.str = str;
     }
     Cell.prototype.minWidth = function () {
-      return this.str.split('\n').map(it => it.length).reduce((a, b) => Math.max(a, b))
-    }
+      return this.str
+        .split("\n")
+        .map((it) => it.length)
+        .reduce((a, b) => Math.max(a, b));
+    };
     Cell.prototype.minHeight = function () {
-      return this.str.split('\n').length
-    }
+      return this.str.split("\n").length;
+    };
     Cell.prototype.draw = function (width, height) {
-      var result = []
-      var lines = this.str.split('\n')
+      var result = [];
+      var lines = this.str.split("\n");
       for (let i = 0; i < height; i++) {
-        var line = lines[i] || ''
-        result.push(line.padEnd(width, ' '))
+        var line = lines[i] || "";
+        result.push(line.padEnd(width, " "));
       }
-      return result
-    }
+      return result;
+    };
 
     function rowHeights(rows) {
-      return rows.map(row => {
+      return rows.map((row) => {
         return row.reduce((max, cell) => {
-          return Math.max(max, cell.minHeight())
-        }, 0)
-      })
+          return Math.max(max, cell.minHeight());
+        }, 0);
+      });
     }
 
     function rowWidths(rows) {
-      return rows[0].map((_, colIdx) => {
-        return rows.map(row => {
-          return row[colIdx]
+      return rows[0]
+        .map((_, colIdx) => {
+          return rows.map((row) => {
+            return row[colIdx];
+          });
         })
-      }).map(col => {
-        return col.reduce((max, cell) => {
-          return Math.max(max, cell.minHeight())
-        }, 0)
-      })
+        .map((col) => {
+          return col.reduce((max, cell) => {
+            return Math.max(max, cell.minHeight());
+          }, 0);
+        });
     }
 
-    function drow(rows) { }
-    var date = [
-      {a:1,b:2,c:3},
-      {a:2,b:4,c:1,d:3},
-      {a:1,b:2,c:3}
-    ]
-    function Table(date){
-      var map = {}
-      date.forEach(it => {
-        for(let i in it){
-          if(!(i in map)){
-            map[i] = i
+    function drow(rows) {}
+
+    //table作业
+    var date = [{
+        a: 1,
+        b: 2,
+        c: 3
+      },
+      {
+        a: 2,
+        b: 4,
+        c: 1,
+        d: 3
+      },
+      {
+        a: 1,
+        b: 2,
+        c: 3
+      },
+    ];
+
+    function Table(date) {
+      var map = {};
+      date.forEach((it) => {
+        for (let i in it) {
+          if (!(i in map)) {
+            map[i] = i;
           }
         }
+      });
+      var result = '<table border ="1"> <tr>';
+      for (let i in map) {
+        result += "<td>" + i + "</td>";
+      }
+      result += "</tr>";
+      for (let i in date) {
+        result += "<tr>";
+        for (let j in date[i]) {
+          result += "<td>" + date[i][j] + "</td>";
+        }
+        result += "</tr>";
+      }
+      result += "</table>";
+      document.write(result);
+    }
+    //Vector
+    function Vector(x, y) {
+      this.x = x;
+      this.y = y;
+    }
+    // Vector.prototype ={
+    //   constructor : Vector,
+    //   plus(){},
+    //   minus(){},
+    //   get length(){}
+    // }
+    Vector.prototype.plus = function (val) {
+      return new Vector(this.x + val.x, this.y + val.y);
+    };
+    Vector.prototype.minus = function (val) {
+      return new Vector(this.x - val.x, this.y - val.y);
+    };
+    Object.defineProperty(Vector.prototype, "length", {
+      get: function () {
+        return Math.sqrt(
+          Math.pow(this.x + this.x, 2) + Math.pow(this.y + this.y, 2)
+        );
+      },
+    });
+    //自写一个Set类
+    function Myset(val) {
+      this.data = Array.call(this);
+      //不正规去重
+      // if (!(val == null)) {
+      //   this.data.push(...new Array(...new Set(val)));
+      // }
+      if (!(val == null)) {
+        for (var i = 0; i < val.length; i++) {
+          this.add(initial[i])
+        }
+      }
+
+    }
+    Myset.prototype = {
+      constructor: Myset,
+      add(val) {
+        if (!this.data.includes(val)) {
+          this.data.push(val);
+          return this
+        }
+      },
+      delet(val) {
+        if (this.data.includes(val)) {
+          this.data.splice(this.data.indexOf(val), 1);
+          return this
+        }
+      },
+      has(val) {
+        if (this.data.includes(val)) {
+          return true
+        }
+        return false
+      },
+      get size() {
+        return this.data.length;
+      },
+      clear() {
+        this.data.length = 0;
+        return this
+      },
+    }
+    // Myset.prototype.size = function () {
+    //   return this.data.length;
+    // };
+    // Myset.prototype.add = function (val) {
+    //   if (!this.data.includes(val)) {
+    //     return this.data.push(val);
+    //   }
+    // };
+    // Myset.prototype.delet = function (val) {
+    //   if (this.data.includes(val)) {
+    //     return this.data.splice(this.data.indexOf(val), 1);
+    //   }
+    // };
+    // Myset.prototype.clear = function () {
+    //   return  this.data.length = 0;
+    // };
+    //自写一个Set类   用class语法
+    class Mysets extends Myset { //这里继承了Myset
+      //下面是给这个类上挂方法，简称静态方法(就在方法前加一个前缀 static)
+      static show() {
+        console.log(123)
+      }
+      //构造函数
+      constructor(val) {
+        super(val) //调用最近原型的构造函数(Myset)
+        this.data = Array.call(this);
+        if (!(val == null)) {
+          for (var i = 0; i < val.length; i++) {
+            this.add(initial[i])
+          }
+        }
+      }
+      //下面都是给原型上挂方法，且都是不可枚举的
+      add(val) {
+        super.add(val) //方法里也可以调用父级的方法
+        if (!this.data.includes(val)) {
+          this.data.push(val);
+          return this
+        }
+      }
+      delet(val) {
+        if (this.data.includes(val)) {
+          this.data.splice(this.data.indexOf(val), 1);
+          return this
+        }
+      }
+      has(val) {
+        if (this.data.includes(val)) {
+          return true
+        }
+        return false
+      }
+      get size() {//geter seter 方法
+        return this.data.length;
+      }
+      clear() {
+        this.data.length = 0;
+        return this
+      }
+    }
+    //二叉树排序类
+    function BSTIterator(root) {
+      this.traverseResult = []
+
+      inorderTraverse(root, val => {
+        this.traverseResult.push(val)
       })
-      var result = '<table border ="1"> <tr>'
-        for(let i in map){
-          result += '<td>' + i + '</td>'
-        }
-        result += '</tr>'
-      for(let i in date){
-       result += '<tr>'
-          for(let j in date[i]){
-            result += '<td>' + date[i][j] + '</td>'
+    }
+    BSTIterator.prototype.next = function () {
+      return this.traverseResult.shift()
+    }
+    BSTIterator.prototype.hasNext = function () {
+      return this.traverseResult.length > 0
+    }
+
+    //
+    function restore(preorder, inorder){
+      if(preorder.length == 0){
+        return null
+      }
+      var rootVal = preorder[0]
+      var root = new TreeNode(rootVal)
+      var idx = inorder.findIndex(it => it = rootVal)
+    }
+
+    //二叉堆
+    class PriorityQue{
+      constructor(arr = []){
+        this.elements = arr.slice()
+        this._heapify()
+      }
+      peak(){
+        return this.elements[0]
+      }
+      /**
+       * 增加
+       */
+      push(val){
+        this.elements.push(val)
+        var idx = this.elements.length - 1
+        return this._heapUP(idx)
+        // this._heapUP2(idx)
+      }
+      _heapUP(idx){
+        if(idx > 0){
+          var pIdx = Math.floor((idx - 1) / 2)
+          if(this.elements[idx] > this.elements[pIdx]){
+            this._swap(idx,pIdx)
+            this._heapUP(pIdx)
           }
-      result += '</tr>'
         }
-      result += '</table>'
-      document.write(result)
+        return this
+      }
+      _heapUP2(idx){
+        while(idx >= 0){
+          var pIdx = Math.floor((idx - 1) / 2)
+          if(this.elements[idx] > this.elements[pIdx]){
+            this._swap(idx,pIdx)
+            idx = pIdx
+          }else{
+            break
+          }
+        }
+        return this
+      }
+      /**
+       * 删除
+      */
+      pop(){
+        var result = this.elements[0]
+        this.elements[0] = this.elements.pop()
+        this._heapDown(0)
+        return result
+      }
+      /**
+       * 把一个已存在元素的数组转换成堆
+      */
+      _heapify(){
+        var idx = Math.floor((this.elements.length - 1) / 2)
+        for(let i = idx;i >= 0;i--){
+          this._heapDown(i)
+        }
+      }
+      _heapDown(idx){
+        Math.max(this.elements[idx + 1],this.elements[idx + 2])
+        var maxIdx = idx
+        var leftIdx = idx * 2 + 1
+        var rightIdx = idx * 2 + 2
+        if(leftIdx < this.elements.length){
+          if(this.elements[leftIdx] > this.elements[maxIdx]){
+            maxIdx = leftIdx
+          }
+        }
+        if(rightIdx < this.elements.length){
+          if(this.elements[rightIdx] > this.elements[maxIdx]){
+            maxIdx = rightIdx
+          }
+        }
+        if(maxIdx !== idx){
+          this._swap(maxIdx,idx)
+          this._heapDown(maxIdx)
+        }
+      }
+      _swap(i,j){
+        if(i !== j){
+          var t = this.elements[i]
+          this.elements[i] = this.elements[j]
+          this.elements[j] = t
+        }
+      }
+      get size(){
+        return this.elements.length
+      }
     }
   </script>
 </body>

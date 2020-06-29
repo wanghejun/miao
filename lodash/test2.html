@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="module">
+    //模块导入测试
+    // import {fish,head,mouth} from './test.js';
+    // fish()
+    // console.log(head)
+    // console.log(mouth)
+    let obj = 1;
+    debugger;
+    import('./test.js').then(({fish,head}) => {
+      console.log(head)
+      fish()
+    })
+    console.log(obj)
+  </script>
+</body>
+</html>
