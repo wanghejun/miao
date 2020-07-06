@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+<body>
+  <div>
+    name :<input type="text" name="" id="" data-help="write name">
+    age :<input type="text" name="" id="" data-help="write age">
+  </div>
+  <p id="p"></p>
+  <script>
+
+    //焦点事件
+    let divs = document.querySelector('div')
+
+    divs.addEventListener('focusin', e =>{
+      p.innerText = e.target.dataset.help
+    })
+
+    divs.addEventListener('focusout', e =>{
+      p.innerText = ''
+    })
+
+
+
+    //窗口失去和获取焦点
+    window.onfocus = e => {
+      document.querySelector('title').innerText = '你回来啦'
+    }
+
+    onblur = e => {
+      document.querySelector('title').innerText = '客观别走啊'
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let works = new Worker('./test.js')//必须用https的形式才能启动，或者本地服务器
+    works.postMessage('send message')//给另一个线程发送一个数据，可以是对象，但是是复制的，他们之间不能同时访问一个数据
+
+    works.addEventListener('message' , e =>{//监听另一个线程返回的消息
+      console.log(e.data)
+    })
+  </script>
+</body>
+</html>

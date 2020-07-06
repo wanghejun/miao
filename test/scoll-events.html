@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      height: 300vh;
+    }
+    progress{
+      width: calc(100% - 10px);
+      position: fixed;
+    }
+  </style>
+</head>
+<body>
+  <progress id ='pro' max="100" value="0"></progress>
+  <script>
+    //监听侧边滚轮
+    addEventListener('scroll', e =>{
+      let max = document.body.scrollHeight - window.innerHeight
+      let percent = (pageYOffset / max) * 100
+      pro['value'] = percent
+    })
+
+    //阻止鼠标滚轮事件
+    // addEventListener('mousewheel',e =>{
+    //   e.preventDefault()
+    // },{
+    //   passive:false
+    // })
+    document.body.addEventListener('click', e =>{
+      if(e.detail == 3){
+        console.log('3击')
+      }
+      console.log(e)
+    })
+  </script>
+</body>
+</html>

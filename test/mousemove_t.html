@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      position: relative;
+    }
+
+    .box {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      transition: .3s linear;
+      background-size: cover;
+      background-position-x: -15px;
+      background-position-y: -15px;
+      background-image: url('./imges/12.png');
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    'use strict'
+    let last = null //防抖
+    let flag = false  //防抖
+    addEventListener('mousemove', e => {
+      last = e
+      if (!flag) {
+        flag = true
+        setTimeout(() => {
+          flag = false
+          let divs = document.createElement('div')
+          divs.className = 'box'
+          // divs.style.background = '#' + Math.random().toString(16).substr(2,6)
+          divs.style.top = e.pageY + 'px';
+          divs.style.left = e.pageX + 'px';
+          document.body.append(divs)
+          elremove(divs)
+        }, 40)
+      }
+    })
+
+    function elremove(el) {
+      el.style.opcity = '0'
+      setTimeout(() => {
+        document.body.removeChild(el)
+      }, 500)
+    }
+    //D厅页面
+    document.addEventListener('keydown', e => {
+      console.log(e)
+      if (e.key == 'c') {
+        document.body.style.background = '#' + Math.random().toString(16).substr(2, 3)
+      }
+    })
+
+    addEventListener('keyup', e => {
+      document.body.style.background = ''
+    })
+  </script>
+</body>
+
+</html>

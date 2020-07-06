@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    p{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<p>不要输入QWX: <input type="text" name="" id=""></p>
+<script>
+  let inp = document.querySelector('input')
+  let p = document.querySelector('p')
+  //不许输入Q，W，X
+  p.addEventListener('keydown', e =>{
+    console.log(e)
+    if(e.key == 'Q' || e.key == 'W' || e.key == 'X'){
+      e.preventDefault()
+    }
+  })
+  //不许paste相关内容
+  addEventListener('paste', e =>{
+     var paste = e.clipboardData.getData('text')
+     if(/[Q,W,X]/g.test(paste)){
+       e.preventDefault()
+     }
+    //  paste = paste.repeat(/[Q,W,X]/g,' ')
+
+  })
+  //时刻检查
+  let id = 0
+  inp.addEventListener('focus' , e =>{
+    id = setInterval(() => {
+      let value = inp.value
+      inp.value = value.replace(/[Q,W,X]/g,'*')
+    }, 100);
+  })
+
+  inp.addEventListener('blur', e =>{
+    clearInterval(id)
+  })
+
+</script>
+  <!-- <script>
+    let input = ''
+    let id = 0
+    addEventListener('keydown', e => {
+      input+=e.key
+      clearTimeout(id)
+      id = setTimeout(() => {
+        console.log(input)
+        input=''
+      },1000)
+    })
+  </script> -->
+</body>
+</html>

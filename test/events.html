@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      height: 200px;
+      background: beige;
+    }
+
+    .dot {
+      height: 8px;
+      width: 8px;
+      border-radius: 4px;
+      /* rounds corners */
+      background: blue;
+      position: absolute;
+    }
+
+    div {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <button xonclick="foo()">btn</button>
+    <span><button>2333</button> click</span>
+  </div>
+  <a href="https://www.baidu.com">百度一下</a>
+  <script>
+    let btn = document.querySelector('button')
+
+    function foo() {
+      console.log(1)
+    }
+    btn.addEventListener('click', e => {
+      console.log('btn')
+    })
+
+    let divs = document.querySelector('div')
+    divs.addEventListener('click', e => {
+      console.log('divs')
+      console.log(e.target)
+    })
+
+    divs.addEventListener('click', e => {
+      console.log(1)
+      e.stopImmediatePropagation()
+    }, true)
+    let spans = document.querySelector('span')
+    spans.addEventListener('click', e => {
+      // e.stopPropagation()
+      console.log('spans')
+    })
+    let bt = document.querySelectorAll('button')
+    bt[1].addEventListener('click', e => {
+      console.log('bt')
+    })
+    //网页在线事件
+    window.addEventListener('online', e => {
+      console.log('我上线了')
+    })
+
+    //阻止节点默认行为
+    // let as = document.querySelector('a')
+    // as.addEventListener('click', e => {
+    //   console.log('a')
+    //   if (e.which == 1) {
+    //     e.preventDefault();
+    //   }
+    // })
+    //键盘监听
+    document.body.addEventListener('keydown', e => {
+      if (e.key == 'v') {
+        console.log('v')
+      }
+      if (e.key == 'V') {
+        console.log('V')
+      }
+    })
+
+    //监听三击
+    document.body.addEventListener('click', e =>{
+      if(e.detail == 3){
+        console.log('3击')
+      }
+    })
+
+    //最简单的画图
+    let drw ;
+    window.addEventListener("mousedown", event => {
+      addEventListener("mouseover", drw = event => {
+        let dot = document.createElement("div");
+        dot.className = "dot";
+        dot.style.left = (event.pageX - 4) + "px";
+        dot.style.top = (event.pageY - 4) + "px";
+        document.body.appendChild(dot);
+      });
+    })
+    
+    addEventListener("mouseup", event => {
+      removeEventListener('mouseover',drw)
+    })
+    
+    // 6.实现一个函数sum，运算结果可以满足如下预期结果：
+    // sum(1,2,3).valueOf();       //6
+    // sum(2,3)(2).valueOf();      //7
+    // sum(1)(2)(3)(4).valueOf();  //10
+    // sum(2)(4,1)(2).valueOf();   //9
+    function sum(...args) {
+      var result = args.reduce((a, b) => {
+        return a + b
+      })
+      sum.num += result
+      return sum
+    }
+    sum.num = 0
+    sum.valueOf = function () {
+      var result = this.num
+      this.num = 0
+      return result
+    }
+  </script>
+</body>
+
+</html>

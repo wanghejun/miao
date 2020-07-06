@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片渐显</title>
+  <style>
+    img{
+      width: 200px;
+    }
+    div{
+      display: flex;
+      align-items: flex-end;
+    }
+  </style>
+  <link rel="stylesheet" href="https://animate.style/animate.min.css">
+</head>
+<body>
+  <div>
+  <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
+  <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
+  <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
+  <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
+  <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
+  <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
+  <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
+</div>
+  <script>
+    //样板
+    // addEventListener('DOMContentLoaded', e =>{
+    // let imgs = document.querySelectorAll('img')
+    //   imgs.forEach(it => {
+    //     document.body.removeChild(it)
+    //     it.addEventListener('load' ,e =>{
+    //       document.body.append(it)
+    //       it.style.opacity = '0'
+
+    //       requestAnimationFrame(() => {
+    //         it.style.opacity = '1'
+    //       })
+    //     })
+    //   })
+    // })
+
+    let imgs = document.querySelectorAll('img')
+    
+    window.addEventListener('DOMContentLoaded', e => {
+      imgs.forEach(it => {
+        it.style.opacity = '0'
+      })
+    })
+    window.addEventListener('load' , e => {
+      imgs.forEach(it => {
+        it.style.transition = '5s'
+        it.style.opacity = '1'
+      })
+    })
+  </script>
+</body>
+</html>

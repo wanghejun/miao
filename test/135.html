@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!-- <link rel="stylesheet" href="https://prismjs.com/themes/prism.css" />
+  <script src="https://prismjs.com/scripts/prefixfree.min.js" ></script> -->
+  <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/atom-one-dark.css">
+  <script src="https://highlightjs.org/static/highlight.site.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script> 
+</head>
+
+<body>
+  <p>
+    hello
+    <img src="" alt="Cat">
+    <img src="" alt="Hat">
+    world
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function element(tag,attrs,...child){
+        var node = document.createElement(tag)
+        if(attrs){
+          for(let key in attrs){
+            node.setAttribute(key , attrs[key])
+          }
+        }
+    </code>
+    <code>
+      for(let i = img.length - 1; i>=0;i--){
+        var text = document.createTextNode(img[i].alt)
+        img[i].parentElement.replaceChild(text,img[i])
+      }
+    </code>
+    <code>
+      let paeser = (function (str) { 
+        let i = 0
+
+        function parserValue(str) { 
+          if (str[i] === '[') {
+            return parseArray()
+          }
+          if (str[i] === '{') {
+            return parseObject()
+          }
+          if (str[i] === '"') {
+            return parseString()
+          }
+          if (str[i] === 't') {
+            return parseTrue()
+          }
+          if (str[i] === 'f') {
+            return parseFalse()
+          }
+          if (str[i] === 'n') {
+            return parseNull()
+          }
+          return parseNumber()
+         }
+    </code>
+  </pre>
+  <div style="text-align: center;">
+    <p style="position: relative; width: 300px;margin: 0 auto;">
+      <img src="https://tse4-mm.cn.bing.net/th/id/OIP.4lp2hJoEo6W9qsZec8rLegHaHa?w=187&h=187&c=7&o=5&pid=1.7" alt="cat" width="100px" />
+      <img src="https://tse4-mm.cn.bing.net/th/id/OIP.x8kQn8bKcdBLjEmH48ooRgHaHa?w=192&h=192&c=7&o=5&pid=1.7" alt="" width="50px"  style="position: absolute;" />
+    </p>
+
+  </div>
+  <script>
+    // var img = document.getElementsByTagName('img')
+    // for (let i = img.length - 1; i >= 0; i--) {
+    //   var text = document.createTextNode(img[i].alt)
+    //   img[i].parentElement.replaceChild(text, img[i])
+    // }
+
+    function element(tag, attrs, ...child) {
+      var node = document.createElement(tag)
+      if (attrs) {
+        for (let key in attrs) {
+          node.setAttribute(key, attrs[key])
+        }
+      }
+      for (let i of child) {
+        if (typeof i == 'string') {
+          node.appendChild(document.createTextNode(i))
+        } else {
+          node.appendChild(i)
+        }
+      }
+      return node
+    }
+    element('p', {
+      'class': 'box'
+    }, element('a', {
+      "href": 'www.baidu.com'
+    }, 'i'))
+
+    // var str = '[111,222,{"a":3},{"b":true,"c":"fooobar","d":[1,flase,[null,4,{"x":1,"y":2}]]}]'
+
+    let paeser = (function (str) {
+      let i = 0
+
+      function parserValue(str) {
+        if (str[i] === '[') {
+          return parseArray()
+        }
+        if (str[i] === '{') {
+          return parseObject()
+        }
+        if (str[i] === '"') {
+          return parseString()
+        }
+        if (str[i] === 't') {
+          return parseTrue()
+        }
+        if (str[i] === 'f') {
+          return parseFalse()
+        }
+        if (str[i] === 'n') {
+          return parseNull()
+        }
+        return parseNumber()
+      }
+
+      function parseArray() {
+        // [111,"foo",true]
+        // []
+        var result = []
+        i++ // skip '['
+
+        while (str[i] !== ']') {
+          var value = parseValue()
+          result.push(value)
+          if (str[i] === ',') {
+            i++ // skip ','
+          }
+        }
+
+        i++ // skip ']'
+        return result
+      }
+
+      function parseObject() {
+        var result = {}
+        i++ // skip '{'
+
+        while (str[i] !== '}') {
+          var key = parseString()
+          i++ // skip ':'
+          var value = parseValue()
+
+          result[key] = value
+
+          if (str[i] === ',') {
+            i++ // skip ','
+          }
+        }
+        i++ // skip '}'
+        return result
+      }
+
+      function parseString() {
+        // "foobar"
+        i++ // skip start '"'
+        var result = ''
+        while (str[i] !== '"') {
+          result += str[i++]
+        }
+        i++ // skip end '"'
+        return result
+      }
+
+      function parseNumber() {
+        // -353.43e-305
+        // .3
+        // .3e5
+        var numStr = ''
+        while (isNumberDigit(str[i])) {
+          numStr += str[i++]
+        }
+        return parseInt(numStr)
+      }
+
+      function isNumberDigit(c) {
+        var code = c.charCodeAt(0)
+        var code0 = '0'.charCodeAt(0)
+        var code9 = '9'.charCodeAt(0)
+        return code >= code0 && code <= code9
+      }
+
+      function parseTrue() {
+        i += 4
+        return true
+      }
+
+      function parseFalse() {
+        i += 5
+        return false
+      }
+
+      function parseNull() {
+        i += 4
+        return null
+      }
+      return function (str) {
+        return parserValue(str)
+      }
+    })()
+
+    //bind
+    function binds(f, ths, ...arr) {
+      return function (...arrs) {
+        return f.call(ths, ...arr, ...arrs)
+      }
+    }
+    
+    var img = document.querySelectorAll('p')[1]
+    var angle = 0;
+    var lasttime = null
+    var yue = document.querySelectorAll('img')[3]
+    function animate(time) { 
+      if(lasttime != null){
+        angle += (time  - lasttime) * 0.001
+      }
+        lasttime = time 
+        img.style.top = Math.sin(angle) * 100 + 'px'
+        img.style.left = Math.cos(angle) * 200 + 'px'
+        yue.style.top = Math.sin(angle) * 100 + 'px'
+        yue.style.left = Math.cos(angle) * 200 + 'px'
+        requestAnimationFrame(animate)
+     }
+        requestAnimationFrame(animate)
+  </script>
+</body>
+
+</html>

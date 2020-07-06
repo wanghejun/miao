@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 第一版   我可以控制间隔时间
+    let lastime = 0
+    let num = 1
+    addEventListener('click', e => {
+      let time = Date.now()
+      if(time - lastime  < 1000){
+        num++
+      }else{
+        num = 1
+      }
+
+      if(num == 3){
+        console.log('鼠标三击了')
+      }
+
+      lastime = time
+    })
+
+    //第二版
+    // window.addEventListener('click',e => {
+    //   if(e.detail == 3){
+    //     console.log('我三击了')
+    //   }
+    // })
+  </script>
+</body>
+</html>

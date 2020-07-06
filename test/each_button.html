@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./handlebars-v4.7.6.js"></script>
+  <style>
+    div{
+      text-align: center;
+    }
+    body{
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      background: silver;
+    }
+    .divs{
+      width: 8px;
+      height: 8px;
+      background: red;
+      border-radius: 100%;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+  </div>
+  <script>
+    //鼠标位置监听
+    // addEventListener('mousedown',e =>{
+    //   console.log(e.pageX,e.pageY)
+    // })
+
+    //粗糙画画
+    window.addEventListener('mousedown', e =>{
+      console.log(e)
+      let di = document.createElement('div')
+      di.className = 'divs'
+      di.style.left = (e.pageX - 4) + 'px'
+      di.style.top = (e.pageY - 4) + 'px'
+      document.body.appendChild(di)
+    })
+    // let divs = document.querySelector('div')
+    // divs.addEventListener('click', e =>{
+    //   if(e.target.matches('button')){
+    //     var btn = e.target
+    //     var idx = Array.prototype.indexOf.call(divs.children,btn)
+    //     console.log(idx)
+    //   }
+    // })
+    
+    //第二种方法
+    let btn = document.querySelectorAll('button')
+    btn.forEach((val,idx,arr)=>{
+      var index = idx
+      val.addEventListener('click',(e) => {
+        console.log(index)
+      })
+    })
+
+    // for(let i in btn){
+    //   btn[i].addEventListener('click',(e,i) =>{
+    //     console.log(btn[i])
+    //   })
+    // }
+
+      // for(let i = 0; i < btn.length;i++){
+      //   let  btns = btn[i];
+      //   btns.addEventListener('click',(e) => {
+      //     var p = btns.parentNode
+      //     var idx = Array.from(p.children).indexOf(btns)
+      //     console.log(idx)
+      //   })
+      // }
+      var data = {
+          title: "My New Post",
+          body: "This is my first post!",
+          list: [
+          {
+            name: 'lily',
+            score: 138,
+            math: 30,
+            chn: 50,
+            eng: 65,
+          }, 
+          {
+            name: 'lily',
+            score: 138,
+            math: 30,
+            chn: 50,
+            eng: 65,
+          },
+          {
+            name: 'lily',
+            score: 138,
+            math: 30,
+            chn: 50,
+            eng: 65,
+          },
+          {
+            name: 'lily',
+            score: 138,
+            math: 30,
+            chn: 50,
+            eng: 65,
+          }
+        ]
+        }
+
+      var tpl = `<div class="entry">
+        <h1>{{title}}</h1>
+        <div class="body">
+          {{body}}
+        </div>
+        <table>
+          {{#each list}}
+            <tr>
+              <td class="foo">{{this.name}}</td>
+              <td>{{this.score}}</td>
+              <td class="bar">{{this.math}}</td>
+              <td>{{this.chn}}</td>
+              <td>{{this.eng}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      </div>
+              `
+  </script> 
+</body>
+</html>

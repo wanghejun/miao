@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: silver;
+      height: 100vh;
+      position: relative;
+    }
+
+    div {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+    }
+    .o{
+      background: red;
+    }
+    .t{
+      background: blue;
+    }
+    .h{
+      background: green;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div" class="o" style="top: 50px;left: 50px;"></div>
+  <div id="div" class="t" style="top: 50px;left: 50px;"></div>
+  <div id="div" class="h" style="top: 50px;left: 50px;"></div>
+  <script>
+    'use strict'
+    //废品↓
+    // let divs = document.querySelector('div')
+    // let lastX //记录上次的鼠标x位置
+    // let lasty //记录上次的鼠标y位置
+
+    //   divs.addEventListener('mousedown', e => {
+    //     lastX = e.pageX 
+    //     lasty = e.pageY 
+    //     if (e.which == 1) {
+    //       window.addEventListener('mousemove', move)
+    //     }
+    //   })
+    // let winw //窗口宽
+    // let winh //窗口高
+    // function move(e) {  //移动函数
+    //   if (e.buttons == 0) {
+    //     removeEventListener('mousemove', move)
+    //   }
+    //   winw = document.documentElement.offsetWidth
+    //   winh = document.documentElement.offsetHeight
+
+    //   if(parseInt(divs.style.left) > winw - 100 - 50 && e.pageX > winw - 100){
+    //     divs.style.left = winw - 100 + 'px'
+    //     divs.style.top = e.pageY - (lasty - divs.offsetTop) + 'px'
+    //   }else{
+    //     divs.style.left = e.pageX - (lastX - divs.offsetLeft) + 'px'
+    //     divs.style.top = e.pageY - (lasty - divs.offsetTop) + 'px'
+    //   }
+    //     lastX = e.pageX
+    //     lasty = e.pageY
+    //     console.log(this)
+    // }
+
+
+    //正版
+    let node = null
+    let move = null
+    let lastX = null
+    let lastY = null
+    window.addEventListener('mousedown', e =>{
+      if(e.target.nodeName == 'DIV' && e.which == 1){
+        node = e.target //获取当前节点
+        lastX = e.pageX
+        lastY = e.pageY
+        e.preventDefault()//阻止默认行为
+
+        window.addEventListener('mousemove', move = event => {
+          if(event.buttons == 0){//松开左键buttons=0，即删除监听
+            removeEventListener('mousemove', move)
+          }
+          var x = event.pageX - lastX   //元素的x
+          var y = event.pageY - lastY   //元素的y
+
+          node.style.left = parseFloat(node.style.left) + x +'px'
+          node.style.top = parseFloat(node.style.top) + y + 'px'
+
+          lastX = event.pageX
+          lastY = event.pageY
+        })
+      }
+    })
+  </script>
+</body>
+
+</html>

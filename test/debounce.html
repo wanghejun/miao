@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件防抖和事件节流</title>
+</head>
+
+<body>
+  <div>search<input type="text" name="" id=""></div>
+  <section>鼠标位置<span></span></section>
+  <p></p>
+  <script>
+    'use strict'
+    let inp = document.querySelector('input')
+    let p = document.querySelector('p')
+    let num = null; //任务id
+
+    inp.addEventListener('keypress', e => {
+
+      clearTimeout(num) //重复点击就清除任务
+
+      num = setTimeout(() => {
+        p.innerText = inp.value
+      }, 500)
+
+    })
+
+    let sp = document.querySelector('span')
+    let scheduled = false
+    let latestEvent = null
+
+    window.addEventListener('mousemove', e =>{
+      latestEvent = e //拿到最新的事件
+      if(!scheduled){
+        scheduled = true
+        setTimeout( () => {
+          scheduled = false
+          dosomething(latestEvent)
+        },1000)
+      }
+    })
+
+    function dosomething(e) { 
+      sp.innerText = `X:${e.pageX} Y:${e.pageY}`
+     }
+  </script>
+</body>
+
+</html>

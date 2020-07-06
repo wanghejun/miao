@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      height: 100vh;  
+    }
+    div {
+      width: 100px;
+      height: 100px;
+      animation: run infinite .5s linear;
+      position:relative;
+      top: 50%;
+      left: 50%;
+    }
+    div::before{
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      background: red;
+      top: 0;
+      left:50%;
+    }
+    div::after{
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      background: blue;
+      top: 50% ;
+      left: 0;
+    }
+    p{
+      position: absolute;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      background: green;
+      top: 50%;
+      right: 0;
+    }
+    
+    @keyframes run {
+      0%{
+
+      }
+      100%{
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="divs">
+    <p></p>
+  </div>
+  <script>
+    let d = document.querySelector('div')
+    document.body.addEventListener('mousemove' , e => {
+      d.style.top = e.pageY - 50 + 'px'
+      d.style.left = e.pageX - 50 + 'px'
+    })
+  </script>
+</body>
+</html>

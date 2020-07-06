@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    body{
+      height: 100vh;
+      background: #e4e4e4;
+    }
+
+    /* 键盘背光灯 */
+    .keyboard{
+      width: 1000px;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%,-40%);
+      box-sizing: border-box;
+      background: #f3f3f3;
+    }
+    .keyboard > .row{
+      height: 50px;
+      display: flex;
+      justify-content:space-between;
+      font-size: 14px;
+    }
+    .keyboard > .row > div{
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-weight: bold;
+      transition: .2s;
+    }
+    /* 按键色 */
+    .black{ 
+    background:#b2bec3; 
+    box-shadow: inset 6px 6px 20px #b9b8b8, 
+      inset -6px -6px 20px #ffffff;
+    }
+    .keyboard > .row > .back{
+      width: 100px;
+    }
+    .keyboard > .row > .tab{
+      width: 75px;
+    }
+    .keyboard > .row > .xieg{
+      width: 75px;
+    }
+    .keyboard > .row > .jiah{
+      height: 100px;
+      line-height: 100px;
+    }
+    .keyboard > .row:nth-child(4){
+      width: 945px;
+    }
+    .keyboard > .row > .caps{
+      width: 90px;
+    }
+    .keyboard > .row > .enter{
+      width: 115px;
+    }
+    .keyboard > .row > .shift{
+      width: 125px;
+    }
+    .keyboard > .row > .shiftt{
+      width: 75px;
+    }
+    .keyboard > .row > .entert{
+      font-size: 12px;
+      height: 100px;
+      line-height: 100px;
+    }
+    .keyboard > .row:last-child{
+      width: 948px;
+    }
+    .keyboard > .row > .ctrl{
+      width: 65px;
+    }
+    .keyboard > .row > .space{
+      width: 250px;
+    }
+    .keyboard > .row > .ctrlt{
+      width: 85px;
+    }
+
+  </style>
+</head>
+<body>
+  <section class="keyboard">
+    <div class="row">
+      <div class="key" data-keyform="Escape">ESC</div>
+      <div class="key" data-keyform="F1">F1</div>
+      <div class="key" data-keyform="F2">F2</div>
+      <div class="key" data-keyform="F3">F3</div>
+      <div class="key" data-keyform="F4">F4</div>
+      <div class="key" data-keyform="F5">F5</div>
+      <div class="key" data-keyform="F6">F6</div>
+      <div class="key" data-keyform="F7">F7</div>
+      <div class="key" data-keyform="F8">F8</div>
+      <div class="key" data-keyform="F9">F9</div>
+      <div class="key" data-keyform="F10">F10</div>
+      <div class="key" data-keyform="F11">F11</div>
+      <div class="key" data-keyform="F12">F12</div>
+      <div class="key" data-keyform="Insert">INSERT</div>
+      <div class="key" data-keyform="Delete">DEL</div>
+      <div class="key" data-keyform="Home">HOME</div>
+      <div class="key" data-keyform="End">DEN</div>
+      <div class="key" data-keyform="PageUp">PGUP</div>
+      <div class="key" data-keyform="PageDown">PGON</div>
+    </div>
+    <div class="row">
+      <div class="key" data-keyform="`">` ~</div>
+      <div class="key" data-keyform="1">1</div>
+      <div class="key" data-keyform="2">2</div>
+      <div class="key" data-keyform="3">3</div>
+      <div class="key" data-keyform="4">4</div>
+      <div class="key" data-keyform="5">5</div>
+      <div class="key" data-keyform="6">6</div>
+      <div class="key" data-keyform="7">7</div>
+      <div class="key" data-keyform="8">8</div>
+      <div class="key" data-keyform="9">9</div>
+      <div class="key" data-keyform="0">0</div>
+      <div class="key" data-keyform="-">- —</div>
+      <div class="key" data-keyform="=">= +</div>
+      <div class="back key" data-keyform="Backspace">BACKSPACE</div>
+      <div class="key" data-keyform="NumLock">NUM</div>
+      <div class="key" data-keyform="/">/</div>
+      <div class="key" data-keyform="*">*</div>
+      <div class="key" data-keyform="-">-</div>
+    </div>
+    <div class="row">
+      <div class="tab key" data-keyform="Tab">TAB</div>
+      <div class="key" data-keyform="q">Q</div>
+      <div class="key" data-keyform="w">W</div>
+      <div class="key" data-keyform="e">E</div>
+      <div class="key" data-keyform="r">R</div>
+      <div class="key" data-keyform="t">T</div>
+      <div class="key" data-keyform="y">Y</div>
+      <div class="key" data-keyform="u">U</div>
+      <div class="key" data-keyform="i">I</div>
+      <div class="key" data-keyform="o">O</div>
+      <div class="key" data-keyform="p">P</div>
+      <div class="key" data-keyform="[">[ {</div>
+      <div class="key" data-keyform="]">] }</div>
+      <div class="xieg key" data-keyform="\">\ |</div>
+      <div class="key" data-keyform="7">7</div>
+      <div class="key" data-keyform="8">8</div>
+      <div class="key" data-keyform="9">9</div>
+      <div class="jiah key" data-keyform="+">+</div>
+    </div>
+    <div class="row">
+      <div class="caps key" data-keyform="CapsLock">CAPS</div>
+      <div class="key" data-keyform="a">A</div>
+      <div class="key" data-keyform="s">S</div>
+      <div class="key" data-keyform="d">D</div>
+      <div class="key" data-keyform="f">F</div>
+      <div class="key" data-keyform="g">G</div>
+      <div class="key" data-keyform="h">H</div>
+      <div class="key" data-keyform="j">J</div>
+      <div class="key" data-keyform="k">K</div>
+      <div class="key" data-keyform="l">L</div>
+      <div class="key" data-keyform=";">; :</div>
+      <div class="key" data-keyform="'">' "</div>
+      <div class="enter key" data-keyform="Enter">ENTER</div>
+      <div class="key" data-keyform="4">4</div>
+      <div class="key" data-keyform="5">5</div>
+      <div class="key" data-keyform="6">6</div>
+    </div>
+    <div class="row">
+      <div class="shift key" data-keyform="Shift">SHIFT</div>
+      <div class="key" data-keyform="z">Z</div>
+      <div class="key" data-keyform="x">X</div>
+      <div class="key" data-keyform="c">C</div>
+      <div class="key" data-keyform="v">V</div>
+      <div class="key" data-keyform="b">B</div>
+      <div class="key" data-keyform="n">N</div>
+      <div class="key" data-keyform="m">M</div>
+      <div class="key" data-keyform=",">, &lt;</div>
+      <div class="key" data-keyform=".">. &gt;</div>
+      <div class="key" data-keyform="/">/ ?</div>
+      <div class="shiftt key" data-keyform="Shift">SHIFT</div>
+      <div class="key" data-keyform="ArrowUp">↑</div>
+      <div class="key" data-keyform="1">1</div>
+      <div class="key" data-keyform="2">2</div>
+      <div class="key" data-keyform="3">3</div>
+      <div class="entert key" data-keyform="Enter">ENTER</div>
+    </div>
+    <div class="row">
+      <div class="ctrl key" data-keyform="Control">CTRL</div>
+      <div class="key" data-keyform="Unidentified">FN</div>
+      <div class="key" data-keyform="Meta">WIN</div>
+      <div class="key" data-keyform="Alt">ALT</div>
+      <div class="space key" data-keyform=" ">SPACE</div>
+      <div class="key" data-keyform="Alt">ALT</div>
+      <div class="key" data-keyform="ContextMenu">MENU</div>
+      <div class="ctrlt key" data-keyform="Control">CTRL</div>
+      <div class="key" data-keyform="ArrowLeft">←</div>
+      <div class="key" data-keyform="ArrowDown">↓</div>
+      <div class="key" data-keyform="ArrowRight">→</div>
+      <div class="key" data-keyform="Insert">0</div>
+      <div class="key" data-keyform=".">.</div>
+    </div>
+  </section>
+  <script>
+    let keys = document.querySelectorAll('.key')
+    let flag = true
+    let arrkeys = Array.from(keys)
+    let node = null
+    let keyary = []
+    addEventListener('keydown' , e => {
+      e.preventDefault()
+      if(flag){
+        console.log(e.key)
+        node = arrkeys.find( it => it.dataset.keyform == e.key)
+        keyary.push(node)
+        node.classList.add('black')
+      }
+    })
+    addEventListener('keyup' , e =>{
+      flag = true
+      while(keyary.length != 0){
+        keyary.pop().classList.remove('black')
+      // node.classList.remove('black')
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="handlebars-v4.7.6.js"></script>
+  <script src="lodash.min.js"></script>
+</head>
+
+<body>
+  <script>
+    var tpl = `
+      <div class="entry">
+        <h1>{{title}}</h1>
+        <div class="body">
+          {{body}}
+        </div>
+        <table>
+          {{#each list}}
+            <tr>
+              <td class="foo">{{this.name}}</td>
+              <td>{{this.score}}</td>
+              <td class="bar">{{this.math}}</td>
+              <td>{{this.chn}}</td>
+              <td>{{this.eng}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      </div>
+    `
+
+
+    var tplLodash = `
+      <div class="entry">
+        <h1><%= title %></h1>
+        <div class="body">
+          <%= body %>
+        </div>
+        <table>
+          <% for (var i = 0; i < list.length; i++) { %>
+            <tr>
+              <td class="foo"><%= list[i].name %></td>
+              <td><%= list[i].score %></td>
+              <td class="bar"><%= list[i].math %></td>
+              <td><%= list[i].chn %></td>
+              <td><%= list[i].eng %></td>
+            </tr>
+          <% } %>
+        </table>
+      </div>
+    `
+
+    var tplFn = _.template(tplLodash)
+
+    var data = {
+      title: "My New Post",
+      body: "This is my first post!",
+      list: [
+        {
+          name: 'lily',
+          score: 138,
+          math: 30,
+          chn: 50,
+          eng: 65,
+        },
+        {
+          name: 'lily',
+          score: 138,
+          math: 30,
+          chn: 50,
+          eng: 65,
+        },
+        {
+          name: 'lily',
+          score: 138,
+          math: 30,
+          chn: 50,
+          eng: 65,
+        },
+        {
+          name: 'lily',
+          score: 138,
+          math: 30,
+          chn: 50,
+          eng: 65,
+        }
+      ]
+    }
+
+    var tplFunction = Handlebars.compile(tpl)
+    var html = tplFunction(data)
+
+    // var html = Handlebars.fff(tpl, data)
+
+    console.log(html)
+
+    console.log(tplFn(data))
+
+  </script>
+
+
+</body>
+
+</html>

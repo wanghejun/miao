@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    body{
+      height: 100vh;
+    }
+    section{
+      width: 500px;
+      height: 500px;
+      margin: 200px auto;
+    }
+    ul{
+      display: flex;
+      justify-content: space-between;
+    }
+    ul > li{
+      width: 150px;
+      height: 40px;
+      background: linear-gradient(gray,violet);
+      text-align: center;
+      line-height: 40px;
+    }
+    div{
+      position: absolute;
+      height: 460px;
+      width: inherit;
+      text-align: center;
+      line-height: 460px;
+      font-weight: bold;
+      font-size: 30px;
+      background-color: lightcoral;
+      transition: .5s;
+    }
+    .hidden{
+      opacity: 0 ;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+    <div>1</div>
+    <div class="hidden">2</div>
+    <div class="hidden">3</div>
+  </section>
+  <script>
+    let li = document.querySelectorAll('li')
+    let divs = document.querySelectorAll('div')
+    li.forEach((it,idx) => {
+      let i =idx
+      it.addEventListener('click', e => {
+        console.log(i)
+        divs.forEach( it => {
+          it.className = 'hidden'
+        })
+        divs[i].className = ''
+      })
+    })
+  </script>
+</body>
+</html>
