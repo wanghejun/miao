@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>图片渐显</title>
   <style>
+    body{
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      background: gray;
+    }
     img{
       width: 200px;
     }
@@ -12,18 +19,61 @@
       display: flex;
       align-items: flex-end;
     }
+    .box{
+      margin: 0;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background: #252525;
+    }
+    .box > div{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+      /* .box::after{
+      position: absolute;
+      content: '';
+      width: 100px;
+      height: 100px;
+      background: red;
+      top: 50%;
+      left: 50%;
+    } */
   </style>
-  <link rel="stylesheet" href="https://animate.style/animate.min.css">
+  <!-- <link rel="stylesheet" href="https://animate.style/animate.min.css"> -->
+  <link rel="stylesheet" href="./css/loaders.min.css">
+  <script src="./js/loaders.css.js"></script>
 </head>
 <body>
+  <div class="box loader">
+    <div class="loader-inner line-spin-fade-loader">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
   <div>
+  <img src="https://images.sucaihuo.com/jquery/43/4307/big.jpg" alt="" />
   <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
   <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
   <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
   <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
-  <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
-  <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
-  <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" />
+  <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2019/02/dog-451643.jpg?h=bf654dbc&itok=MQGvBmuo" alt="" /> 
+  <!-- <div>
+    <div class="loader-inner pacman">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div> -->
 </div>
   <script>
     //样板
@@ -55,6 +105,19 @@
         it.style.opacity = '1'
       })
     })
+
+    //页面加载动画
+    let p = document.querySelector('.box')
+    window.addEventListener('load', e =>{
+      document.body.removeChild(p)
+    })
+
+    //
+     window.onload = function () {
+    var loadTime = window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart; 
+    console.log('Page load time is '+ loadTime);
+}
+
   </script>
 </body>
 </html>

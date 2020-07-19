@@ -62,12 +62,16 @@
     li.forEach((it,idx) => {
       let i =idx
       it.addEventListener('click', e => {
-        console.log(i)
+        li.forEach( it => {
+          it.style.background = ''
+        })
+        it.style.background = 'red'
         divs.forEach( it => {
           it.className = 'hidden'
         })
         divs[i].className = ''
       })
+    
     })
   </script>
 </body>

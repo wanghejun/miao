@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    body{
+      height: 100vh;
+      background: linear-gradient(160deg,#54a0ff,#341f97);
+    }
+    li{
+      float: left;
+      width: 50px;
+      height: 20px;
+      text-align: center;
+      line-height: 20px;
+      background: gray;
+      margin-left: 5px ;
+    }
+    video{
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <button>Show Cats!</button>
+  <video src="https://cdn.jsdelivr.net/gh/wanghejun/CDN/video/op.mp4" controls></video>
+  <ul>
+    <li>0</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+
+  <script>
+  // https://xieranmaya.github.io/images/cats/cats.json
+  // https://xieranmaya.github.io/images/cats/photo-103450229.jpg
+  var xml = new XMLHttpRequest()
+  var btn = document.querySelector('button')
+  btn.addEventListener('click',e =>{
+    xml.open('GET','https://xieranmaya.github.io/images/cats/cats.json')
+    xml.send()
+
+
+    xml.addEventListener('load', e =>{
+     var data = JSON.parse(xml.responseText)
+
+     console.log(data)
+     data = data.slice(0,Math.floor( data.length / 2)) //减少请求
+    //  data.forEach(it => {
+    //    var img = document.createElement('img')
+    //    img.src = 'https://xieranmaya.github.io/images/cats/' + it.url
+    //    document.body.appendChild(img)
+    //  })
+      fox(data)
+    })
+  })
+
+  function fox(data,i = 0) { 
+    console.log(i)
+    
+    if(data[i] == undefined) return   //跳出递归条件
+    
+    let img = document.createElement('img')
+    img.src = 'https://xieranmaya.github.io/images/cats/' + data[i++].url
+
+    img.addEventListener('load', e =>{
+      document.body.appendChild(img)
+
+      fox(data,i)//当前图片加载完成后，传递下一张图片加载
+    })
+    
+   }
+  
+  </script>
+
+  <script>
+    let li = document.querySelectorAll('li')
+
+    // 1
+    li.forEach((it,idx) => {
+      it.addEventListener('click', e => {
+        console.log(idx)
+      })
+    })
+
+    //2
+    // for(let i = 0;i < li.length;i++){
+    //   li[i].addEventListener('click', e => {
+    //     console.log(i)
+    //   })
+    // }
+
+    //3
+    // for(var i = 0; i < li.length;i++){//这里用let来声明i也可以完美解决问题
+    //   ((i) =>{  //创建一个立即执行作用域
+
+    //     li[i].addEventListener('click' ,e => {
+    //       console.log(i)
+    //     })
+
+    //   })(i)
+    // }
+
+    //4
+    // let ul = document.querySelector('ul')
+    
+    // ul.addEventListener('click', e => {//采用事件代理
+    //   console.log(e.target.innerHTML)
+    // })
+  </script>
+
+  <script>
+    //10086..digit()
+    Number.prototype.digit = function * () { 
+      let n = this
+      while(n > 0){
+        var digit = n % 10
+        n -= digit
+        n = n / 10
+        yield digit
+      }
+     }
+
+  </script>
+</body>
+</html>
