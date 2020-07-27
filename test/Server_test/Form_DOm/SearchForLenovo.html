@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搜索词联想</title>
+</head>
+<body>
+  
+  <script>
+    function jsonp(url, callback) {
+    var functionName = 'JSONP_CALLBACK_' + Math.random().toString(16).slice(2)
+
+    url = url + '&cb=' + functionName
+    window[functionName] = callback  
+    
+    var script = document.createElement('script')
+    script.src = url
+    script.onload = function(){
+        document.body.removeChild(script)
+        delete window[functionName]
+    }
+    document.body.appendChild(script)
+    }
+
+  jsonp('https://api.bing.com/qsonhs.aspx?type=cb&q=new',
+  function(info) {
+      console.log(info)
+  })
+  </script>
+</body>
+</html>

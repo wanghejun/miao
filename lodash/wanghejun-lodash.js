@@ -582,7 +582,7 @@ var wanghejun = {
     return array;
   },
   forEachRight: function (array, action) {
-      return this.forEach(array.reverse(), action);
+      return this.forEach(array, action);
   },
   //   invokeMap : function (array,action,arg) {
   //     var result = []

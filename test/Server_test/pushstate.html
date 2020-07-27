@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PushState</title>
+</head>
+
+<body>
+  <div>某某网站</div>
+  <p id="p">主页</p>
+  <a href="/about">about</a>
+  <a href="/links">links</a>
+
+  <script>
+    let data = {
+      '/about': '关于我们',
+      '/links': '友情链接',
+      '/': '网站主页'
+    }
+    history.state = '/'
+
+    let p = document.querySelector('p')
+    
+    addEventListener('click', e => {
+      if (e.target.matches('a')) {
+        e.preventDefault()
+        var path = e.target.getAttribute('href')
+        history.pushState(path, '', path)
+        p.innerHTML = data[path]
+      }
+    })
+
+    addEventListener('popstate', e => {
+      if (e.state == undefined) {
+        p.innerHTML = data['/']
+      } else {
+        p.innerHTML = data[e.state]
+      }
+    })
+  </script>
+</body>
+
+</html>

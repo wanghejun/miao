@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>weather</title>
+  <link rel="stylesheet" href="./css/weather.css">
+</head>
+<body>
+  <main>
+    <h2>天气查询</h2>
+    <form action="">
+      <select name="shengfen" id="">
+        <option value="北京">北京</option>
+        <option value="上海">上海</option>
+      </select>
+      <select name="city" id="">
+        <option value="北京市">北京市</option>
+      </select>
+      <input type="submit" value="search"></input>
+    </form>
+
+    <section>
+      <div class="city">
+        <span>city</span>
+        <span>time</span>
+      </div>
+      <div class="today">
+        <div class="wendu">35</div>
+        <div class="w_about">
+          <p>type</p>
+          <p>high</p>
+          <p>low</p>
+        </div>
+      </div>
+      <div class="week">
+        <ul>
+          <li>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+          </li>
+          <li>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+          </li>
+          <li>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+          </li>
+          <li>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+          </li>
+          <li>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+            <span>xxx</span>
+          </li>
+        </ul>
+      </div>
+      <p class="info">###################################</p>
+    </section>
+  </main>
+
+  <script type="module">
+    'use strict'//严格模式走起来
+
+    import {city} from './js/city.js';//导入城市数据
+  
+    console.log(city)
+    //写入数据
+    let sf = document.querySelector('select[name=shengfen]')
+    let citys = document.querySelector('select[name=city]')
+
+    city.forEach(it => {
+      let op = document.createElement('option')
+      op.value = it.name
+      op.innerHTML = it.name
+      sf.appendChild(op)
+    });
+
+    //监听省份改变
+    sf.addEventListener('change', e => {
+      citys.length = 0
+      let list = city.filter( it => it.name == e.target.value)
+
+      list[0]['child'].forEach( it => {
+        let ops = document.createElement('option')
+        ops.value = it.name
+        ops.innerHTML = it.name
+        citys.appendChild(ops)
+      })
+
+    })
+
+    let submit = document.querySelector('input[type=submit]')
+    let ct = document.querySelector('.city').firstElementChild
+    let tm = document.querySelector('.city').lastElementChild
+    let wendu = document.querySelector('.wendu')
+    let p = document.querySelector('.w_about').querySelectorAll('p')
+    let datas = document.querySelector('.week').querySelectorAll('li')
+    let info = document.querySelector('.info')
+    submit.addEventListener('click',e => {
+      e.preventDefault()//阻止默认行为
+      submit.disabled = true
+      get(citys.value).then(val => {
+        submit.disabled = false
+        ct.innerHTML = val.data.city
+        tm.innerHTML = new Date().toLocaleTimeString().substr(2)
+        wendu.innerHTML = val.data.wendu
+        p[0].innerHTML = val.data.yesterday.type
+        p[1].innerHTML = val.data.yesterday.high
+        p[2].innerHTML = val.data.yesterday.low
+        info.innerHTML = val.data.ganmao
+        datas.forEach((it,num) => {
+          let sp = it.querySelectorAll('span')
+          let map = []
+          let n = 0
+          for(let i in val.data.forecast[num]){
+            map[n++] = val.data.forecast[num][i]
+          }
+          n = 0
+          sp.forEach( (it,idx) => {
+              it.innerHTML = map[idx]
+          })
+        })
+        console.log(val)
+      })
+    })
+
+
+    //一个promise，异步请求
+    function get(city){
+      return new Promise((resove,reject) => {
+        let xhr = new XMLHttpRequest()
+        xhr.open('get','http://wthrcdn.etouch.cn/weather_mini?city=' + encodeURIComponent(city))
+        xhr.send()
+
+        xhr.addEventListener('load',e => {
+
+          if(xhr.status < 400){
+            resove(JSON.parse( xhr.responseText ))
+          }else{
+            reject(xhr.responseText)
+          }
+
+        })
+
+        xhr.addEventListener('error',e => {
+          reject(e)
+        })
+      })
+    }
+
+
+    //表单元素序列化
+    function normalizeFrom(form) { 
+      let result = ''
+      let list = form.elements
+
+      for(let i = 0;i < list.length;i++){
+        if(list[i].name){
+          result += `${list[i].name}=${list[i].value}&`
+        }
+      }
+      return result.substr(0,result.length - 1)
+     }
+
+     //input输入框的位置插入某个字符串
+     function insertStr(input,str) { 
+       let star = input.selectionStart
+       let end = input.selectionEnd
+       input.value = input.value.slice(0,star) + str + input.value.slice(end)
+       input.selectionStart = input.selectionEnd = star + str.length
+     }
+
+     //获取select中被选中的option元素组成的数组，select 加了multiple属性就可以用ctrl多选
+     function getSelected(select) { 
+       let result = []
+       select.forEach(it => {
+         if(it.selected){
+           result.push(it.value)
+         }
+       })
+       return result
+      }
+  </script>
+</body>
+</html>

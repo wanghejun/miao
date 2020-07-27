@@ -7,9 +7,12 @@
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
   <title>serch</title>
   <style>
+    *{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
   body{
-    margin: 0;
-    padding: 0;
     background: linear-gradient(160deg,#ff9f43,#ff6b6b,#ee5253);
     height: 100vh;
     width: 100%;
@@ -24,6 +27,7 @@
     justify-content: center;
     align-items: center;
     display: flex;
+    position: relative;
   }
   .serch_text{
     font-size: 26px;
@@ -41,21 +45,155 @@
     text-align: center;
     color: gray;
   }
-  .serch_box:hover .serch_text{
+  /* .serch_box:hover .serch_text{
     margin-left: 1em;
     width: 460px;
-  }
+  } */
   .serch_box:hover .fa-search{
     color: white ;
+  }
+  /* .serch_box:hover >div{
+    height: 100px;
+  } */
+  .serch_box > .ci{
+    position: absolute;
+    width: 500px;
+    height: 0px;
+    top: 100%;
+    background: #fff;
+    z-index: 2;
+    transition: .3s;
+    overflow: hidden;
+  }
+
+  .ci > ul > li{
+    width: 100%;
+    line-height: 36px;
+    height: 36px;
+    font-size: 20px;
+    text-indent: 10px;
+  }
+
+  .ci > ul > li:hover{
+    background: #ECECEC;
   }
   </style>
 </head>
 <body>
   <div class="serch_box">
-    <input type="text" class="serch_text" placeholder="type of serch">
+    <input type="text" class="serch_text" placeholder="type of search">
     <a href="#">
         <i class="fa fa-search"></i>
     </a>
+    <div class="ci">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
   </div>
+
+  <script>
+
+
+    let search = document.querySelector('.serch_text')
+    let searchbox = document.querySelector('.serch_box')
+    let ci = document.querySelector('.ci')
+    let status = false
+    let data 
+    let timeId = null
+    let li = document.querySelector('.ci').querySelectorAll('li')
+
+    li.forEach((it,idx) => {
+       it.addEventListener('click', e => {
+         console.log(it.innerHTML)
+          search.value = it.innerHTML.replace(/\<.?b\>/g,'')
+       })
+     })
+
+    search.addEventListener('input', function () {
+      console.log(this.value)
+        clearTimeout(timeId)
+
+        timeId = setTimeout(()=>{
+          jsonp('https://api.bing.com/qsonhs.aspx?type=cb&q='+search.value,
+            function(info) {
+                data = info
+                console.log(data)
+                writeData(data)
+            }
+          )
+        },1000)
+    })
+
+    function writeData(data) { 
+      Array.from(data.AS.Results[0].Suggests).forEach((it,idx) => {
+        li[idx].innerHTML = search.value + '<b>'+ it.Txt.substr(search.value.length) + '</b>'
+      })
+     }
+
+   
+
+    search.addEventListener('focus', e => {
+      ci.style.height = '290px'
+      ci.style.opacity = '0.8'
+      status = true
+    })
+
+    // search.addEventListener('blur', e => {
+    //   ci.style.height = '0px'
+    //   ci.style.opacity = '0'
+    //   st.style.marginLeft = '0em';
+    //   st.style.width= '0px';
+    //   status = false
+    // })
+
+    //窗口失去焦点下拉联想词消失
+     window.onblur =  e => {
+      ci.style.height = '0px'
+      ci.style.opacity = '0'
+    }
+
+
+    let st = document.querySelector('.serch_text')
+    searchbox.addEventListener('mouseover', function () {
+      st.style.marginLeft = '1em';
+      st.style.width= '460px';
+    })
+
+    searchbox.addEventListener('mouseout', function () {
+      if(!status){
+        st.style.marginLeft = '0em';
+        st.style.width= '0px';
+      }
+    })
+
+    //JSONP请求函数
+    function jsonp(url, callback) {
+      var functionName = 'JSONP_CALLBACK_' + Math.random().toString(16).slice(2)
+
+      url = url + '&cb=' + functionName
+      window[functionName] = callback  
+      
+      var script = document.createElement('script')
+      script.src = url
+      script.onload = function(){
+          document.body.removeChild(script)
+          delete window[functionName]
+      }
+      document.body.appendChild(script)
+    }
+
+  // jsonp('https://api.bing.com/qsonhs.aspx?type=cb&q=new',
+  // function(info) {
+  //     console.log(info)
+  // })
+  </script>
 </body>
 </html>

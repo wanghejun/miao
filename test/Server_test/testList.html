@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>async、promise</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    body{
+      height: 100vh;
+      background: linear-gradient(160deg,#54a0ff,#341f97);
+    }
+    li{
+      float: left;
+      width: 50px;
+      height: 20px;
+      text-align: center;
+      line-height: 20px;
+      background: gray;
+      margin-left: 5px ;
+    }
+    video{
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <button>Show Cats!</button>
+  <video src="https://cdn.jsdelivr.net/gh/wanghejun/CDN/video/op.mp4" controls></video>
+  <ul>
+    <li>0</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <br>
+  <form action="" method="GET">
+    <p><input type="text" name="" id=""></p>
+    <p><input type="password" name="" id=""></p>
+  </form>
+  <script>
+  // https://xieranmaya.github.io/images/cats/cats.json
+  // https://xieranmaya.github.io/images/cats/photo-103450229.jpg
+  var xml = new XMLHttpRequest()
+  var btn = document.querySelector('button')
+  btn.addEventListener('click',e =>{
+    xml.open('GET','https://xieranmaya.github.io/images/cats/cats.json')
+    xml.send()
+
+
+    xml.addEventListener('load', e =>{
+     var data = JSON.parse(xml.responseText)
+
+     console.log(data)
+     data = data.slice(0,Math.floor( data.length / 2)) //减少请求
+    //  data.forEach(it => {
+    //    var img = document.createElement('img')
+    //    img.src = 'https://xieranmaya.github.io/images/cats/' + it.url
+    //    document.body.appendChild(img)
+    //  })
+
+
+      // fox(data,3)
+      // fox2(data,3)
+      data = data.map(it => {
+          return (cb) => { 
+          var img = document.createElement('img')
+          img.src = 'https://xieranmaya.github.io/images/cats/' + it.url
+          document.body.appendChild(img)
+          cb()
+         }
+      })
+      parallelLimit(data,2,()=>(console.log('一切ok')))
+    })
+  })
+
+
+//n张同时下载
+  function fox(data,num = 1,i = 0) { 
+    console.log(i)
+    
+    if(data[i] == undefined) return   //跳出递归条件
+    
+    for(let j = 0;j < num;j++){
+
+      let img = document.createElement('img')
+      img.src = 'https://xieranmaya.github.io/images/cats/' + data[i++].url
+
+      img.addEventListener('load', e =>{
+
+        document.body.appendChild(img)
+
+        if(j == num - 1){//如果当前图片是加载量的最后一张，那就调用下一次执行函数
+          fox(data,num,i)//当前图片加载完成后，传递下一张图片加载
+        }
+
+      })
+      
+    }
+    
+   }
+  
+//n张同时下载，任意一张下载完成后就开始下一次n张
+function fox2(data,n = 1,i = 0) { 
+  
+  function one() { 
+    console.log(i)
+    
+      if(data[i] == undefined) return   //跳出递归条件  
+
+      let img = document.createElement('img')
+      img.src = 'https://xieranmaya.github.io/images/cats/' + data[i++].url
+      img.addEventListener('load', e =>{
+        document.body.appendChild(img)
+        one()//当前图片加载完成后，传递下一张图片加载
+      })
+     }
+     for(let i = 0;i < n;i++){
+       one()      
+     }
+   }
+
+  </script>
+
+  <script>
+
+    //li的顺序点击
+    let li = document.querySelectorAll('li')
+
+    // 1
+    li.forEach((it,idx) => {
+      it.addEventListener('click', e => {
+        console.log(idx)
+      })
+    })
+
+    //2
+    // for(let i = 0;i < li.length;i++){
+    //   li[i].addEventListener('click', e => {
+    //     console.log(i)
+    //   })
+    // }
+
+    //3
+    // for(var i = 0; i < li.length;i++){//这里用let来声明i也可以完美解决问题
+    //   ((i) =>{  //创建一个立即执行作用域
+
+    //     li[i].addEventListener('click' ,e => {
+    //       console.log(i)
+    //     })
+
+    //   })(i)
+    // }
+
+    //4
+    // let ul = document.querySelector('ul')
+    
+    // ul.addEventListener('click', e => {//采用事件代理
+    //   console.log(e.target.innerHTML)
+    // })
+  </script>
+
+  <script>
+    //10086..digit()
+    Number.prototype.digit = function * () { 
+      let n = this
+      while(n > 0){
+        var digit = n % 10
+        n -= digit
+        n = n / 10
+        yield digit
+      }
+     }
+
+  </script>
+
+  <script>
+    parallel([
+      function (cb) { 
+        console.log(1)
+        cb()
+       },
+      function (cb) { 
+        console.log(2)
+        setTimeout(() => {cb()},3000)
+      },
+      function (cb) { 
+        console.log(3)
+        setTimeout(() => {cb()},1000)
+       },
+      function (cb) { 
+        console.log(4)
+        cb()
+       }
+    ],function () { //callback回调函数，等所有函数都执行完毕之后这个函数再执行
+      console.log('all tasks cpmpleted')
+     })
+    
+    //series  同步执行
+    //parallel  全部任务同时执行
+    //parallelLimit  最多n个任务同时进行
+
+
+    //async函数实现
+    //同时运行  
+    function parallel(tasks,cb){
+      let num = 0
+      for(let i of tasks){
+        i( () => { 
+          num++
+
+          if(num == tasks.length){//当所有任务都运行完时
+            cb()
+          }
+         })
+      }
+    }
+
+
+
+    //同步执行,一个及一个的运行
+    function series(tasks,cb) { 
+      let i = 0
+      one()
+      function one() {
+        if(i < tasks.length){
+          tasks[i++]( () => { 
+              one()
+           })
+        }else{
+          cb()
+        }
+      }
+
+     }
+
+     //用parallelLimit来复用series
+     function series(tasks,cb) {
+        parallelLimit(tasks,1,cb)
+      }
+
+     //用parallelLimit来复用parallel
+      function parallel(tasks,cb){
+        parallelLimit(tasks,tasks.length,cb)
+      }
+      
+     //n任务个同时运行
+     function parallelLimit(tasks,limit,cb){
+       let i = 0
+       let num = 0
+
+       for(let j = 0;i < limit;j++){
+        one()
+       }
+
+       function one () { 
+
+         if(i < tasks.length){
+
+            var task = tasks[i++]
+
+            task( () => {
+              num++
+
+              if(num == tasks.length){
+                cb()
+              }else{
+                one()
+              }
+
+            })
+
+         }
+        }
+     }
+  </script>
+
+  <script>
+    //实现一个jQuery任务队列
+    class TaskQueue{
+      constructor(){
+        this.tasks = []
+        this.hasTaskRunning = false
+      }
+      addTask(task){
+          if(this.hasTaskRunning){
+            this.tasks.push(task)
+          }else{
+            this.hasTaskRunning = true
+            let taskDone
+            task(
+              taskDone = () => {
+                if(this.tasks.length){
+                  let task = this.tasks.shift()
+                  task()
+                }else{
+                  this.hasTaskRunning = false
+                }
+              }
+            )
+          }
+      }
+    }
+
+
+    //实现一个promise
+    class Promises{
+      constructor(executor){
+        function res() {  }
+        function rej() {  }
+        try{
+          executor()
+        }catch(e){
+           
+        }
+      }
+    }
+    //一个promise代表一个异步操作的结果
+    let p = new Promise(function (resolve,reject) { //resolve表示执行成功的函数，reject代表失败执行的函数
+
+        let xhr = new XMLHttpRequest()
+        xhr.open('get','https://xieranmaya.github.io/images/cats/cats.json')
+
+        xhr.onload = e => {
+          if(xhr.status < 400){
+            resolve(JSON.parse( xhr.responseText ))
+          }else{
+            reject(JSON.parse( xhr.responseText ))
+          }
+        }
+
+        xhr.onerror = e =>{
+          reject(e)
+        }
+
+        xhr.send()
+       }
+    )
+    
+    p.then( 
+      val => { 
+        console.log(val)
+      }, 
+      error => { 
+        console.log(error)
+      }
+    )
+
+    //实现一个promise版的getJSON
+    function getJSON(url) { 
+      return new Promise( (res,rej) => { 
+        let xhr = new XMLHttpRequest()
+        xhr.open('get',url)
+
+        xhr.onload = e =>{
+          if(xhr.status < 400){
+            res(JSON.parse( xhr.responseText))
+          }else{
+            rej(JSON.parse( xhr.responseText))
+          }
+        }
+
+        xhr.onerror = e =>{
+          rej(e)
+        }
+
+        xhr.send()
+       })
+     }
+
+     //实现一个Promise.resolve    它是直接返回一个返回成功值的promise
+     Promises.resolve = function (val) { 
+        return new Promises( resolve => {
+          resolve(val)
+        })
+    }
+
+    //实现一个Promise.reject    它是直接返回一个返回失败值的promise
+     Promises.reject = function (val) { 
+      return new Promises((_, reject) => {
+        reject(val)
+        })
+    }
+
+
+
+    //实现一个随机时间返回的一个promise
+    function getValue(value) { 
+      return new Promise(resolve =>{
+
+        setTimeout( () => {
+          resolve(value)
+        },3000 + Math.random() * 2000) 
+      })
+     }
+
+     //实现一个Promise的all方法 ，它接收一个数组。返回每个值组成的数组
+    function all(promises) { 
+          return new Promise((resolve,reject) => {
+
+            let result = Array.from(promises.length)
+            let count = 0
+
+            if(promises.length){
+              for(let i = 0; i < promises.length;i++){
+
+              var promise = promises[i]
+
+              Promise.resolve(promise).then(value => {
+                result[i] = value
+                count++
+                if(count == promises.length){
+                  resolve(result)
+                }
+              },reason => {
+                reject(reason)
+              })
+            }
+            }else{
+              resolve(result)
+            }
+
+          })
+
+    }
+
+    //time时间后返回一个Promise
+    function sleep(time) { 
+        return new Promises( resolve => {
+          setTimeout(resolve,time)
+        })
+     }
+
+     //谁先出结果就返回谁
+     function race (promises){
+      return new Promise((resolve,reject) => {
+        for(let i = 0;i < promises.length;i++){
+          let promise = promises[i]
+          promise.then(value => {
+            resolve(value)
+          },reason => {
+            reject(reason)
+          })
+        }
+      })
+     }
+     function race(promises) {
+        return new Promise((resolve, reject) => {
+          for (let i = 0; i < promises.length; i++) {
+            promises[i].then(resolve, reject)
+          }
+        })
+      }
+
+      //返回所有值的结果,不管成功还是失败
+     function allSettled(promises) { 
+      return new Promise(resolve => {
+        let result = []
+        let count = 0
+        if(promises.length){
+
+          for(let i = 0;i < promises.length;i++){
+            var promise = promises[i]
+            promise.then(value => {
+              result[i] = {
+                status:'fulfilled',
+                value,
+              }
+              count++
+              if(count == promises.length){
+                resolve(result)
+              }
+            },reason => {
+              result[i] = {
+                status:'rejected',
+                value,
+              }
+            })
+          }
+
+        }else{
+          resolve(result)
+        }
+      
+      })
+    }
+  </script>
+
+  <script>
+    new Promise((resolve,reject) => {
+      resolve()
+      reject()
+    }).then(value => {
+
+    },reason => {
+
+    })
+
+    img1.ready = function () { 
+      return new Promise((resolve,reject) => {
+        this.onload = () => {
+          resolve()
+        }
+        this.onerror = () => {
+          reject()
+        }
+      })  
+    }
+  </script>
+</body>
+</html>

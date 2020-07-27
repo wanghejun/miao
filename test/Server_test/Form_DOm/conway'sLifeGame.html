@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>conway'sLifeGame</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      outline: none;
+      border: none;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(90deg,#9bc864,#40cb8f 15%,#00c7c4 30%,#00bcef 45%,#00c7c4 60%,#40cb8f 75%,#9bc864);
+      animation: loading 4s ease infinite;
+      transition: all .36s ease;
+      background-size: 400% 100%;
+    }
+    input[type=checkbox]{
+      width: 20px;
+      height: 100%;
+    }
+    ul{
+      padding: 10px 0;
+    }
+    ul > li{
+      height: 20px;
+    }
+    .h{
+      display: flex;
+      justify-content: space-between;
+    }
+    .h > span > input{
+      width: 40px;
+      text-align: center;
+    }
+    .f{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    button{
+      background: linear-gradient(160deg,#74b9ff,#0984e3);
+      padding: 5px 10px;
+    }
+    @keyframes loading {
+      0%{
+        background-position: 100% 50%;
+      }
+      100%{
+        background-position: 0 50%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <div class="h">
+      <span>row: <input type="number" placeholder="30"></span>
+      <span>col: <input type="number" placeholder="30"></span>
+      <button id="reset" onclick="reset()">reset</button>
+    </div>
+    <ul></ul>
+    <div class="f">
+      <button onclick="show(next(get()))">next</button>
+      <button onclick="run()">auto</button>
+      <button onclick="stopRun()">stop</button>
+    </div>
+  </section>
+  <script>
+
+    //初始数据导入
+    (function writeDate() { 
+      let ary = []
+      
+      for (let i = 0; i < 30; i++) {//随机数据
+        ary.push([])
+
+        for (let j = 0; j < 30; j++) {
+          ary[i][j] = Number(Math.ceil(Math.random() * 10) % 2 == 0)
+        }
+      }
+
+      //数据导入
+      let ul = document.querySelector('ul')
+      for (let i = 0; i < 30; i++) {//30行
+        let li = document.createElement('li')
+        ul.appendChild(li)
+      }
+
+      let li = document.querySelectorAll('li')
+      for (let j = 0; j < li.length; j++) {//30列
+        for (let k = 0; k < li.length; k++) {
+          let input = document.createElement('input')
+          input.type = 'checkbox'
+          li[j].appendChild(input)
+        }
+      }
+
+      show(ary)//写入
+    })()
+
+    //计算方法的实现
+    //获取当前状态的数据
+    function get() {
+      let li = document.querySelectorAll('li')
+      let ary = []
+      li.forEach((it, idx) => {
+        ary.push([])
+        Array.from(it.children).forEach((it, i) => {
+          if (it.checked) {
+            ary[idx].push(1)
+          } else {
+            ary[idx].push(0)
+          }
+        })
+      })
+      return ary
+    }
+
+    //转换下次需要的数据
+    function next(ary) {
+      let count = 0
+      let box = JSON.parse(JSON.stringify(ary));
+
+      for (let i = 0; i < ary.length; i++) {
+        for (let j = 0; j < ary[i].length; j++) {
+          let li = ary[i][j]
+
+          if (li == 0) {
+            if (ary[i][j - 1] && ary[i][j - 1] == 1) count++
+            if (ary[i][j + 1] && ary[i][j + 1] == 1) count++
+
+            if (ary[i - 1]) {
+
+              if (ary[i - 1][j - 1] && ary[i - 1][j - 1] == 1) count++
+              if (ary[i - 1][j] && ary[i - 1][j] == 1) count++
+              if (ary[i - 1][j + 1] && ary[i - 1][j + 1] == 1) count++
+            }
+            if (ary[i + 1]) {
+
+              if (ary[i + 1][j - 1] && ary[i + 1][j - 1] == 1) count++
+              if (ary[i + 1][j] && ary[i + 1][j] == 1) count++
+              if (ary[i + 1][j + 1] && ary[i + 1][j + 1] == 1) count++
+            }
+
+            if (count == 3) box[i][j] = 1
+
+          } else {
+
+            if (ary[i][j - 1] && ary[i][j - 1] == 1) count++
+            if (ary[i][j + 1] && ary[i][j + 1] == 1) count++
+
+            if (ary[i - 1]) {
+              if (ary[i - 1][j - 1] && ary[i - 1][j - 1] == 1) count++
+              if (ary[i - 1][j] && ary[i - 1][j] == 1) count++
+              if (ary[i - 1][j + 1] && ary[i - 1][j + 1] == 1) count++
+            }
+            if (ary[i + 1]) {
+              if (ary[i + 1][j - 1] && ary[i + 1][j - 1] == 1) count++
+              if (ary[i + 1][j] && ary[i + 1][j] == 1) count++
+              if (ary[i + 1][j + 1] && ary[i + 1][j + 1] == 1) count++
+            }
+
+            if (count > 3 || count < 2) box[i][j] = 0
+          }
+
+          count = 0
+        }
+      }
+
+      return box
+    }
+
+    //把数据导入页面
+    function show(ary) {
+      let li = document.querySelectorAll('li')
+      ary.forEach((it, idx) => {
+        it.forEach((inp, index) => {
+          if (ary[idx][index] == 0) {
+            li[idx].children[index].checked = false
+          } else {
+            li[idx].children[index].checked = true
+          }
+        })
+      })
+
+    }
+
+    let row = document.querySelectorAll('input[type=number]')[0]
+    let col = document.querySelectorAll('input[type=number]')[1]
+    function reset() { 
+      let ul = document.querySelector('ul')
+
+      //清空
+      let li = document.querySelectorAll('li')
+      li.forEach(it => {
+        it.parentNode.removeChild(it)
+      })
+      //写入行
+      for (let i = 0; i < Number(row.value); i++) {
+        let li = document.createElement('li')
+        ul.appendChild(li)
+      }
+      //写入列
+      li = document.querySelectorAll('li')
+      for (let j = 0; j < li.length; j++) {
+        for (let k = 0; k < Number(col.value); k++) {
+          let input = document.createElement('input')
+          input.type = 'checkbox'
+          li[j].appendChild(input)
+        }
+      }
+
+      //随机数据导入
+      let ary = []
+      for (let i = 0; i < Number(row.value); i++) {
+        ary.push([])
+        for (let j = 0; j < Number(col.value); j++) {
+          ary[i][j] = Number(Math.ceil(Math.random() * 10) % 2 == 0)
+        }
+      }
+      show(ary)
+    }
+
+    //定时器任务id
+    let id = false
+    function run() { 
+      if(!id){
+        id = setInterval(() => {
+          show(next(get()))
+        }
+        ,1000)
+      }
+    }
+    function stopRun() { 
+      clearInterval(id)
+      id = false
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //异步读取一个文件
+    function readFileAsText(file) {
+
+      return new Promise((resolve, reject) => {
+        let f = new FileReader()
+
+        f.onload(e => {
+          resolve(f.result)
+        })
+        f.onerror(e => {
+          reject(f.error)
+        })
+
+        f.readAsText(file)
+      })
+
+    }
+  </script>
+</body>
+
+</html>

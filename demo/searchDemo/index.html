@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/iconfont.css">
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0
+    }
+
+    main {
+      width: 100vw;
+      height: 100vh;
+      transition: .1s all;
+      position: absolute;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    main>img {
+      position: absolute;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      transition: .2s all;
+    }
+
+    header {
+      padding-top: 130px;
+      text-align: center;
+    }
+
+    header p {
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: .3s all;
+      z-index: 99;
+    }
+
+    header p::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: #70c000;
+      top: 100%;
+      transition: .3s all;
+      transform-origin: 50% 0;
+      transform: scaleX(0);
+    }
+
+    header p:hover {
+      transform: scale(1.1);
+    }
+
+    header p:hover::before {
+      transform: scaleX(1);
+    }
+
+    header form {
+      padding-top: 30px;
+    }
+
+    header form input {
+      background: rgba(0, 0, 0, .35);
+      color: #fff;
+      outline: none;
+      border: none;
+      border-radius: 30px;
+      line-height: 45px;
+      width: 250px;
+      transition: .3s all;
+      text-align: center;
+      font-size: 16px;
+      position: relative;
+      z-index: 3;
+    }
+
+    header form input::placeholder {
+      color: #fff;
+    }
+
+    header form input:hover {
+      width: 600px;
+      background: rgba(30, 30, 30, .6);
+    }
+
+    .tm {
+      animation: tm 1s;
+    }
+
+    .searchBox {
+      width: 250px;
+      margin: 20px auto 0;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      opacity: 0;
+      top: -50px;
+      transition: .3s all;
+    }
+
+    .searchBox>div {
+      height: 25px;
+      width: 70px;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, .3);
+      color: #fff;
+      line-height: 25px;
+      font-size: 16px;
+      transition: .3s all;
+    }
+
+    .searchBox>div:hover {
+      background: rgba(0, 0, 0, .5);
+    }
+
+    .searchBox>div:active {
+      background: #70C000;
+    }
+
+    @keyframes tm {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.2)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <img src="img/96.png" alt="背景图片">
+  </main>
+  <header>
+    <p id="time"></p>
+    <form action="https://www.baidu.com/s" target="_blank">
+      <input type="text" placeholder="Search" value="" name='word'>
+    </form>
+    <div class="searchBox" id="notFcus">
+      <div id="notFcus" search='https://www.baidu.com/s' name='word'><i class="iconfont icon-baidu" id="notFcus"></i>
+      </div>
+      <div id="notFcus" search='https://cn.bing.com/search' name='q'><i class="iconfont icon-Bing " id="notFcus"></i>
+      </div>
+      <div id="notFcus" search='https://www.google.com/search' name='q'><i class="iconfont icon-google "
+          id="notFcus"></i></div>
+    </div>
+  </header>
+  <script>
+    //日期模板
+    Date.prototype.Format = function (fmt) { // author: meizz
+      var o = {
+        "M+": this.getMonth() + 1, // 月份
+        "d+": this.getDate(), // 日
+        "h+": this.getHours(), // 小时
+        "m+": this.getMinutes(), // 分
+        "s+": this.getSeconds(), // 秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+        "S": this.getMilliseconds() // 毫秒
+      };
+      if (/(y+)/.test(fmt))
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+      for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+      return fmt;
+    }
+
+    let tiems = document.querySelector('#time');
+    let dates;
+    setInterval(() => {
+      dates = new Date().Format('hh:mm');
+      tiems.innerHTML = dates;
+    }, 1000)
+    let inputs = document.querySelector('input')
+    let main = document.querySelector('main')
+    let imgs = main.querySelector('img')
+    let searchBox = document.querySelector('.searchBox')
+    inputs.addEventListener('focus', () => {
+      main.style.filter = 'blur(9px)'
+      inputs.style.width = '600px'
+      inputs.placeholder = ''
+      imgs.style.transform = "scale(1.1)"
+      searchBox.style.top = '0'
+      searchBox.style.opacity = '1'
+      inputs.style.zIndex = '0'
+    })
+    inputs.addEventListener('focusout', () => {
+      inputs.removeAttribute("style")
+      inputs.value = ''
+      main.removeAttribute("style")
+      inputs.placeholder = 'Search'
+      imgs.removeAttribute("style")
+      searchBox.removeAttribute("style")
+    })
+    //focus不失去焦点
+    document.addEventListener("mousedown", function (e) {
+      if (e.target.id == "notFcus") {
+        e.preventDefault()
+      }
+    }, false);
+    //更改搜索地址
+    let searchdiv = searchBox.querySelectorAll('div')
+    let form = document.querySelector('form')
+    searchdiv[0].style.backgroundColor = 'rgba(0,0,0,.6)';
+    searchdiv.forEach((items) => {
+      items.addEventListener('click', (e) => {
+        var item = items.parentNode.children;
+        for (let i of item) {
+          i.removeAttribute('style')
+        }
+        items.style.backgroundColor = 'rgba(0,0,0,.6)'
+        form.setAttribute('action', items.getAttribute('search'))
+        inputs.setAttribute('name', items.getAttribute('name'))
+      })
+    })
+
+    //bing每日壁纸
+    let img = document.querySelector('main').querySelector('img')
+    window.addEventListener('load', e => {
+      get('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN').then(val => {
+        console.log(val)
+      })
+    })
+
+    //封装一个异步
+    function get(url) { 
+      return new Promise((resolve,reject) => {
+        let xhr = new XMLHttpRequest()
+        xhr.open('get',url)
+        xhr.setRequestHeader("Access-Control-Allow-Credentials", "true");
+        xhr.setRequestHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+        xhr.send()
+        xhr.onload = e => {
+          if(xhr.status < 400){
+            resolve(JSON.parse( xhr.responseText ))
+          }else{
+            reject( new Error(xhr.responseText))
+          }
+        }
+
+        xhr.onerror = e => {
+          reject(e)
+        }
+
+      })
+    }
+
+
+  </script>
+</body>
+
+</html>

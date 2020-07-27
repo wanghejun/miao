@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    body{
+      height:100vh;
+      background: linear-gradient(90deg,#9bc864,#40cb8f 15%,#00c7c4 30%,#00bcef 45%,#00c7c4 60%,#40cb8f 75%,#9bc864);
+      background-size: 400% 100%;
+      transition: all .36s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: bgrun 3s infinite;
+    }
+    main{
+      width: 400px;
+      height: 600px;
+      display: flex;
+      position: relative;
+    }
+    main::before{
+      width: 100%;
+      height: 100%;
+      content: '';
+      display: block;
+      position: absolute;
+      background: rgba(255, 255, 255, .5);
+      z-index: -1;
+      filter: blur(5px);
+    }
+    main > div{
+      width: 50%;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center
+    }
+    @keyframes bgrun {
+      0%{
+        background-position: 100% 50%;
+      }
+      100%{
+        background-position: 0 50%;
+      }
+    }
+    .one{
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+      font-weight: bold;
+      border-radius: 50%;
+      position: relative;
+    }
+    .one::before{
+      width: 100%;
+      height: 100%;
+      content: '';
+      display: block;
+      position: absolute;
+      border-top: 4px red solid;
+      border-radius: 50%;
+      animation: z 1s infinite linear;
+    }
+    @keyframes z {
+      0%{
+        transform: rotate(0deg);
+      }
+      100%{
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div>
+      <div class="one">50%</div>
+    </div>
+    <div></div>
+  </main>
+</body>
+</html>
