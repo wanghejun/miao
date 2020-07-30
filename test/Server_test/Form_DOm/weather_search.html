@@ -173,8 +173,34 @@
       let list = form.elements
 
       for(let i = 0;i < list.length;i++){
-        if(list[i].name){
-          result += `${list[i].name}=${list[i].value}&`
+        var element = list[i]
+        if(element.name){
+          let name = element.name
+          let nodeName = element.nodeName
+          if(nodeName == 'INPUT'){
+            switch(element.type){
+              case 'radio':
+              case 'checkbox':
+                if(element.checked){
+                  result += name + '=' + (element.value || 'on') + '&'
+                }
+                break
+              default:
+              result += name + '=' + (element.value || 'on') + '&'
+            }
+          }else if(nodeName == 'TEXTAREA'){
+            result += name + '=' + element.value + '&'
+          }else if(nodeName == 'SELECT'){
+            if(element.multiple){
+              Array.from(element.options).forEach( it => {
+                if(it.selected){
+                  result += name + '=' + it.value + '&'
+                }
+              })
+            }else{
+              result += name + '=' + element.value + '&'
+            }
+          }
         }
       }
       return result.substr(0,result.length - 1)

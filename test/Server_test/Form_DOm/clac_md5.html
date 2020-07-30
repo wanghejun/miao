@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      list-style:none;
+      outline: none;
+    }
+    body{
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: gray
+    }
+    main{
+      padding: 5px 20px;
+      box-sizing: border-box;
+    }
+    section{
+      height: 400px;
+      border: violet solid 1px;
+      padding: 20px 50px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h2 draggable = 'true'>请拖入文件,让朕来计算它的MD5值</h2>
+    <section></section>
+  </main>
+  <script src="./js/md5.min.js"></script>
+  <script>
+    let sec = document.querySelector('section')
+
+    //拖拽
+    sec.addEventListener('dragover', e => {
+      e.preventDefault()
+    })
+
+    //拖拽离开时
+    sec.addEventListener('dragleave', e => {
+      // e.preventDefault()
+    })
+    
+    sec.addEventListener('drop', e => {
+      e.preventDefault()
+
+      let f = e.dataTransfer.files
+      Array.from(f).forEach( it => {
+
+        readFileAsText(it).then(val => {
+          let hash = md5.create()
+          hash.update(val)
+          let p = document.createElement('p')
+          p.innerText = hash.hex()
+          sec.appendChild(p)
+        },rej => {
+          sec.innerText = '出错了'
+        })
+      })
+
+    })
+
+
+    function readFileAsText(file) {
+      return new Promise((resolve, reject) => {
+        let fr = new FileReader();
+        fr.onload = function() {
+          resolve(fr.result);
+        }
+        fr.onerror = function(e) {
+          reject(new Error(e));
+        }
+        fr.readAsText(file);
+      })
+    }
+    
+  </script>
+</body>
+</html>

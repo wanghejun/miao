@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .result{
+      height: 100px;
+      border: 1px solid;
+      letter-spacing: pre;
+    }
+  </style>
+</head>
+<body>
+  <textarea name="" id="" cols="30" rows="10"></textarea>
+  <button onclick='codeRun()'>run</button>
+  <div class="result"></div>
+
+  <script>
+    let input = document.querySelector('textarea')
+    let result = document.querySelector('.result')
+    var console ={
+      log:function (...args) { 
+        result.append(...args,'\n')
+       }
+    }
+    function codeRun() { 
+      result.textContent = ''
+      let code = input.value
+      let res = eval(code)
+      result.append(res,'\n')
+     }
+     var a = 1
+     var b = 2
+     console.log(a+b)
+  </script>
+</body>
+</html>
