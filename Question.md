@@ -146,3 +146,52 @@ A.sort((a,b) => a.time - b.time)
     }
     
 ```
+
+
+* 两个数组合并排序
+```js
+  function concats(aryo,aryt){
+    return aryo.concat(aryt).sort((a,b) => a - b)
+  }
+
+ function concats2(aryo,aryt){
+    let result = []
+    let i = 0
+    let j = 0
+    while(i < aryo.length && j < aryt.length){
+      if(aryo[i] >= aryt[j] ){
+        result.push(aryt[j++])
+        continue
+      }
+      if(aryt[j] >= aryo[i]){
+        result.push(aryo[i++])
+      }
+
+    }
+      if(i != aryo.length){
+        result.push(...aryo.slice(i))
+      }
+      if(j !=aryo.length){
+        result.push(...aryt.slice(j))
+      }
+    return result
+  }
+```
+
+
+```js
+`{
+  "name":"小明",
+  "from":"杭州",
+  "like":["看电影","旅游"],
+  "sister":[
+    {"name":"小芬","age":25,"job":"护士"},
+    {"name":"小芳","age":23,"job":"小学老师"}
+   ]
+  }`
+```
+
+
+* 行类元素  span a b strong i input系列 button
+* 块级元素 h1~h6 p div section main header ul li ol table thead tbody th tr td pre
+* 空元素 hr img br link meta

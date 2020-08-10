@@ -1,18 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>async-await</title>
-</head>
-<body>
-  
-  <script>
-    function * foo() { 
-      yield 1
-      yield 2
-      yield 3
-     }
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>async-await</title>
+  </head>
+  <body>
+    <script>
+      function* foo() {
+        console.log("start");
+        var data = yield getJson(
+          "http://wthrcdn.etouch.cn/weather_mini?city=杭州"
+        );
+        console.log(data);
+        yield getVal(2, 2000);
+        console.log(2);
+        yield getVal(3, 2000);
+        yield getVal(3, 2000);
+        yield getVal(3, 2000);
+        return 555;
+      }
+
+      //es7新语法
+      async function foo2() { 
+        console.log("start");
+        var data = await getJson(
+          "http://wthrcdn.etouch.cn/weather_mini?city=杭州"
+        );
+        console.log(data);
+        await getVal(2, 2000);
+        console.log(2);
+        await getVal(3, 2000);
+        await getVal(3, 2000);
+        await getVal(3, 2000);
+        return 555;
+       }
+       //调用
+       foo2().then(val => {
+         console.log('ok')
+       })
+       
+      // let g = foo();
+      // g.next().value.then(
+      //   (val) => {
+      //     g.next(val).value.then((val) => {
+      //       g.next(val).value.then((val) => {
+      //         g.next();
+      //         g.next();
+      //       });
+      //     });
+      //   },
+      //   (reson) => {
+      //     g.throw(reson);
+      //   }
+      // );
+
+      // run(foo).then((val) => {
+      //   console.log("ok");
+      // });
+
+      function run(generatorFunction) {
+        return new Promise((resolve, reject) => {
+          var generator = generatorFunction();
+          var generated;
+
+          try {
+            generated = generator.next();
+          } catch (e) {
+            reject(e);
+            return;
+          }
+
+          step();
+
+          function step() {
+            if (!generated.done) {
+              generated.value.then(
+                (val) => {
+                  try {
+                    generated = generator.next(val);
+                  } catch (e) {
+                    reject(e);
+                    return;
+                  }
+                  step();
+                },
+                (reason) => {
+                  try {
+                    generated = generator.throw(reason);
+                  } catch (e) {
+                    reject(e);
+                    return;
+                  }
+                  step();
+                }
+              );
+            } else {
+              resolve(generated.value);
+            }
+          }
+        });
+      }
+
+      function get(url) {
+        return new Promise((resolve, recject) => {
+          let xhr = new XMLHttpRequest();
+          xhr.open("get", url);
+          xhr.onload = (e) => {
+            resolve(xhr.responseText);
+          };
+          xhr.onerror = (e) => {
+            recject(e);
+          };
+          xhr.send();
+        });
+      }
+
+      function getJson(url) {
+        return get(url).then(JSON.parse);
+      }
+
+      function delay(time) {
+        return new Promise((resolve) => {
+          setTimeout(resolve, time);
+        });
+      }
+
+      function getVal(val, time) {
+        return new Promise((reslove) => {
+          setTimeout(() => {
+            reslove(val);
+          }, time);
+        });
+      }
+    </script>
+  </body>
 </html>

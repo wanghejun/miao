@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+</head>
+<body>
+  <div class="app">
+    <h1>{{message}}</h1>
+    <hr>
+    <ul>
+      <li v-for='item in movies'>{{item}}</li>
+    </ul>
+  </div>
+  <hr>
+  <div class="count">
+    <p>当前计数:  {{counter}}</p>
+    <button v-on:click = 'add'>+</button>
+    <button v-on:click = 'sub'>—</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    let app = new Vue({
+      el:'.app',//绑定元素
+      data:{//定义数据
+        message:'hello world',
+        movies:['html','css','javcascript','less/sass','jQuery','node.js','Vue','react','angular'],
+
+      }
+    })
+
+    let count = new Vue({
+      el:'.count',
+      data:{
+        counter:0
+      },
+      methods:{
+        add:function (){//这里如果用箭头函数将无法访问this
+          this.counter++
+        },
+        sub:function (){//这里如果用箭头函数将无法访问this
+          this.counter--
+        }
+      }
+    })
+  </script>
+</body>
+</html>

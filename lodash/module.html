@@ -3,23 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>modules</title>
 </head>
 <body>
   <script type="module">
-    //模块导入测试
-    // import {fish,head,mouth} from './test.js';
-    // fish()
-    // console.log(head)
-    // console.log(mouth)
-    let obj = 1;
-    debugger;
-    import('./test.js').then(({fish,head,mouth}) => {
-      console.log(head)
-      console.log(mouth)
-      fish()
-    })
-    console.log(obj)
+    // 模块导入测试
+    import {fish,head,mouth} from './moduleTest.js';
+    fish()
+    debugger
+    console.log(head)
+    console.log(mouth)
+
+
+
+    // es6的新语法
+    // let obj = 1;
+    // debugger;
+    // import('./moduleTest.js').then(({fish,head,mouth}) => {
+    //   console.log(head)
+    //   console.log(mouth)
+    //   fish()
+    // })
+    // console.log(obj)
+
   </script>
+
+
+  <script>
+
+    //立即执行函数
+    var dayName = function () { 
+      var names = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+      return n => {
+        return names[n]
+      }
+     }()
+
+     var dayName2 = function () { 
+      var names = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+      return {
+        num:n => {return names[n]},
+        name:str => {return names.indexOf(str)}
+      }
+     }()
+
+
+     //简单实现require请求函数
+     function require(filename){
+      var fileContent = readFile(filename)
+      var modFunc = new Function(fileContent)
+      return modFunc()
+     }
+
+     function readFile(filename) { 
+        let xhr = new XMLHttpRequest()
+        xhr.open('get',filename,false)
+        xhr.send()
+        return xhr.responseText
+      }
+
+      // let a = require('moduleTest.js')
+      let b = require('moduleTest2.js')
+  </script> 
 </body>
 </html>

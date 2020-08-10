@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+  <style>
+    .active{
+      color:red;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- v-bind 绑定 -->
+    <p>
+      <a v-bind:href="vueAddress">
+        <!-- v-bind语法糖的写法 -->
+        <img :src="imgUrl" alt="" width="100">
+      </a>
+    </p>
+
+    <h1>{{message}}</h1>
+    <!-- v-once代表不能更改 -->
+    <h1 v-once>{{message}}</h1> 
+    <p>{{firstname}}·{{lastname}}</p>
+    <p>{{number * 2}}</p>
+    <!-- 展示一个html标签 -->
+    <p v-html= 'url'></p>
+    <!-- 展示文本，不常用，不灵活 -->
+    <p v-text= 'url'></p>
+    <!-- v-pre 不被解析 -->
+    <p v-pre>{{message}}</p>
+    <hr>
+    <ul>
+      <li v-for='item in movies'>{{item}}</li>
+    </ul>
+    <hr>
+    <h2 v-bind:class ='{active:isActive}'>颜色</h2 >
+    <button v-on:click = 'click'>变色</button>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    let app = new Vue({
+      el:'.app',//绑定元素
+      data:{//定义数据
+        message:'hello world',
+        movies:['html','css','javcascript','less/sass','jQuery','node.js','Vue','react','angular'],
+        firstname:'布鲁斯',
+        lastname:'李',
+        number:100,
+        url:'<a href ="https://ww.baidu.com">百度一下</a>',
+        imgUrl:'https://cn.vuejs.org/images/logo.png',
+        vueAddress:'https://cn.vuejs.org/v2/guide/installation.html',
+        isActive:true
+      },
+      methods:{
+        click:function(){
+          this.isActive = !this.isActive
+        }
+      }
+    })
+
+
+  </script>
+</body>
+</html>
