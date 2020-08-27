@@ -1,0 +1,8 @@
+extends basic-layout.pug
+
+block content
+  p=result
+  if(code == 0)
+    a(href='/login') 去登录
+  else
+    button(onclick = 'history.back()') 后退

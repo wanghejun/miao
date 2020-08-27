@@ -1,0 +1,21 @@
+extends basic-layout.pug
+
+block content 
+  form(action="/register" method ='post')
+    div 用户名
+    input(type="text" name='name')
+    span(class='tip')
+    div 密码
+    input(type="password", name="password")
+    div 电子邮箱
+    input(type="email", name="email")
+    button 注册
+  script.
+    let inp = document.querySelector('input[name="name"]')
+    
+    inp.oninput = function(e){
+      $.get('/username-conflict-check?name='+ this.value).then(result => {
+        console.log(result)
+        $('.tip').text(result.mes)
+      })
+    }

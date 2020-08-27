@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>slider</title>
+  <style>
+    body{
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+    .indicators{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+    .indicators > li{
+      width: 15px;
+      height: 15px;
+      border: 3px solid;
+      display: inline-block;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .indicators > li.active{
+      border-color: violet;
+    }
+    .img{
+      position: absolute;
+      opacity: 0;
+      transition: .5s;
+      width: 100%;
+      height: 100%;
+    }
+    .img.light{
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <slider :imgs='dogs' ></slider>
+    <slider :imgs='cats' ></slider>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    Vue.component('slider',{//组件声明
+      props:{//可以接收的参数
+        width:{default:400,type:Number},
+        height:{default:300,type:Number},
+        imgs:{required:true,type:Array},//必传参数
+        buttons:{default:true,type:Boolean},
+        indicators:{default:true,type:Boolean},
+        autoplay:{default:true,type:Boolean},
+        autoplayDuration:{default:3000,type:Number},
+      },
+      template:`
+        <div :style="wrapperStyle" @mouseenter="pause" @mouseleave="resume">
+          <img :src=" img " v-for="(img,index) of imgs" class='img' :class="{light: idx == index}" alt="">
+          <button v-if="buttons" style="left :0" :style='btnStyle' @click='prev'>prev</button>
+          <button v-if="buttons" style="right:0" :style='btnStyle' @click='next'>next</button>
+          <ul class='indicators' v-if="indicators">
+            <li v-for="(img,index) of imgs" @click='idx = index' :class="{active: idx == index}"></li>
+          </ul>
+        </div>
+      `,
+      data(){//数据
+        return {
+          idx:0,
+          intervalId:-1,
+          wrapperStyle:{
+            border: '1px solid',
+            width: this.width +'px',
+            height: this.height + 'px',
+            position: 'relative',
+          },
+          btnStyle: {
+            position:'absolute',
+            top:0,
+            bottom:0,
+            height:'30px',
+            margin:'auto'
+          }
+        }
+      },
+      methods:{//方法
+        prev(){
+          this.idx--
+          if(this.idx < 0){
+            this.idx = this.imgs.length - 1
+          }
+        },
+        next(){
+          this.idx++
+          if(this.idx > this.imgs.length - 1){
+            this.idx =  0
+          }
+        },
+        pause(){
+          clearInterval(this.intervalId)
+        },
+        resume(){
+          if(this.autoplay){
+          this.intervalId = setInterval(()=>{
+            this.next()
+          },this.autoplayDuration)
+        }
+        }
+      },
+      mounted(){//生命周期函数
+        this.resume()
+      }
+    })
+    new Vue({
+      el:'#container',
+      data:{
+        dogs:[
+          'https://images.alphacoders.com/494/thumb-1920-494303.jpg',
+          'https://images4.alphacoders.com/582/thumb-1920-582769.jpg',
+          'https://images.alphacoders.com/809/thumb-1920-809674.jpg',
+          'https://images5.alphacoders.com/103/thumb-1920-1031412.jpg',
+          'https://images7.alphacoders.com/852/thumb-1920-852152.jpg',
+        ],
+        cats:[
+          'https://images7.alphacoders.com/361/thumb-1920-361863.jpg',
+          'https://images4.alphacoders.com/572/thumb-1920-5726.jpg',
+          'https://images.alphacoders.com/439/thumb-1920-439570.jpg',
+          'https://images5.alphacoders.com/340/thumb-1920-340480.jpg',
+          'https://images5.alphacoders.com/311/thumb-1920-311642.jpg',
+          'https://images.alphacoders.com/519/thumb-1920-51953.jpg',
+          'https://images2.alphacoders.com/110/thumb-1920-110020.jpg',
+        ]
+      }
+    })
+  </script>
+</body>
+</html>

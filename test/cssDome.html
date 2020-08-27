@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    body{
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    div{
+      width: 100px;
+      height: 100px;
+      background: violet;
+    }
+    .circle{
+      border-radius: 50%;
+    }
+    .triangle{
+      width: 0px;
+      height: 0px;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid violet;
+      background: white;
+    }
+    .sector{
+      border-radius: 50%;
+      position: relative;
+    }
+    .sector::before{
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      display: block;
+      background: white;
+    }
+    .sector::after{
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      display: block;
+      background: white;
+    }
+    .jiu > ul{
+
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content:space-between;
+    }
+    .jiu > ul > li{
+  
+      width: 33.3333333333px;
+      height: 33.3333333333px;
+      background: yellowgreen;
+      transition: .3s;
+    }
+    .jiu > ul > li:hover{
+      background: violet;
+    }
+    .ulli > ul > li{
+      height: 20px;
+      background: wheat;
+    }
+  </style>
+</head>
+<body>
+  <div class="circle"></div>
+  <div class="triangle"></div>
+  <div class="sector"></div>
+  <div class="jiu">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="ulli">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+      </li>
+    </ul>
+  </div>
+  <script>
+    let a = {
+      n:1,
+      get x(){
+        let a = String(this.n)
+        if(a.length > 3){
+          a = a.split('')
+          let count = 0
+          for(let i = a.length;i >= 0;i--){
+            if(count++ == 3){
+              a.splice(i,0,',')
+              count = 0
+            }
+          }
+          return a.join('')
+        }else{
+          return a 
+        }
+      },
+      set x(val){
+        this.n = Number(val)
+      }
+    }
+  </script>
+</body>
+</html>

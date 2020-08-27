@@ -15,7 +15,9 @@
 * lodash.js  常用函数库
 * async.js 异步操作库
 * codemirror mini代码编辑器(本书作者)       ace editor        monaco editor(微软、vsode)
-
+* electron   js开发桌面级
+* express koa  node框架
+* pug  express的模板引擎      EJS   也是
 
 
 
@@ -71,9 +73,4 @@ k ?
 l ?
 
 ```
-for (var i= 0;i<5; i++){
-setTimeout(function() {
-console.log(i)
-],1000);
-}
-console.log(i);
+* git about https://lhajh.github.io/windows/git/2019/05/05/Window-platform-Git-Bash-configuration.html

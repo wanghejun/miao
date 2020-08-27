@@ -195,3 +195,15 @@ A.sort((a,b) => a.time - b.time)
 * 行类元素  span a b strong i input系列 button
 * 块级元素 h1~h6 p div section main header ul li ol table thead tbody th tr td pre
 * 空元素 hr img br link meta
+
+
+
+
+* 对象、数组的深拷贝
+```js
+//骚操作
+JSON.parse(JSON.stringify(Obj))
+
+//手写递归
+
+```

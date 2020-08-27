@@ -16,7 +16,7 @@
     <p>
       <a v-bind:href="vueAddress">
         <!-- v-bind语法糖的写法 -->
-        <img :src="imgUrl" alt="" width="100">
+        <img :src="imgUrl" alt="" width="50">
       </a>
     </p>
 
@@ -38,6 +38,10 @@
     <hr>
     <h2 v-bind:class ='{active:isActive}'>颜色</h2 >
     <button v-on:click = 'click'>变色</button>
+    <hr>
+    <p>v-bind:style</p>
+    <p :style='{fontSize : fontSize +"px",color:color}'>STYLE</p>
+    <p>{{fullname}}</p>
   </div>
 
 
@@ -51,10 +55,20 @@
         firstname:'布鲁斯',
         lastname:'李',
         number:100,
+
         url:'<a href ="https://ww.baidu.com">百度一下</a>',
         imgUrl:'https://cn.vuejs.org/images/logo.png',
         vueAddress:'https://cn.vuejs.org/v2/guide/installation.html',
-        isActive:true
+
+        isActive:true,
+        fontSize:30,
+        color:'violet'
+
+      },
+      computed:{
+        fullname:function(){
+          return this.firstname + this.lastname
+        }
       },
       methods:{
         click:function(){

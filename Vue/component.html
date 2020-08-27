@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="con">
+    <h2>{{mes()}}</h2>
+    <button-counter></button-counter>
+    <ListInput v-mode='fruits'></ListInput>
+  </div>
+  <script>
+    Vue.component('button-counter',{
+      template:`
+        <div>
+          <button @click='count--'>-</button>
+          <span>{{ count }}</span>
+          <button @click='count++'>+</button>
+        </div>
+      `,
+      data(){
+        return {
+          count:0
+        }
+      },
+      methods:{
+
+      }
+    })
+
+    Vue.component('ListInput',{
+      template:`
+        <textarea></textarea>
+      `,
+      data(){
+        return {
+          fruits:['orange','apple','google']
+        }
+      }
+    })
+    new Vue({
+      el:'#con',
+      data: {
+        gender: 'null',
+      },
+      methods:{
+        mes(){
+          return 1
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+ 
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h3>todos</h3>
+    <div>
+      <input type="checkbox" @click='toggleSelectAll()' v-show='todos.length' :checked='check'>
+      <input type="text" @keyup.enter='addTodo'>
+    </div>
+    <ul :class = "showingCategory + ' todo-list'">
+      <li v-for="(todo,idx) of todos" :key="idx" calss='todo-item' :class = "todo.completed ? 'completed' : 'active'">
+        <input type="checkbox" @click=' todo.completed = !todo.completed ' :checked="todo.completed">
+        <span v-if='editingIdx !== idx' @dblclick= 'seteditIdx(idx)'>{{todo.content}}</span>
+        <input class="edit-box" v-else  @keyup.enter='editTodo(idx,$event)' @blur='editTodo(idx,$event)' type="text" :value='todo.content'>
+        <button @click='deletTodo(idx)'>&times;</button>
+      </li>
+    </ul>
+    <div v-show='todos.length'>
+      <span>{{ todoSize }} items left</span>
+      <div>
+        <label for=""><input type="radio" @click=" showingCategory = 'All' " :checked="showingCategory == 'All' " value="All">All</label>
+        <label for=""><input type="radio" @click=" showingCategory = 'Active' " :checked="showingCategory == 'Active' " value="Active">Active</label>
+        <label for=""><input type="radio" @click=" showingCategory = 'Completed' " :checked="showingCategory == 'Completed' " value="Completed">Completed</label>
+      </div>
+      <button @click='clearCompleted()' v-show='todos.some(it => it.completed)'>Clear completed</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    let app = new Vue({
+      el:'#container',//绑定元素
+      data:{//数据声明
+        showingCategory:'all',
+        editingIdx: -1,
+        todos:JSON.parse(localStorage.todos) || [{
+          content:'eat',
+          completed:true,
+          },
+          {
+            content:'drink',
+            completed:false,
+          },
+          { 
+            content:'sleep',
+            completed:true,
+          }
+        ]
+      },
+      computed:{//计算属性函数
+        todoSize(){
+          return this.todos.filter(it => !it.completed).length
+        },
+        check(){
+          return this.todos.every(it => it.completed) && this.todos.length
+        }
+      }
+      ,
+      watch:{//数据监控
+        todos:{
+          handler:function(){
+            localStorage.todos = JSON.stringify(this.$data.todos)
+          },
+          deep:true,
+        }
+      },
+      methods:{//方法定义
+        clearCompleted() {
+          this.$data.todos = this.$data.todos.filter(it => !it.completed)
+        },
+        toggleSelectAll(){
+          if(this.$data.todos.every(it => it.completed)){
+            this.$data.todos.forEach(it => {
+              it.completed = false
+            })
+          }else{
+            this.$data.todos.forEach(it => {
+              it.completed = true
+            })
+          }
+        },
+        
+        addTodo(e){
+            let todoText = e.target.value.trim()
+            if(todoText){
+              this.$data.todos.push({
+                content:todoText,
+                completed : false
+              })
+              e.target.value = '' 
+          }
+        },
+      
+        deletTodo(idx){
+          this.$data.todos.splice(idx,1)
+        },
+        editTodo(idx,e){
+          this.$data.todos[idx].content = e.target.value.trim()
+          this.$data.editingIdx = -1
+        },
+        seteditIdx(idx){
+          this.$data.editingIdx = idx;
+          setTimeout(()=>{
+          let box = document.querySelector('.edit-box').focus()
+          box && box.focus()
+          })
+        } 
+      }
+    })
+  </script>
+</body>
+</html>

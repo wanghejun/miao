@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .light {
+      background: violet;
+    }
+  </style>
 </head>
+
 <body>
   <div id="app">
-    <ul v-for= '(item,idx) in movies'>
-      <li :class>{{idx +'-'+ item}}</li>
+    <ul>
+      <li v-for='(item,idx) in movies' @click='light(idx)'>{{idx +'-'+ item}}</li>
     </ul>
-  </div>  
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
     let app = new Vue({
-      el:'#app',
-      data:{
-        movies:['三国演义','水浒传','西游记','红楼梦']
+      el: '#app',
+      data: {
+        movies: ['三国演义', '水浒传', '西游记', '红楼梦']
       },
-      methods:{
-        click:function(){
-          
+      methods: {
+        light(idx) {
+          let lis = document.querySelectorAll('li')
+          lis.forEach(it => it.classList.remove('light'))
+          lis[idx].classList.add('light')
         }
       }
     })
   </script>
 </body>
+
 </html>

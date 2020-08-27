@@ -1,0 +1,12 @@
+extends basic-layout.pug
+
+block content
+  form(action="/post" method='post')
+    div
+      p 标题:
+      input(type="text" name='title')
+    div
+      p 内容:
+      textarea(name="content", cols="30", rows="10")
+    div
+      button 发布帖子

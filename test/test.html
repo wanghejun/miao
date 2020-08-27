@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding:0;
+      list-style: none;
+    }
+    body{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      background: #efefef;
+    }
+    main{
+      width: 800px;
+      display: flex;
+      flex-wrap: wrap;
+      font-weight: bold;
+    }
+    main > .demo{
+      height: 400px;
+      width: 400px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .one{
+      height: 40px;
+      width: 100px;
+      border: 1px solid;
+      line-height: 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: #0984e3;
+      color: #ffffff;
+    }
+    .one>span{
+      position: relative;
+      z-index: 2;
+    }
+    .one::before{
+      content: '';
+      display: block;
+      position: absolute;
+      transition: .3s;
+      height: 100%;
+      background: #2d3436;
+      width: 0%;
+      animation: run .3s;
+      z-index: 1;
+    }
+    .one:hover::before{
+      width: 100%;
+      animation: none;
+    }
+    @keyframes run{
+      0%{
+        width: 100%;
+      }
+      100%{
+        width: 100%;
+        transform: translate(100%,0);
+      }
+    }
+
+    .two{
+      height: 40px;
+      width: 100px;
+      border: 1px solid transparent ;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 10px;
+      transition: .3s;
+      background: #30C4B6;
+      color: #ffffff;
+    }
+    .two:hover{
+      border-radius:50px 10px;
+    }
+
+    .three{
+      height: 40px;
+      width: 100px;
+      border: 1px solid #000000 ;
+      line-height: 40px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      background: #000000;
+    }
+    .three::before{
+      content: '';
+      display: block;
+      position: absolute;
+      height: 50%;
+      width: 100px;
+      background: rgba(255, 255, 255, 0.5);
+      transition: .3s linear;
+      transform: rotate(45deg) translate(0,400%);
+    }
+    .three:hover::before{
+      transform: rotate(45deg) translate(0,-800%);
+    }
+
+
+  </style>
+</head>
+<body>
+  <main>
+    <div class="demo">
+      <div class='one'><span>HoverMe</span></div>
+    </div>
+    <div class="demo">
+      <div class="two"><span>HoverMe</span></div>
+    </div>
+    <div class="demo">
+      <div class="three"><span>HoverMe</span></div>
+    </div>
+    <div class="demo"></div>
+    <div class="demo"></div>
+    <div class="demo"></div>
+    <div class="demo"></div>
+    <div class="demo"></div>
+  </main>
+</body>
+</html>

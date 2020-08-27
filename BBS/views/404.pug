@@ -1,0 +1,16 @@
+extends basic-layout.pug
+
+block content
+    p 您要找的页面不存在
+    p 将在<span class='count-dow'>5</span>秒以后跳回首页
+    script.
+      let p = document.querySelector('.count-dow')
+      let countDown = 4
+
+      setInterval(() => {
+        p.textContent = countDown--
+      },1000)
+
+      setTimeout(()=>{
+        location.href = '/'
+      },5000)

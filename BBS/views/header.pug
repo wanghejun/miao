@@ -1,0 +1,10 @@
+header
+  h1
+    a(href='/') 天涯论坛
+  if(user)
+    span 欢迎~,#{user.name}
+      a(href='/logout') 退出
+  else
+    span 未登录,
+      a(href='/login') 登录 
+      a(href='/register') 注册
