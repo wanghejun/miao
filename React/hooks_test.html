@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hooks</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div class="app"></div>
+    <script type="text/babel">
+    const { useState , component , useEffect } =  React //解构赋值
+
+    // var width = useWindowWidth()
+    // var height = useWindowHeight()
+    // var [w, h] = useWindowSize()
+    // var size = useWindowSize()
+    // var storage = useLocalStorage()//利用window.onstorage事件
+    // var [data, isLoading] = userFetch('/cats.json')
+
+    //有状态的函数式组件，称之为hooks(钩子)
+    function useWindowWidth(props) {
+      let [width,setWidth] = useState(window.outerWidth)
+
+      useEffect(() => {
+
+        window.addEventListener('resize',function res() {
+          setWidth(window.outerWidth)
+        }) 
+
+        return () => window.removeEventListener('resize',res)//这里返回一个函数是组件被卸载时，删除这个事件以免内存泄漏
+      },[])/*第二个参数这里
+                不传参数的话，这个函数每次都会运行且循行上次的return函数
+                传一个空数组的话，就是只需要运行一次
+                传一个值的话，每次会去比较这个值是否有变化才决定是否调用这个函数
+            */
+      return width//返回宽度
+    }
+
+    function useWindowHeight(props) {
+
+      let [Height,setHeight] = useState(window.outerHeight)
+
+      useEffect(() => {
+
+        window.addEventListener('resize',function res() {
+          setHeight(window.outerHeight)
+        }) 
+
+        return () => window.removeEventListener('resize',res)
+      },[])
+
+      return Height
+    }
+    
+    function useWindowSize(){
+      let width = useWindowWidth()
+      let Height = useWindowHeight()
+
+      return {width,Height}
+    }
+
+    function userFetch(url){
+      let [isLoading,setLoading] = useState(true)
+      let [data,setData] = useState(null)
+
+      useEffect( () => {
+        setLoading(true)
+        setData(null)
+
+        new Promise(resolve=>{
+          let xhr = new XMLHttpRequest()
+          xhr.open('get','https://xieranmaya.github.io/images/cats/cats.json')
+          xhr.send()
+          xhr.addEventListener('load', data =>{resolve(data)})
+      }).then(res => {
+        setData(JSON.parse( res.currentTarget.responseText ))
+        setLoading(false) 
+      })
+      },[url])
+      return [data,isLoading]
+    }
+   
+    function Test() {
+      let {width,Height} = useWindowSize()
+      let [data,isLoading] = userFetch('https://xieranmaya.github.io/images/cats/cats.json')
+
+      return (//组件的复用
+        <div>
+          <p>windowWidhd:{width}</p>
+          <p>windowHeight:{Height}</p>
+          <ul>
+              {isLoading ? 'Loading' :data.map(it => <li key={it.url}>{it.fullUrl}</li>)}
+          </ul>
+        </div>
+      )
+    }
+    ReactDOM.render(
+      <Test/>,
+      document.querySelector('.app')
+    )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+  </body>
+</html>

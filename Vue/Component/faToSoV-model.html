@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p>father_numb1:{{numb1}}</p>
+    <p>father_numb2:{{numb2}}</p>
+    <cpn-C :no="numb1" :nt="numb2" @nochange="e => numb1 = e" @ntchange="e => numb2 = e"></cpn-C>
+  </div>
+
+  <template id="tm">
+    <div>
+      n1:<input type="text"  :value="number1" @input=" bob1 "><br/>
+      n2:<input type="text"  :value="number2" @input=" bob2 ">
+      <p>son:{{number1}}</p>
+      <p>son:{{number2}}</p>
+    </div>
+  </template>
+
+  <script>
+    let cpnC ={
+      props:['no','nt'],
+      template:"#tm",
+      data(){
+        return {
+          number1:this.no,
+          number2:this.nt,
+        }
+      },
+      methods:{
+        bob1(e){
+          this.number1 = e.target.value
+          this.$emit('nochange',this.number1)
+        },
+        bob2(e){
+          this.number2 = e.target.value
+          this.$emit('ntchange',this.number2)
+        }
+      }
+    }
+
+    new Vue({
+      el:'#app',
+      data:{
+        numb1:10,
+        numb2:20
+      },
+      components:{
+        cpnC,
+      }
+    })
+  </script>
+</body>
+</html>

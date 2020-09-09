@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model.lazy='message'><br>
+    <input type="text" :value='message' @input='message = $event.target.value'>
+    <p>{{message}}</p>
+    <hr>
+    <select multiple v-model='city'>
+      <option value="杭州s" >杭州</option>
+      <option value="温州s" >温州</option>
+      <option value="襄州s" >襄州</option>
+    </select>
+    <p>你选中了:{{ city }}</p>
+    <hr>
+    <input type="number" v-model.number='age'>
+    <p>我{{age}}岁</p>
+    <hr>
+    <input type="checkbox" v-model='remenber'><span>{{remenber}}</span>
+    <hr>
+    <input type="radio" v-model='gender' value="boy">boy
+    <input type="radio" v-model='gender' value="girl">girl
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    let app = new Vue({
+      el:'#app',
+      data:{
+        message:'hello',
+        city:[],
+        age:'',
+        remenber:true,
+        gender:''
+      }
+    })
+  </script>
+</body>
+</html>

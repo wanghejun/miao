@@ -8,43 +8,93 @@
 </head>
 <body>
   <div id="con">
-    <h2>{{mes()}}</h2>
-    <button-counter></button-counter>
-    <ListInput v-mode='fruits'></ListInput>
+    <h2>{{ mes() }}</h2>
+    <button-counter :start='0' :step='2'></button-counter>
+    <list-input v-model='arr'></list-input>
+    <hr>
+    <window name="hello">
+      asd
+    </window>
   </div>
   <script>
     Vue.component('button-counter',{
+      props:['start','step'],
       template:`
         <div>
-          <button @click='count--'>-</button>
+          <button @click='dec()'>-</button>
           <span>{{ count }}</span>
-          <button @click='count++'>+</button>
+          <button @click='inc()'>+</button>
         </div>
       `,
       data(){
         return {
-          count:0
+          count: this.start,
         }
       },
       methods:{
-
+        dec(){
+          this.count-=this.step
+        },
+        inc(){
+          this.count+=this.step
+        },
       }
     })
 
-    Vue.component('ListInput',{
+    Vue.component('list-input',{
+      props:['value'],
       template:`
-        <textarea></textarea>
+      <div>
+        <input type='text' :value='arr' @input.sync='result'>
+        <p>{{ arr }}</p>
+      </div>
       `,
       data(){
         return {
-          fruits:['orange','apple','google']
+          arr: JSON.stringify( this.value )
+        }
+      },
+      computed:{
+
+      },
+      methods:{
+        result(e){
+          let val = e.target.value
+          let results
+          try{
+            results = JSON.parse(val)
+          }catch(e){
+            console.log(e)
+          }
+          this.$emit('input',results)
         }
       }
     })
-    new Vue({
+    
+    //插槽test
+    Vue.component('window',{
+      props:['name'],
+      template:`
+        <div>
+          <h2>{{ head }}</h2>  
+          <section>
+            <slot></slot>
+          </section>
+        </div>
+      `,
+      data(){
+        return {
+          head:this.name
+        }
+      }
+    })
+    
+    
+    let app =  new Vue({ 
       el:'#con',
       data: {
         gender: 'null',
+        arr:{a:1,b:2}
       },
       methods:{
         mes(){

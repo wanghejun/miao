@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <style>
+    .flex-row{
+      display: flex;
+    }
+    div{
+      border: 1px solid ;
+    }
+    .router-link-active{
+      color: black;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <router-link to='/home'>Home</router-link>
+    <router-link to='/consumer'>买家服务</router-link>
+    <router-link to='/provider'>卖家服务</router-link>
+
+    <router-view></router-view>
+  </div>
+  <script>
+    //这里必须调用Vue使用VueRouter
+    Vue.use(VueRouter)
+
+    //对象组件
+    let Consumer ={
+      template:`
+        <div class='flex-row'>
+          <div>
+            <section><router-link to="/consumer/orders">我的订单</router-link></section>
+            <section><router-link to="/consumer/addresses">地址管理</router-link></section>
+            <section><router-link to="/consumer/account">账户管理</router-link></section>
+          </div>
+          <router-view></router-view>
+        </div>
+      `
+    }
+    
+    let Provider ={
+      template:`
+        <div class='flex-row'>
+          <div>
+            <section><router-link to="/provider/payed-orders">已付款订单</router-link></section>
+            <section><router-link to="/provider/express">发货管理</router-link></section>
+            <section><router-link to="/provider/charts">报表</router-link></section>
+          </div>
+          <router-view></router-view>
+        </div>
+      `
+    }
+    let Home ={
+      template:`
+        <div>
+          <h1>home</h1>
+          <p>asdasdzxczxc</p>
+        </div>
+      `
+    }
+    let Orders ={
+      template:`
+        <div class='flex-row'>
+          这里是订单
+        </div>  
+      `
+    }
+    let Addresses ={
+      template:`
+        <div class='flex-row'>
+          这里是地址管理
+        </div>
+      `
+    }
+    let Account ={
+      template:`
+        <div class='flex-row'>
+          这里是账户管理
+        </div>
+      `
+    }
+
+    let PayedOrders ={
+      template:`
+        <div class='flex-row'>
+          这里是付款
+        </div>
+      `
+    }
+    let Express ={
+      template:`
+        <div class='flex-row'>
+          这里是发货管理
+        </div>
+      `
+    }
+    let Charts ={
+      template:`
+        <div class='flex-row'>
+          这里是报表管理
+        </div>
+      `
+    }
+    //声明一个前端路由
+    let router = new VueRouter({
+      routes:[{
+        path:'/home',
+        component: Home
+      },{
+        path:'/consumer',
+        component: Consumer,
+        children:[{
+          path:'orders',
+          component:Orders
+        },{
+          path:'addresses',
+          component:Addresses
+        },
+        {
+          path:'account',
+          component:Account
+        },]
+      },{
+        path:'/provider',
+        component: Provider,
+        children:[{
+          path:'payed-orders',
+          component:PayedOrders
+        },{
+          path:'express',
+          component:Express
+        },{
+          path:'charts',
+          component:Charts
+        },]
+      },]
+    })
+    //声明一个Vue实列
+    let app = new Vue({
+      router,
+      el:'#container',
+      date:{
+
+      }
+    })
+  </script>
+</body>
+</html>

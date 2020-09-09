@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+</head>
+<body>
+  <div class="app">
+    <div v-if='isUser' :key='1'>
+      <label for="user">用户名</label><input type="text" name="" id="user">
+    </div>
+    <div v-else :key='2'>
+      <label for="emali">邮箱</label><input type="text" name="" id="emali">
+    </div>
+    <button @click="isUser = !isUser">切换</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el:'.app',
+      data:{
+        isUser:true
+      }
+    })
+  </script>
+</body>
+</html>

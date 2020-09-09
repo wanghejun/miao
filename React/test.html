@@ -12,6 +12,9 @@
   <body>
     <div id="root"></div>
     <div class="app"></div>
+    <div class="clock"></div>
+    <hr>
+    <div class="input"></div>
     <script type="text/babel">
 
       ReactDOM.render(
@@ -21,14 +24,27 @@
 
       class ButtonCounter extends React.Component{
         constructor(props){
-          super(props)
+          super(props)//必须把传入的参数给super调用一下，才能使用this.props
+          this.state={
+            count:this.props.start
+          }
+        }
+        dec = () => {
+          this.setState({
+            count:this.state.count - this.props.step
+          })
+        }
+        inc = () => {
+          this.setState({
+            count:this.state.count + this.props.step
+          })
         }
         render(){
           return (
             <div>
-              <button></button>
-              <span></span>
-              <button></button>
+              <button onClick={this.dec}>-</button> 
+              <span>{ this.state.count }</span> 
+              <button onClick={this.inc}>+</button>
             </div>
           )
         }
@@ -50,9 +66,58 @@
       }
 
       ReactDOM.render(
-        <ShoppingList name='Mark'>Hello, world!</ShoppingList>,
+        // <ShoppingList name='Mark'>Hello, world!</ShoppingList>
+        <ButtonCounter start={0} step={2}></ButtonCounter>,
         document.querySelector('.app')
       );
+
+      //函数式声明组件，和组件之间的嵌套使用
+      function Clock() { 
+        let el =  (
+          <div>
+            <h2>Timer</h2>
+            <p>{ new Date().toLocaleTimeString()}</p>
+            <Dosomething do={ 'english' }></Dosomething>
+            <Dosomething do={ 'math' }></Dosomething>
+            <Dosomething do={ 'chinese' }></Dosomething>
+          </div>
+        )
+        ReactDOM.render(el,document.querySelector('.clock'))
+      }
+      function Dosomething(props) { 
+        return (
+          <p>i love { props.do }</p>
+        )
+      }
+      setInterval(() => {Clock()},1000)
+
+      //受控组件与非受控组件
+      function Input() {
+        return (
+          <div>
+            <input type="text" />
+            <input type="checkbox" />
+          </div>
+        )
+      }
+      ReactDOM.render(<Input/>,document.querySelector('.input'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

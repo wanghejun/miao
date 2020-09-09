@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <tm>
+      <button>我是替换插槽值</button>
+    </tm>
+    <tm></tm>
+    <tm>
+      <template slot-scope="slot">
+        <!-- 这里替换了slot的默认值，并且通过slot-cope取得了内部的slot标签，从而可以取得它传递的:data值。然后就可以以自己的方式遍历 -->
+        <span v-for="item in slot.data">{{item}}</span>
+      </template>
+    </tm>
+  </div>
+  
+  <template id="tm">
+    <div>
+      <p>我是插槽</p>
+      <slot :data="list">
+        <ul>
+          <li v-for="item in list"> {{item}} </li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+
+      },
+      components:{
+        tm:{
+          template:'#tm',
+          data(){
+            return {
+              list:[1,2,3,4]
+            }
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

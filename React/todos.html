@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>todos</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div class="app"></div>
+    <script type="text/babel">
+      class Todoapp extends React.Component{
+        constructor(props){
+          super(props)
+          this.state = {//数据存放
+            showingCategroy:'All',
+            editngIdx:-1,
+            todos:[{
+              content:'eat',
+              completed:true
+            },
+            {
+              content:'sleep',
+              completed:false
+            },
+            {
+              content:'drink',
+              completed:true
+            }]
+          }
+        }
+        //方法
+        setShowingCategroy(categroy){
+          this.setState({
+            showingCategroy:categroy
+          })
+        }
+
+        isAllComplated(){
+          return  this.state.todos.every(it => it.completed)
+        }
+
+        leftCount(){
+          return  this.state.todos.filter(it => !it.completed).length
+        }
+
+        getShowingTodos(){
+          if(this.state.showingCategroy == 'All'){
+            return this.state.todos
+          } else if(this.state.showingCategroy == 'Active'){
+            return this.state.todos.filter(it => !it.completed)
+          } else{
+            return this.state.todos.filter(it => it.completed)
+          }
+        }
+
+        deletTodo(todo){
+          this.setState({
+            todos:this.state.todos.filter(it => it !== todo)
+          })
+        }
+
+        hasComplated(){
+          return this.state.todos.some(it => it.completed)
+        }
+
+        toggleTodoState(todo){
+          this.setState({
+            todos:this.state.todos.map(it => {
+              if(it == todo){
+                return {
+                  ...todo,
+                  completed:!todo.completed
+                }
+              } else{
+                return it
+              }
+            })
+          })
+        }
+
+        toggleAllCompleted = () => { 
+          if(this.isAllComplated()){
+            this.setState({
+              todos: this.state.todos.map(it => {
+                return {
+                  ...it,
+                  completed :false
+                }
+              })
+            })
+          } else {
+            this.setState({
+              todos: this.state.todos.map( it => {
+                if(it.completed) {
+                  return it 
+                } else {
+                  return {
+                    ...it,
+                    completed:true
+                  }
+                }
+              })
+            })
+          }
+        }
+        
+        addTodo = (e) => {
+          if(e.key == 'Enter'){
+            let todoText = e.target.value.trim()
+            if(todoText){
+              this.setState({
+                todos:[...this.state.todos,{content:todoText,completed: false}]
+              })
+              e.target.value = ''
+            }
+            
+          }
+        }
+
+        deletCompleted = () => {
+          this.setState({
+            todos:this.state.todos.filter( it => !it.completed)
+          })
+        }
+
+
+        //返回的demo模板
+        render(){
+          console.log('once render')
+          return (
+            <div>
+              <header> Todos </header>
+              <div>
+                <input type="checkbox" onChange={ this.toggleAllCompleted } checked={ this.isAllComplated() } />
+                <input type="text" name="" id="" onKeyUp={ this.addTodo } />
+              </div>
+              <ul>
+                {
+                  this.getShowingTodos().map((it,idx) => (
+                    <li key={it.content}>
+                      <input type="checkbox" onChange={() => this.toggleTodoState(it)} checked={it.completed} />
+                      <span>{ it.content }</span>
+                      <button onClick={() => this.deletTodo(it)}>&times;</button>
+                    </li>
+                  ))
+                }
+              </ul>
+              <div>
+                <span>{ this.leftCount() } items left</span> 
+                <div>
+                  <label><input type="radio" onChange={ () => this.setShowingCategroy('All')} checked={ this.state.showingCategroy == "All" }/>All</label>
+                  <label><input type="radio" onChange={ () => this.setShowingCategroy('Active')} checked={ this.state.showingCategroy == "Active" }/>Active</label>
+                  <label><input type="radio" onChange={ () => this.setShowingCategroy('Complated')} checked={ this.state.showingCategroy == "Complated" }/>Complated</label>
+                </div> 
+                {this.hasComplated() &&
+                  <button onClick={ this.deletCompleted }> Clear complated</button>
+                }
+              </div>
+            </div>
+          )
+        }
+      }
+    
+
+      //把模板渲染到指定的dom !里面!
+      ReactDOM.render(
+        <Todoapp></Todoapp>,
+        document.querySelector('.app')
+      );
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+  </body>
+</html>

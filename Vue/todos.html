@@ -13,7 +13,7 @@
     <h3>todos</h3>
     <div>
       <input type="checkbox" @click='toggleSelectAll()' v-show='todos.length' :checked='check'>
-      <input type="text" @keyup.enter='addTodo'>
+      <input type="text" v-model.trim.lazy='inputvalue' @keyup.enter='addTodo'>
     </div>
     <ul :class = "showingCategory + ' todo-list'">
       <li v-for="(todo,idx) of todos" :key="idx" calss='todo-item' :class = "todo.completed ? 'completed' : 'active'">
@@ -38,6 +38,7 @@
     let app = new Vue({
       el:'#container',//绑定元素
       data:{//数据声明
+        inputvalue:'',
         showingCategory:'all',
         editingIdx: -1,
         todos:JSON.parse(localStorage.todos) || [{
@@ -88,13 +89,12 @@
         },
         
         addTodo(e){
-            let todoText = e.target.value.trim()
-            if(todoText){
+            if(this.inputvalue){
               this.$data.todos.push({
-                content:todoText,
+                content:this.inputvalue,
                 completed : false
               })
-              e.target.value = '' 
+              this.inputvalue = '' 
           }
         },
       

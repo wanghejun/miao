@@ -15,7 +15,7 @@
 <body>
   <div id="app">
     <ul>
-      <li v-for='(item,idx) in movies' @click='light(idx)'>{{idx +'-'+ item}}</li>
+      <li v-for='(item,idx) in movies' :class='{light:index == idx}' @click='click(idx)'>{{idx +'-'+ item}}</li>
     </ul>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -23,13 +23,17 @@
     let app = new Vue({
       el: '#app',
       data: {
+        index:0,
         movies: ['三国演义', '水浒传', '西游记', '红楼梦']
       },
       methods: {
-        light(idx) {
-          let lis = document.querySelectorAll('li')
-          lis.forEach(it => it.classList.remove('light'))
-          lis[idx].classList.add('light')
+        // light(idx) {
+        //   let lis = document.querySelectorAll('li')
+        //   lis.forEach(it => it.classList.remove('light'))
+        //   lis[idx].classList.add('light')
+        // }
+        click(idx){
+          this.index = idx
         }
       }
     })

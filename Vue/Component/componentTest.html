@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <Com></Com>
+    <Com></Com>
+    <Com></Com>
+  </div>
+  <script>
+    const cpnC =  Vue.extend({
+      template:`
+        <div>
+          <h1>demo</h1>
+        </div>
+      `
+    })
+    Vue.component('Com',cpnC)
+    new Vue({
+      el:'#app',
+      data:{
+
+      }
+    })
+  </script>
+</body>
+</html>

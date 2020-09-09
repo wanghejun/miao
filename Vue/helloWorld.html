@@ -10,14 +10,20 @@
     <h1>{{message}}</h1>
     <hr>
     <ul>
-      <li v-for='item in movies'>{{item}}</li>
+      <li v-for='item in movies' :key='item'>{{item}}</li>
+      <!-- 
+        key的作用   =>性能优化
+        for循环不加:key的话,重新渲染的时候被修改数据的后面值也会呗重新刷新
+        加了:key的话就渲染改变的值，其它值不会被刷新重绘
+      -->
     </ul>
+    <button @click="delet">删除第二个</button>
   </div>
   <hr>
   <div class="count">
     <p>当前计数:  {{counter}}</p>
-    <button v-on:click = 'add'>+</button>
-    <button v-on:click = 'sub'>—</button>
+    <button v-on:click = 'add()'>+</button>
+    <button v-on:click = 'sub()'>—</button>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -27,7 +33,11 @@
       data:{//定义数据
         message:'hello world',
         movies:['html','css','javcascript','less/sass','jQuery','node.js','Vue','react','angular'],
-
+      },
+      methods:{
+        delet(){
+          this.movies.splice(2,1)
+        }
       }
     })
 

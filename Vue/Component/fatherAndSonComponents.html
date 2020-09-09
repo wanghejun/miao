@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{ message }}</h2>
+    <son :my-moives='movie'></son>
+  </div>
+
+  <template id="tell">
+    <div>
+      <ul>
+        <li v-for='item in myMoives' >{{ item }}</li>
+      </ul>
+    </div>
+  </template>
+
+  <script>
+    let son ={
+      props:['myMoives'],//参数接收
+      template:'#tell'//模板绑定
+    }
+    new Vue({
+      el:'#app',
+      data:{
+        message:'hello world',
+        movie:['《进击的巨人》','《哥布林杀手》','《未来日记》',]
+      },
+      components:{//局部组件
+        son,
+      }
+    })
+  </script>
+</body>
+</html>
