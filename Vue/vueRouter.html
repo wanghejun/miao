@@ -24,8 +24,9 @@
     <router-link to='/home'>Home</router-link>
     <router-link to='/consumer'>买家服务</router-link>
     <router-link to='/provider'>卖家服务</router-link>
-
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
   <script>
     //这里必须调用Vue使用VueRouter
@@ -40,7 +41,9 @@
             <section><router-link to="/consumer/addresses">地址管理</router-link></section>
             <section><router-link to="/consumer/account">账户管理</router-link></section>
           </div>
-          <router-view></router-view>
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
         </div>
       `
     }
@@ -53,7 +56,9 @@
             <section><router-link to="/provider/express">发货管理</router-link></section>
             <section><router-link to="/provider/charts">报表</router-link></section>
           </div>
-          <router-view></router-view>
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
         </div>
       `
     }

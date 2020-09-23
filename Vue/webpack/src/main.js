@@ -10,25 +10,12 @@ require("./css/normal.css")
 require("./css/special.scss")
 
 import Vue from 'vue'
+import App from './vue/app.vue'
+
 new Vue({
   el:"#app",
-  template:`
-    <div>
-      <button @click="dec">-</button>
-      <span>{{count}}</span>
-      <button @click="inc">+</button>
-    </div>
-  `,
-  data:{
-    message:'Vue webpack',
-    count:0,
-  },
-  methods:{
-    dec(){
-      this.count--
-    },
-    inc(){
-      this.count++
-    }
+  template:`<App/>`,
+  components:{
+    App,
   }
 })

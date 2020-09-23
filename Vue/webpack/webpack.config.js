@@ -1,11 +1,14 @@
 let path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry:'./src/main.js',//入口
   output:{//出口
     path:path.resolve(__dirname,'dist'),
     filename: 'bundle.js',
-    publicPath:'dist/'
+    // publicPath:'dist/'
   },
   module: {
     rules: [
@@ -44,12 +47,28 @@ module.exports = {
             presets: ['es2015']
           }
         }
+      },{
+        test: /\.vue$/,
+        use: [ 'vue-loader' ]
       }
     ]
   },
   resolve: {
+    //别名
+    extensions:['.js','.css','.vue'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js' // 用 webpack 1 时需用 'vue/dist/vue.common.js'
     }
+  },
+  plugins:[
+    new webpack.BannerPlugin('最终版权归hejun所有'),
+    new HtmlWebpackPlugin({
+      template:'index.html'
+    }),
+    new UglifyWebpackPlugin()
+  ],
+  devServer:{
+    contentBase:'./dist',
+    inline:true
   }
 }

@@ -1,0 +1,41 @@
+{
+  "pages":[
+    "pages/login/login",
+    "pages/home/home",
+    "pages/binding/binding",
+    "pages/tomato/tomato",
+    "pages/me/me",
+    "pages/index/index",
+    "pages/logs/logs"
+
+  ],
+  "tabBar":{
+    "color":"#515151",
+    "selectedColor":"#F6705A",
+    "backgroundColor":"#fff",
+    "borderStyle":"black",
+    "list":[
+      {
+        "pagePath":"pages/home/home",
+        "text":"专注",
+        "iconPath":"image/home.png",
+        "selectedIconPath":"image/home-active.png"
+      },
+      {
+        "pagePath":"pages/me/me",
+        "text":"我的",
+        "iconPath":"image/me.png",
+        "selectedIconPath":"image/me-active.png"
+      }
+    ]
+  },
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "番茄闹钟",
+    "navigationBarTextStyle":"black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+  
+}

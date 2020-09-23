@@ -1,19 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about" replace tag="button">About</router-link> |
+      <router-link to="/link" replace tag="button">link</router-link> |
+      <router-link to="/shop" replace tag="button">shop</router-link> |
+      <router-link :to="'/user/'+userId" replace tag="button">user</router-link> 
+    </div>
+    <keep-alive>
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  export default {
+    data(){
+      return {
+        userId:'zhangsan'
+      }
+    }
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
   }
-}
 </script>
 
 <style>
@@ -23,6 +31,21 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+.active{
+  color: violet !important;
 }
 </style>

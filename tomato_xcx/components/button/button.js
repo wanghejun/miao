@@ -1,0 +1,21 @@
+Component({
+  properties:{
+    size:{
+      type:String,
+      value:""
+    },
+    text:{
+      type:String,
+      default:""
+    },
+    type:{
+      type:String,
+      default:""
+    }
+  },
+  methods:{
+    btnClick(){
+      this.triggerEvent('btnClick')
+    }
+  }
+})
