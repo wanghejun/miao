@@ -6,9 +6,10 @@
     <view class="details">
       <open-data type='userNickName' class="name"></open-data>
       <navigator url="/pages/binding/binding" wx:if="{{!me.account}}">绑定pc账号</navigator>
+      
     </view>
     <button open-type="contact" class="qr">问题反馈</button>
-    <!-- <view class="qr">问题反馈</view> -->
+    <view class="qr"><navigator url="/pages/about/about">关于</navigator> </view>
   </view>
 
   <view class="tabs">
@@ -24,23 +25,17 @@
 
   <scroll-view scroll-y="true" class="lists" wx:if="{{tab === 'tomato'}}">
     <view class="item" wx:for="{{tomatoes}}" wx:for-index="key" wx:key="index">
-      <wxs src="../../lib/formattor.wxs" module="formattor"></wxs>
-      <view class="time">{{formattor.monthFormat(key)}}</view>
-      <view class="content" wx:for="{{tomatoes[key]}}" wx:for-index="index" wx:key="index">
-        <text>{{formattor.dateFormat(item.created_at,"hh:mm")}}</text>
-        <view class="detail">{{item.description}}</view>
-      </view>
+      <view class="time">{{item.created_at}}</view>
+        <text>{{item.time}} {{item.completed ? "完成了一个番茄" : "失败了一个番茄"}}</text>
+        <view class="detail">{{item.content}}</view>
     </view>
   </scroll-view>
 
    <scroll-view scroll-y="true" class="lists" wx:if="{{tab === 'task'}}">
-    <view class="item" wx:for="{{lists}}" wx:for-index="key" wx:key="index">
-      <wxs src="../../lib/formattor.wxs" module="formattor"></wxs>
-      <view class="time">{{formattor.monthFormat(key)}}</view>
-      <view class="content" wx:for="{{lists[key]}}" wx:for-index="index" wx:key="index">
-        <text>{{formattor.dateFormat(item.created_at,"hh:mm")}}</text>
+    <view class="item" wx:for="{{lists}}" wx:for-index="key" wx:key="index" wx:if="{{item.completed}}">
+      <view class="time">{{item.created_at}}</view>
+        <text>{{item.time}}</text>
         <view class="detail">{{item.description}}</view>
-      </view>
     </view>
   </scroll-view> 
 </view>

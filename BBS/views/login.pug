@@ -2,25 +2,42 @@ extends basic-layout.pug
 
 block content
   form(action="/login" method ='post')
+    input(type="hidden" name='previousUrl' value=previousUrl)
     div 用户名
     input(type="text" name='name')
     div 密码
     input(type="password", name="password")
-    div: button 登录
+    div 验证码
+      img(src="/captcha", alt="" height="40" style="verticalAlign:middle")
+    input(type="text", name="captcha")
+    div
+      button 登录
+      a(href="/forgot") 忘记密码
   script.
     let loginForm = document.querySelector('form')
+    let captchaImg = document.querySelector('img')
     loginForm.onsubmit = function(e){
       e.preventDefault()
       $.post('/login',{
         name:loginForm.elements.name.value,
         password:loginForm.elements.password.value,
+        captcha:loginForm.elements.captcha.value,
       }).then(result => {
         console.log(result)
         if(result.code == 0){
+
           alert('登录成功，即将跳回首页')
-          location.href = '/'
+
+          if(loginForm.elements.previousUrl.value){//记录着跳转过来的地址
+            location.href = loginForm.elements.previousUrl.value
+          }else{
+            location.href = '/'
+          }
+
         }else{
+
           alert(result.mes)
+          captchaImg.src = '/captcha?t=' + Date.now()
         }
       })
     }

@@ -4,17 +4,20 @@ block content
   h2= post.title
   p= post.content
 
-  ul
-    if(comments.length == 0)
-      p 暂时还没有回复
-    else
-      each comment in comments
-        li
-        a(href=`/user/${comment.user.id}`)= comment.user.name
-        p= comment.content
-        span=new Date(comment.createdAt).toString()
+  if(comments.length == 0)
+    p 暂时还没有回复
+  else
+    ul  
+    each comment in comments
+      li
+      a(href=`/user/${comment.userId}`)= comment.name
+      p= comment.content
+      span=new Date(comment.createdAt).toString()
       
-  form(action="/commit", method="post")
-    input(type="hidden" value=post.id name='replyTo')
-    textarea(name="content", cols="30", rows="10")
-    button 提交
+  if(user)
+    form(action="/commit", method="post")
+      input(type="hidden" value=post.id name='postId')
+      textarea(name="content", cols="30", rows="10")
+      button 提交
+  else 
+    p 想要评论？ <a href="/login">登录</a> 或 <a href="/register">注册</a>

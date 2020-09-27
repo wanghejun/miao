@@ -1,7 +1,7 @@
 extends basic-layout.pug
 
 block content 
-  form(action="/register" method ='post')
+  form(action="/register" method ='post' enctype="multipart/form-data")
     div 用户名
     input(type="text" name='name')
     span(class='tip')
@@ -9,7 +9,10 @@ block content
     input(type="password", name="password")
     div 电子邮箱
     input(type="email", name="email")
-    button 注册
+    div 头像
+    input(type="file", name="avatar")
+    div
+      button 注册
   script.
     let inp = document.querySelector('input[name="name"]')
     

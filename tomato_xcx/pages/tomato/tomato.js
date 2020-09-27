@@ -13,7 +13,11 @@ Page({
     timerStatus:true,
     visible:false,
     isshowAgain:false,
-    finshconfirmVisible:false
+    finshconfirmVisible:false,
+    tomatoes:[
+      {id:1,content:'学习真好',completed:false,created_at:new Date().toLocaleDateString(),time:new Date().toLocaleTimeString()},
+      {id:2,content:'吃饭真好',completed:true,created_at:new Date().toLocaleDateString(),time:new Date().toLocaleTimeString()}
+    ],
   },
 
   /**
@@ -67,15 +71,18 @@ Page({
   //放弃时确认框
   confirmAbandon(event){
     let content =  event.detail
+    let newTomatoes = {id:this.data.tomatoes.length + 1,content,completed:false,created_at:new Date().toLocaleDateString(),time:new Date().toLocaleTimeString()}
+    this.data.tomatoes.push(newTomatoes)
+    this.setData({tomatoes:this.data.tomatoes})
     this.setData({visible:false})
-
-    http.put(`/tomatoes/${this.data.tomato.id}`,{
-      description: content,
-      aborted: true
-    }).then(response => {
-      console.log(response)
-      wx.navigateBack({ to: -1 })
-    })
+    wx.navigateBack({ to: -1 })
+    // http.put(`/tomatoes/${this.data.tomato.id}`,{
+    //   description: content,
+    //   aborted: true
+    // }).then(response => {
+    //   console.log(response)
+    //   wx.navigateBack({ to: -1 })
+    // })
   },
   confirmCancel(){
     this.timerStart()
@@ -91,6 +98,9 @@ Page({
   confirmFinsh(event){
     let content =  event.detail
     console.log(content)
+    let newTomatoes = {id:this.data.tomatoes.length + 1,content,completed:true,created_at:new Date().toLocaleDateString(),time:new Date().toLocaleTimeString()}
+    this.data.tomatoes.push(newTomatoes)
+    this.setData({tomatoes:this.data.tomatoes})
     this.setData({finshconfirmVisible:false})
   },
   confirmHide(event){
@@ -101,10 +111,10 @@ Page({
    */
   onShow: function () {
     this.changeTime()
-    http.post('/tomatoes').then(res => {
-      this.setData({tomato: res.response.data.resource })
-      console.log(this.data.tomato)
-    })
+    // http.post('/tomatoes').then(res => {
+    //   this.setData({tomato: res.response.data.resource })
+    //   console.log(this.data.tomato)
+    // })
   },
 
   /**
@@ -118,6 +128,10 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    wx.setStorage({
+      key:"tomatoes",
+      data:this.data.tomatoes
+    })
 
   },
 

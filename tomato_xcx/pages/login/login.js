@@ -1,5 +1,5 @@
 // pages/login/login.js
-import { http } from '../../lib/_http.js'
+import { http } from '../../lib/http.js'
 const { app_id, app_secret } = getApp().globalData
 
 Page({
@@ -15,24 +15,25 @@ Page({
     let iv = e.detail.iv
     let code
     wx.login({
-      success(res){
-        code = res.code
-        http.post("/sign_in/mini_program_user",{
-          code,
-          iv,
-          encrypted_data,
-          app_id,
-          app_secret  
-        }).then(res => {
-          wx.setStorageSync('me', res.response.data.resource)
-          wx.setStorageSync('X-token', res.response.header['X-token'])
-          wx.reLaunch({
-            url: '/pages/home/home',
-          })
-        },rec => {
-          console.log("登陆失败")
-        })
-      }
+      //发送登录请求
+      // success(res){
+      //   code = res.code
+      //   http.post("/sign_in/mini_program_user",{
+      //     code,
+      //     iv,
+      //     encrypted_data,
+      //     app_id,
+      //     app_secret  
+      //   }).then(res => {
+      //     wx.setStorageSync('me', res.response.data.resource)
+      //     wx.setStorageSync('X-token', res.response.header['X-token'])
+      //     wx.reLaunch({
+      //       url: '/pages/home/home',
+      //     })
+      //   },rec => {
+      //     console.log("登陆失败")
+      //   })
+      // }
     })
   },
   /**

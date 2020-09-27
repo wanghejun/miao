@@ -2,6 +2,7 @@
 .cantainer{
   height: 100vh;
   background-color: #F0F7F6;
+  /* background: linear-gradient(160deg,#EF9B75, #F6705A); */
 }
 .clock{
   padding: 282rpx 0 139rpx 0;

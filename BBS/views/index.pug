@@ -6,11 +6,12 @@ block content
   ul
     each post in posts
       li.post_item
-        a(href= `/user/${post.user.id}`)
-          img(src= post.user.avatar  alt= post.user.name)
+        a(href= `/user/${post.userId}`)
+          img(src= post.avatar  alt= post.name width="48")
+          span=post.name
         h2
           a(href = `/post/${post.id}`)= post.title
         div
           span 发帖时间: #{new Date(post.createdAt).toString()}
-        div
-          span 回复数量: #{post.commentCount}
+        //- div
+        //-   span 回复数量: #{post.commentCount} 

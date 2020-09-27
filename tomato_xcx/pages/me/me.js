@@ -17,17 +17,37 @@ Page({
     this.setData({tab:name})
   },
   fetchTomatoes(){
-    http.get(`/tomatoes`).then(res => {
-      this.setData({tomatoes:res.response.data.resources})
-      console.log(res.response.data.resources)
-    })
+    // http.get(`/tomatoes`).then(res => {
+    //   this.setData({tomatoes:res.response.data.resources})
+    //   console.log(res.response.data.resources)
+    // })
+
+    try {
+      var value = wx.getStorageSync('tomatoes')
+      if (value) {
+        let data = value
+        this.setData({tomatoes:data})
+      }
+    } catch (e) {
+      // Do something when catch error
+    }
   },
   fetchList(){
-    http.get(`/todos`,{
-      is_group:"yes"
-    }).then(res => {
-      this.setData({lists:res.response.data.resources})
-    })
+    // http.get(`/todos`,{
+    //   is_group:"yes"
+    // }).then(res => {
+    //   this.setData({lists:res.response.data.resources})
+    // })
+
+    try {
+      var value = wx.getStorageSync('list')
+      if (value) {
+        let data = value
+        this.setData({lists:data})
+      }
+    } catch (e) {
+      // Do something when catch error
+    }
   },
   /**
    * 生命周期函数--监听页面加载

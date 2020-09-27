@@ -1,0 +1,6 @@
+body{
+  background: #efefef;
+}
+view {
+  padding: 20rpx 40rpx;
+}

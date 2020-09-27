@@ -68,6 +68,7 @@
   padding: 0 24rpx;
   box-sizing:  border-box;
   overflow: scroll;
+  max-height: 800rpx;
  }
 
 .cantainer .lists .item {
@@ -98,4 +99,3 @@
 }
 .qr::after { border: none; }
 .qr { background: transparent; color: #FE996F; font-size: 24rpx;}
-

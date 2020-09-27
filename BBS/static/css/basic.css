@@ -6,9 +6,10 @@
   color: black;
 }
 body {
-  animation: run 10s infinite alternate linear;
+  /* animation: run 10s infinite alternate linear;
   background: linear-gradient(120deg,#e2e2e2,#576574,#222f3e,#8395a7,#576574,#222f3e,rgba(0,0,0,.5));
-  background-size: 600%;
+  background-size: 600%; */
+  background: #E2E2E2 !important;
 }
 .post_item{
   border-top: 1px solid #e2e2e2;
@@ -40,6 +41,7 @@ section > .wrap{
 footer{
   text-align: center;
   padding: 20px 0;
+  background: #FFFFFF;
 }
 
 @keyframes run{

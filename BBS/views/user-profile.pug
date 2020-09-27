@@ -1,0 +1,17 @@
+extends basic-layout.pug
+
+block content
+  img(src=userInfo.avatar, alt=userInfo.name)
+  span=userInfo.name
+
+  h3 他发过的帖子
+  ul
+    each post in userPosts
+      li
+        a(href="/post/" + post.id)=post.title
+  h3  他回复过的帖子
+  ul
+    each comment in userComments
+      li
+        a(href="/post/" + comment.postId)=comment.postTitle
+        p=comment .content 

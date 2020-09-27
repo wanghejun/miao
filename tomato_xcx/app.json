@@ -1,7 +1,8 @@
 {
   "pages":[
-    "pages/login/login",
     "pages/home/home",
+    "pages/about/about",
+    "pages/login/login",
     "pages/binding/binding",
     "pages/tomato/tomato",
     "pages/me/me",
@@ -32,7 +33,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "番茄闹钟",
+    "navigationBarTitleText": "小番茄",
     "navigationBarTextStyle":"black"
   },
   "style": "v2",
