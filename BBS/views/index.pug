@@ -1,17 +1,81 @@
 extends basic-layout.pug
 
+block head-content
+  link(rel="stylesheet", href="/static/css/wrapper.css")
+
 block content
-  div
-    a(href='/post') 发贴
-  ul
-    each post in posts
-      li.post_item
-        a(href= `/user/${post.userId}`)
-          img(src= post.avatar  alt= post.name width="48")
-          span=post.name
-        h2
-          a(href = `/post/${post.id}`)= post.title
-        div
-          span 发帖时间: #{new Date(post.createdAt).toString()}
-        //- div
-        //-   span 回复数量: #{post.commentCount} 
+  div(class="container wrapper")
+    div(class="row")
+      div(class="content topBar col-9")
+        div(class="Tabs") 
+          h5 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        div(class="SecondaryTabs")
+          h5 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        ul
+          each post in posts
+            li(class="postList row").post_item
+              div(class="")
+                a(href= `/user/${post.userId}`)
+                  img(src= post.avatar  alt= post.name width="48")
+              div(class="col-9")
+                div
+                  a(href = `/post/${post.id}`)= post.title
+                div
+                  a(href= `/user/${post.userId}`)
+                    span=post.name
+                  |
+                  |
+                  span 发布时间: #{new Date(post.createdAt).toLocaleString()}
+              div(class="col-2 commentNumber")
+                a(href = `/post/${post.id}`) 99
+      div(class="sidebar col-3")
+        if(user)
+          div(class="login-info")
+              div(class='profile')
+                div
+                  img(src= user.avatar, alt= user.name width="48")
+                div=user.name
+                div(class="cutTheme") XO
+              hr
+              div(class="collect")
+                div 节点收藏
+                |
+                |
+                div 主题收藏
+                |
+                |
+                div 特别关注
+              div(class="post")
+                a(href='/post') 发贴
+        else
+          div(class="login-info")
+            h3  EXPLORE
+            p(class="introduce") Explore 是一个关于分享和探索的地方
+            hr
+            div(class="login-info-login")
+              a(href='/register')  现在注册
+              p 已注册用户请
+                |
+                |
+                a(href='/login') 登录 
+        div(class="hotPost")
+          h3 今日热议主题
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+        div(class="siteStatic")
+          h3 社区运行状况
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+          p xxxxxxxxxxxxxxxxxxxxxx
+  

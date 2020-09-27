@@ -12,6 +12,7 @@
   "dependencies": {
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "nodemailer": "^6.4.11",
     "pug": "^3.0.0",
     "sqlite": "^4.0.14",
     "svg-captcha": "^1.4.0"

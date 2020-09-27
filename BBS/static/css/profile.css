@@ -1,0 +1,22 @@
+.wrapper{
+
+}
+.wrapper .userInfo{
+  display: flex;
+}
+.wrapper .userInfo .right{
+  text-align: right;
+}
+.wrapper .userInfo .right > button{
+  margin-bottom: 10px;
+}
+.sidebar{
+
+}
+
+.sidebar > div,.content > div{
+  background:#FFFFFF;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 20px;
+}

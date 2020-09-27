@@ -1,0 +1,85 @@
+.wrapper > .row{
+  display: flex;
+  justify-content: space-between;
+}
+.content{
+  background: #ffffff;
+}
+.content .postList{
+  display: flex;
+  transition: .3s;
+}
+.content .postList:hover{
+  background: #d4d1d1;
+  transform: translate(0,-10%);
+}
+.content .commentNumber{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.content .commentNumber > a{
+  text-decoration: none;
+  background: #AAB0C6 ;
+  transition: .3s;
+  color: white !important;
+  padding: 0 20px;
+  border-radius: 50%;
+}
+.content .commentNumber > a:hover{
+  background: #969CB1 ;
+
+}
+
+
+
+
+
+.sidebar{
+
+}
+.sidebar > div{
+  background: #ffffff;
+  margin-bottom: 20px;
+  padding-top: 15px;
+}
+.sidebar .login-info > h3{
+  text-align: center  ;
+}
+.sidebar .login-info > .introduce{
+  text-align: center  ;
+  color: #ccc;
+  font-size: 14px;
+}
+.sidebar .login-info > .login-info-login{
+  text-align: center;
+  font-size: 14px;
+}
+.sidebar .login-info > .profile{
+  display: flex;
+  text-align: center;
+}
+.sidebar .login-info > .profile > div{
+  flex: 1;
+  line-height: 48px;
+}
+.sidebar .login-info > .collect{
+  display: flex;
+  text-align: center;
+}
+.sidebar .login-info > .collect > div{
+  flex: 1;
+  line-height: 28px;
+}
+.sidebar .login-info > .post{
+  text-align: center;
+  padding: 5px 0;
+}
+.sidebar > .hotPost{
+  box-sizing: border-box;
+  text-align: center;
+}
+.sidebar > .siteStatic{
+  box-sizing: border-box;
+  text-align: center;
+}

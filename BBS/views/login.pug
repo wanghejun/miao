@@ -1,17 +1,25 @@
 extends basic-layout.pug
 
+block head-content
+  link(rel="stylesheet", href="/static/css/login.css")
+
 block content
-  form(action="/login" method ='post')
+  form(action="/login" class="login_form"  method ='post')
     input(type="hidden" name='previousUrl' value=previousUrl)
-    div 用户名
-    input(type="text" name='name')
-    div 密码
-    input(type="password", name="password")
-    div 验证码
-      img(src="/captcha", alt="" height="40" style="verticalAlign:middle")
-    input(type="text", name="captcha")
+    h1 Login
+    div(class="text_b")
+      input(type="text" name='name')
+      span(data-placeholder="UserName")
+    div(class="text_b")
+      input(type="password", name="password")
+      span(data-placeholder="PassWord")
     div
-      button 登录
+      img(src="/captcha", alt="" height="40" style="verticalAlign:middle")
+    div(class="text_b")
+      input(type="text", name="captcha")
+      span(data-placeholder="verification code")
+    input(type="submit" class="loginbtn" value="login")
+    div(class="botton_text") 
       a(href="/forgot") 忘记密码
   script.
     let loginForm = document.querySelector('form')
@@ -41,4 +49,13 @@ block content
         }
       })
     }
+
+    $(".text_b input").on("focus",function(){
+      $(this).addClass("focus");
+    });
+    $(".text_b input").on("blur ",function(){
+      if ($(this).val()=="") {
+      $(this).removeClass("focus");
+      }
+    });
   

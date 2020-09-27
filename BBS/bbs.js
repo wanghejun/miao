@@ -6,7 +6,22 @@ const cookieParser = require('cookie-parser')
 const sqlite = require('sqlite')
 const sqlite3 = require('sqlite3')
 const multer = require('multer')//头像上传库
-var svgCaptcha = require('svg-captcha');//SVG验证码库
+const svgCaptcha = require('svg-captcha');//SVG验证码库
+const nodemailer = require('nodemailer')//邮箱库
+
+const config = {//SMTP客户端配置
+  service: "QQ",
+  auth: {
+      // 发件人邮箱账号
+      user: '865876163@qq.com',
+      //发件人邮箱的授权码 这里可以通过qq邮箱获取 并且不唯一
+      pass: 'zrbgqvbtbiovbefi'
+  }
+}
+
+//创建一个SMTP客户端配置对象
+const transporter = nodemailer.createTransport(config)
+
 let port = 8080 //端口号
 
 const upLoader = multer({dest:__dirname + '/upLoads/'})//头像存放地址
@@ -18,108 +33,6 @@ sqlite.open({//连接数据库
 }).then(value => {
   db = value
 })
-
-let nextUserId = 3//下一个用户ID
-let users =[//用户列表
-  {
-    id:1,
-    name: 'violet evergarden',
-    password:'123456',
-    email:'violet@qq.com',
-    avatar: '/upload/avatars/123.png' 
-  },
-  {
-    id:2,
-    name: '聂文俊',
-    password:'123456',
-    email:'nie@qq.com',
-    avatar: '/upload/avatars/1234.png' 
-  },
-]
-let nextPostId = 9//全部帖子的数里
-let posts =[//帖子列表
-  {
-    id:1,
-    title: '小米10至尊版',
-    content: '都给我买小米儿',
-    createdAt: Date.now(),
-    ownerId:1,
-    commentCount:2
-  },
-  {
-    id:2,
-    title: '懂王',
-    content: '没有人比我更懂小米儿',
-    createdAt: Date.now(),
-    ownerId:2,
-    commentCount:0
-  },
-  {
-    id:1,
-    title: '小米10至尊版',
-    content: '都给我买小米儿',
-    createdAt: Date.now(),
-    ownerId:1,
-    commentCount:2
-  },
-  {
-    id:2,
-    title: '懂王',
-    content: '没有人比我更懂小米儿',
-    createdAt: Date.now(),
-    ownerId:2,
-    commentCount:0
-  },
-  {
-    id:1,
-    title: '小米10至尊版',
-    content: '都给我买小米儿',
-    createdAt: Date.now(),
-    ownerId:1,
-    commentCount:2
-  },
-  {
-    id:2,
-    title: '懂王',
-    content: '没有人比我更懂小米儿',
-    createdAt: Date.now(),
-    ownerId:2,
-    commentCount:0
-  },
-  {
-    id:1,
-    title: '小米10至尊版',
-    content: '都给我买小米儿',
-    createdAt: Date.now(),
-    ownerId:1,
-    commentCount:2
-  },
-  {
-    id:2,
-    title: '懂王',
-    content: '没有人比我更懂小米儿',
-    createdAt: Date.now(),
-    ownerId:2,
-    commentCount:0
-  },
-]
-let nextCommentId = 3
-let comments =[//回复列表
-  {
-    id:1,
-    replyTo:1,
-    ownerId:2,
-    content:'test running man',
-    createdAt:Date.now(),
-  },
-  {
-    id:2,
-    replyTo:1,
-    ownerId:1,
-    content:'test running mans',
-    createdAt:Date.now(),
-  }
-]
 
 
 app.disable('x-powered-by')//禁用这个响应头，原因 => 它显示自己服务器构建的名字
@@ -134,7 +47,7 @@ app.use((req,res,next) => {//打印出请求方法和URL
 
 
 app.use(express.static(__dirname))//挂载静态文件夹
-app.use('/upLoads',express.static(__dirname + "/upLoads"))//挂载静态文件夹
+app.use('/upLoads',express.static(__dirname + "/upLoads"))//挂载头像文件夹
 app.use(express.json())//解析Json请求体、Post请求
 app.use(express.urlencoded())//解析url编码
 app.use(cookieParser('oh1Hao2Ni3Mao'))//解析请求头里面的cookie
@@ -171,7 +84,8 @@ app.use( async(req,res,next) => {//cookie检测
 app.get('/', async (req,res,next) => {//渲染首页
 
   let posts = await db.all((`SELECT posts.rowid as id, * FROM posts JOIN users ON posts.userId=users.rowid`));
-  // let posts = await db.all(`SELECT posts.rowid as id, * FROM posts JOIN users ON userId=users.rowid`)
+
+  console.log(req.user)
   console.log(posts)
 
   res.render('index.pug',{//渲染首页，并传入数据
@@ -218,7 +132,6 @@ app.get('/post/:id',async (req,res,next) => {//帖子路由
   }
 })
 
-
 app.route('/post')//发帖路由
   .get((req,res,next) => {//发帖页面
     res.render('add-post.pug',{
@@ -239,12 +152,6 @@ app.route('/post')//发帖路由
     let postEs = await db.get(
       'SELECT rowid as id ,* FROM posts ORDER BY rowid DESC LIMIT 1'
     )
-    // post.createdAt = Date.now()
-    // post.ownerId = req.user.id
-    // post.id = nextPostId++
-    // post.commentCount = 0
-
-    // posts.push(post)
 
     res.redirect('/post/' + postEs.id)//发帖后跳转到发帖地址
   })
@@ -261,13 +168,6 @@ app.post('/commit', async (req,res,next) => {//帖子回复路由
       [comment.postId/*回复哪个帖子 */, req.user.id/*当前登陆用户id */, comment.content, new Date().toISOString()]
     )
 
-    // let comment = req.body
-    // comment.createdAt = Date.now()
-    // comment.ownerId = req.user.id
-    // comment.id = nextCommentId++
-
-    // comments.push(comment)
-
     res.redirect('/post/' + comment.postId)//评论结束后跳回当前帖子
 
   }else{  
@@ -283,10 +183,15 @@ app.route('/register')//用户注册路由
   .post(upLoader.single('avatar'), async (req,res,next) => {//注册请求
     let user = req.body
     let file = req.file
+    let avatarOnlineUrl
 
-    let  targetName = file.path + '-' + file.originalname
-    await fsp.rename(file.path,targetName)
-    let avatarOnlineUrl = '/upLoads/' + path.basename(targetName)//头像地址
+    if(file){
+      let  targetName = file.path + '-' + file.originalname
+      await fsp.rename(file.path,targetName)
+      avatarOnlineUrl = '/upLoads/' + path.basename(targetName)//头像地址
+    }else{
+      avatarOnlineUrl = '/upLoads/default-avatar.png'
+    }
     
     try{
       await db.run(//数据库中插入新用户数据
@@ -326,19 +231,7 @@ app.get('/username-conflict-check',async (req,res,next) => {//用户名冲突检
 
 })
 
-// app.get('/captcha',async (req,res,next) => {//验证码接口
-//   let captcha = Math.random().toString().slice(2,6)
-//   req.session.captcha = captcha
-
-//   res.type("image/svg+xml")
-
-//   res.send(`
-//   <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-//     <text x="0" y="15" fill="red">${captcha}</text>
-//   </svg>
-//   `)
-// })
-
+//验证码接口
 app.get('/captcha', function (req, res) {
   var captcha = svgCaptcha.create();
   req.session.captcha = captcha.text;
@@ -409,6 +302,26 @@ app.route('/forgot')
 
       let changPasswordLink = 'http://localhost:8080/change-password/' +  changPasswordId
 
+      let mail = {
+        // 发件人 邮箱  '昵称<发件人邮箱>'
+        from: `865876163@qq.com`,
+        // 主题
+        subject: '密码更改',
+        // 收件人 的邮箱 可以是其他邮箱 不一定是qq邮箱
+        to: user.email,
+        //这里可以添加html标签
+        html: `<b>您的密码更改地址为：${changPasswordLink} 请24小时内有效，请谨慎保管。</b>`
+      }
+
+      //发送邮件
+      transporter.sendMail(mail, function(error, info) {
+        if (error) {
+            return console.log(error);
+        }
+        transporter.close()
+        console.log('mail sent:', info.response)
+    })
+
       console.log(changPasswordLink)
       console.log(changePasswordMap)
       res.end('A link has send to you email, open your Inbox and click the link to change password')
@@ -431,6 +344,8 @@ app.route("/change-password/:id")
   })
   .post( async(req,res,next) => {
     let user = changePasswordMap[req.params.id]
+    console.log(req.params.id)
+    console.log(changePasswordMap)
     await db.run("UPDATE users SET password = ? where name = ?",req.body.password,user.name)
 
     delete changePasswordMap[req.params.id]//删除映射
@@ -444,7 +359,7 @@ app.get('/logout',(req,res,next) => {//登出请求
 })
 
 app.get("/user/:id",async (req,res,next) => {//用户页面
-  let userInfo = await db.get("SELECT * FROM users WHERE rowid = ?",req.params.id)
+  let userInfo = await db.get("SELECT * FROM user WHERE id = ?",req.params.id)
 
   if(userInfo){
     let userPostPromise = db.all(`SELECT rowid as id, * FROM posts WHERE userId = ? ORDER BY createdAt DESC`,req.params.id)

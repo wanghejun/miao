@@ -1,17 +1,33 @@
 extends basic-layout.pug
 
-block content
-  img(src=userInfo.avatar, alt=userInfo.name)
-  span=userInfo.name
+block head-content
+  link(rel="stylesheet", href="/static/css/profile.css")
 
-  h3 他发过的帖子
-  ul
-    each post in userPosts
-      li
-        a(href="/post/" + post.id)=post.title
-  h3  他回复过的帖子
-  ul
-    each comment in userComments
-      li
-        a(href="/post/" + comment.postId)=comment.postTitle
-        p=comment .content 
+block content
+  div(class="container wrapper")
+    div(class="row")
+        div(class="content topBar col-9")
+          div(class="userInfo")
+            img(src=userInfo.avatar, alt=userInfo.name width="75" class="col-2")
+            div(class="userInfos col-8")
+              span=userInfo.name
+              p='Explore 第 ' + userInfo.id + ' 号会员'
+            div(class="right col-2")
+              button(type="button" class="btn btn-success btn-sm") 特别关注
+              button(type="button" class="btn btn-warning btn-sm") Block
+          div(class="userPost")
+            h4 他发过的帖子
+            ul
+              each post in userPosts
+                li
+                  a(href="/post/" + post.id)=post.title
+          div(class="userComments")
+            h4  他回复过的帖子
+            ul
+              each comment in userComments
+                li
+                  a(href="/post/" + comment.postId)=comment.postTitle
+                  p=comment .content 
+        div(class="sidebar col-3")
+          div
+            h6=userInfo.name + '最近的时间轴更新'

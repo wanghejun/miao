@@ -2,3 +2,18 @@
   display: flex;
   justify-content: space-between;
 }
+.logo{
+  background: url('../img/LOGO.png');
+}
+.logo > a{
+  width: 110px;
+  height: 40px;
+  display: block;
+}
+.headerInfo{
+  display: flex;
+  align-items: center;
+}
+.headerInfo > a{
+  padding: 0 10px;
+}
