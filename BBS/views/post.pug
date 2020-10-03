@@ -7,17 +7,28 @@ block content
   if(comments.length == 0)
     p 暂时还没有回复
   else
-    ul  
-    each comment in comments
-      li
-      a(href=`/user/${comment.userId}`)= comment.name
-      p= comment.content
-      span=new Date(comment.createdAt).toString()
+    ul(class="comments")  
+      each comment in comments
+        li
+          a(href=`/user/${comment.userId}`)= comment.name
+          p= comment.content
+          span=new Date(comment.createdAt).toString()
+          if (user && comment.userId == user.id)
+            button(class="del-comment" data-id=comment.id) 删除
       
   if(user)
     form(action="/commit", method="post")
       input(type="hidden" value=post.id name='postId')
       textarea(name="content", cols="30", rows="10")
-      button 提交
+      button() 提交
   else 
     p 想要评论？ <a href="/login">登录</a> 或 <a href="/register">注册</a>
+  script.
+    $('ul.comments').on('click',".del-comment", async e => {
+      let result = await $.get('/delete-comment/' + e.target.dataset.id)
+      if(result.code == 0){
+        $(e.target).closest('li').remove()
+      }else{
+        alert(result.mes)
+      }
+    })

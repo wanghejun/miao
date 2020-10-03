@@ -115,10 +115,10 @@ app.get('/post/:id',async (req,res,next) => {//帖子路由
     
     //这里查询帖子的所有回复
     let comments = await db.all(
-      'SELECT * FROM comments JOIN users ON userId = users.rowid WHERE postId = ? ORDER BY createdAt DESC',
+      'SELECT comments.rowid as id, * FROM comments JOIN users ON userId = users.rowid WHERE postId = ? ORDER BY createdAt DESC',
       [postId]
       )
-
+      console.log(req.user)
     let data = {
       post:post,
       comments: comments,
@@ -175,6 +175,28 @@ app.post('/commit', async (req,res,next) => {//帖子回复路由
   }
 })
 
+app.get('/delete-comment/:id', async (req,res,next) => {//删除评论
+  if(req.user){
+    let comment = await db.get("SELECT * FROM comments WHERE rowid = ?",req.params.id)
+    if(comment.userId == req.user.id){
+      await db.run("DELETE FROM comments WHERE rowid = ?",req.params.id)
+      res.json({
+        code:0,
+        msg:'删除成功'
+      })
+    }else{
+      res.json({
+        code:1,
+        msg:'权限不足，该评论并非登录用户所发'
+      })
+    }
+  }else{
+    res.json({
+      code:1,
+      msg:'用户未登录'
+    })
+  }
+})
 
 app.route('/register')//用户注册路由
   .get((req,res,next) => {//页面请求

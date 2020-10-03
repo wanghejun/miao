@@ -6,7 +6,7 @@ block head-content
 block content
   div(class="container wrapper")
     div(class="row")
-      div(class="content topBar col-9")
+      div(class="content topBar col-11 col-md-9")
         div(class="Tabs") 
           h5 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         div(class="SecondaryTabs")
@@ -17,7 +17,7 @@ block content
               div(class="")
                 a(href= `/user/${post.userId}`)
                   img(src= post.avatar  alt= post.name width="48")
-              div(class="col-9")
+              div(class="col-9 col-md-9")
                 div
                   a(href = `/post/${post.id}`)= post.title
                 div
@@ -26,9 +26,9 @@ block content
                   |
                   |
                   span 发布时间: #{new Date(post.createdAt).toLocaleString()}
-              div(class="col-2 commentNumber")
+              div(class="col-3 col-md-2 commentNumber")
                 a(href = `/post/${post.id}`) 99
-      div(class="sidebar col-3")
+      div(class="sidebar col-1 col-md-3")
         if(user)
           div(class="login-info")
               div(class='profile')
